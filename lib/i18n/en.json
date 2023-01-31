@@ -1,0 +1,19 @@
+{
+  "welcome": "Welcome to you in garage station",
+  "thebest": "The best application to park your car",
+  "login": "Sign in",
+  "createAccount": "Create your account",
+  "rememberMe":"Remember me",
+  "homePage": "Home Page",
+  "personalInformation": "Personal Information",
+  "name": "Name",
+  "nameHint": "Enter your name",
+  "email": "Email",
+  "emailHint": "Enter your email",
+  "dateOfBirth": "Date of Birth",
+  "requiredField": "Required Field",
+  "aboutUs": "About Us",
+  "settings": "Settings",
+  "changeLanguage": "Change Language"
+
+}
