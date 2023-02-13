@@ -17,40 +17,83 @@ class settings extends StatefulWidget {
 class _settingsState extends State<settings> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ListView(
-        //padding: EdgeInsets.all(22),
-        children: [
-          ListTile(
-            leading: Icon(Icons.language),
-            title: Text(AppStrings.changeLanguage.tr()),
-            trailing: Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.rotationY( isRtl() ? math.pi : 0),
-            ),
-            onTap: () {
-              _changelanguage();
-            },
-          ),
-
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text(AppStrings.logout.tr(),
-            ),
-          )
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title:  Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(AppStrings.account.tr()),
+            Icon(Icons.keyboard_control),
+          ],
+        ),
+        
       ),
-    );
+      body:
+           ListView(
+            padding: EdgeInsets.all(22),
+            children: [
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text(AppStrings.changeAccount.tr()),
+              ),
+              ListTile(
+                leading: Icon(Icons.credit_card),
+                title: Text(AppStrings.paymentMethods.tr()),
+
+              ),
+              ListTile(
+                leading:Icon(Icons.notifications) ,
+                title: Text(AppStrings.notifications.tr()),
+              ),
+              ListTile( leading:Icon(Icons.lock) ,
+                title: Text(AppStrings.privacy.tr()),),
+              ListTile(
+                leading:Icon(Icons.error) ,
+                title: Text(AppStrings.contactUs.tr()),
+              ),
+              ListTile(
+                leading:Icon(Icons.visibility) ,
+                title: Text(AppStrings.darkAppearance.tr()),
+              ),
+             /* ListTile(
+                leading: Icon(Icons.language),
+                title: Text(AppStrings.changeLanguage.tr()),
+                trailing: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationY( isRtl() ? math.pi : 0),
+                ),
+                onTap: () {
+                  _changelanguage();
+                },
+              ),
+*/
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text(AppStrings.logout.tr(),
+                ),
+              )
+            ],
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            items: [
+              BottomNavigationBarItem(icon:Icon(Icons.home),label: AppStrings.home.tr()),
+              BottomNavigationBarItem(icon:Icon(Icons.list_alt),label: AppStrings.book.tr()),
+              BottomNavigationBarItem(icon:Icon(Icons.bookmark),label: AppStrings.favourite.tr()),
+              BottomNavigationBarItem(icon:Icon(Icons.directions_car),label: AppStrings.theCar.tr()),
+              BottomNavigationBarItem(icon:Icon(Icons.person),label: AppStrings.account.tr()),
+
+            ],
+          ),
+        );
+
   }
 
   _changelanguage() {
-    // i will implement it later
+
     Phoenix.rebirth(context);
   }
   bool isRtl() {
     return context.locale == ARABIC_LOCAL;
   }
-//  _contactUs() {
-// its a task for you to open any webpage using URL
-// }
 }

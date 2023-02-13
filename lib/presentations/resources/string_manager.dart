@@ -42,6 +42,20 @@ class AppStrings {
   static const String contactUs = "contact_us";
   static const String inviteYourFriends = "invite_your_friends";
   static const String logout = "logout";
+  static const String changeAccount = "change_account";
+  static const String privacy = "privacy";
+  static const String helpCenter= "help_center";
+  static const String paymentMethods= "payment_methods";
+  static const String darkAppearance= "dark_appearance";
+  static const String book= "book";
+  static const String favourite= "favourite";
+  static const String theCar= "the_car";
+  static const String account= "account";
+
+
+
+
+
 
   // error handler
   static const String badRequestError = "bad_request_error";

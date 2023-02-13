@@ -46,8 +46,17 @@
   "cache_error": "خطأ في ذاكرة التخزين المؤقت , حاول مرة أخرى لاحقًا",
   "no_internet_error": "يُرجى التحقق من اتصالك بالإنترنت",
   "change_language": "تغيير اللغة",
-  "contact_us": "اتصل بنا",
+  "contact_us": "مركز المساعدة",
   "invite_your_friends": "قم بدعوة أصدقائك",
   "logout": "تسجيل الخروج",
-  "reset_password": "اعاده تعيين كلمه السر"
+  "reset_password": "اعاده تعيين كلمه السر",
+  "change_account": "تعديل حسابك",
+  "privacy": "الأمان",
+  "payment_methods": "طرق الدفع",
+  "dark_appearance": "مظهر داكن",
+  "book": "الحجز",
+  "favourite": "المفضلة",
+  "the_car": "المركبة",
+  "account": "حسابك",
+  "help_center": "مركز المساعدة"
 }

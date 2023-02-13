@@ -53,5 +53,14 @@
   "contact_us": "Contact Us",
   "invite_your_friends": "Invite Your Friends",
   "logout": "Logout",
-  "reset_password": "Reset Password"
+  "reset_password": "Reset Password",
+  "change_account": "Change your account",
+  "privacy": "privacy",
+  "payment_methods": "payment methods",
+  "dark_appearance": "Dark appearance",
+  "book": "booking",
+  "favourite": "favourite",
+  "the_car": "The car",
+  "account": "your account",
+  "help_center": "help center"
 }
