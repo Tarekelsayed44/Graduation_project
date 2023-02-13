@@ -1,0 +1,155 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:pick_park/presentations/resources/assets_manager.dart';
+import 'package:pick_park/presentations/resources/string_manager.dart';
+import 'package:pick_park/presentations/resources/styles_manager.dart';
+import 'package:pick_park/shared/components/component.dart';
+
+class ResetPass extends StatefulWidget {
+  const ResetPass({Key? key}) : super(key: key);
+
+  @override
+  State<ResetPass> createState() => _ResetPassState();
+}
+
+class _ResetPassState extends State<ResetPass> {
+  @override
+  Widget build(BuildContext context) {
+    var emailController = TextEditingController();
+    var passwordController = TextEditingController();
+    bool checkBoxValue = false;
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: GestureDetector(
+          onTap: () {},
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Color(0xffedefff),
+              borderRadius: BorderRadius.circular(35),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                  size: 15,
+                ),
+                Text(
+                  AppStrings.back.tr(),
+                  style: getRegularStyle(color: Color(0xff777374)),
+                ),
+              ],
+            ),
+          ),
+        ),
+        //button1,
+        // leading: (defaultButton(
+        //   function: () {},
+        //   icon: Icon(
+        //     Icons.arrow_back,
+        //     size: 10,
+        //     color: Colors.black,
+        //   ),
+        //   text: (AppStrings.back.tr()),
+        //   textColor: Color(0xff777374),
+        //   color: Color(0xffedefff),
+        //   height: 15,
+        //   width: 20
+        // )),
+        title: Text(
+          AppStrings.resetPassword.tr(),
+          style: getBoldStyle(
+            color: Colors.black,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Center(
+                  child: Image(
+                image: AssetImage(ImageAssets.resetpass),
+                width: 198,
+                height: 181,
+              )),
+              SizedBox(
+                height: 25,
+              ),
+              Text(
+                AppStrings.resetPassword2.tr(),
+                style: getBoldStyle(
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.start,
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              defaultFormField(
+                controller: emailController,
+                type: TextInputType.emailAddress,
+                label: AppStrings.emailHint.tr(),
+                prefix: Icons.email,
+                radius: 20,
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              defaultFormField(
+                  controller: passwordController,
+                  isPassword: true,
+                  radius: 20,
+                  type: TextInputType.visiblePassword,
+                  label: AppStrings.password.tr(),
+                  prefix: Icons.lock,
+                  suffix: Icons.remove_red_eye,
+                  suffixPressed: () {}),
+              Row(
+                children: [
+                  Checkbox(
+                    value: checkBoxValue,
+                    onChanged: (newValue) {
+                      checkBoxValue = !newValue!;
+                    },
+                    activeColor: Color(0xff4b4eb0),
+                    checkColor: Color(0xff4b4eb0),
+                    shape: CircleBorder(
+                        side: BorderSide(style: BorderStyle.solid)),
+                  ),
+                  Text(
+                    AppStrings.rememberMe.tr(),
+                    style: getMediumStyle(color: Colors.black),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              defaultButton(
+                function: () {},
+                text: AppStrings.containue.tr(),
+                color: Color(0xff4b4eb0),
+                textColor: Colors.white,
+                radius: 35,
+                isUpperCase: true,
+              ),
+            ],
+          ),
+        ),
+      ),
+      backgroundColor: Colors.white,
+    );
+  }
+}

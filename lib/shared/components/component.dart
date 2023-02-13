@@ -6,6 +6,7 @@ Widget defaultButton({
   required String text,
   double radius = 0.0,
   bool isUpperCase = true,
+  Color textColor=Colors.white,
 }) =>
     Container(
       width: width,
@@ -13,10 +14,12 @@ Widget defaultButton({
         onPressed: () => function(),
         child: Text(
           isUpperCase ? text.toUpperCase() : text,
+          style: TextStyle(color: textColor),
         ),
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
+
         color: color,
       ),
     );
@@ -28,6 +31,7 @@ Widget defaultFormField({
   required TextInputType type,
   Function? onchange,
   validate,
+  double radius = 10.0,
   required String label,
   required IconData prefix,
   IconData? suffix,
@@ -50,7 +54,7 @@ Widget defaultFormField({
       },
       decoration: InputDecoration(
         labelText: label,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
         prefixIcon: Icon(
           prefix,
         ),

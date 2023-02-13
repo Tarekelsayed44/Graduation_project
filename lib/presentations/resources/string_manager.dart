@@ -1,11 +1,14 @@
 class AppStrings {
   static const noRouteFound = "No Route Found";
-  static const onBoardingTitle1 = "on_boarding_title1";
-  static const onBoardingTitle2 = "on_boarding_title2";
-  static const onBoardingTitle3 = "on_boarding_title3";
-  static const onBoardingSubTitle1 = "on_boarding_desc1";
-  static const onBoardingSubTitle2 = "on_boarding_desc2";
-  static const onBoardingSubTitle3 = "on_boarding_desc3";
+  static const splashText1 = "Welcome To";
+  static const splashText2 = "Pick Park";
+  static const splashText3 = "Best Application For Parking Your Car";
+  static const onBoardingTitle1 ="Locate the nearest parking lot for your car";
+  static const onBoardingTitle2 = "Set your parking time";
+  static const onBoardingTitle3 = "Make payment easy";
+  static const onBoardingSubTitle1 = "We'll help you find nearby parking\n You can park your car easily";
+  static const onBoardingSubTitle2 = "We will help you to park your car\n At your convenient time";
+  static const onBoardingSubTitle3 = "Pay immediately or pay later\n We don't worry about immediate payment";
   static const next ="next";
   static const skip = "skip";
   static const username = "username_hint";
@@ -42,6 +45,10 @@ class AppStrings {
   static const String contactUs = "contact_us";
   static const String inviteYourFriends = "invite_your_friends";
   static const String logout = "logout";
+  static const containue = "continue";
+  static const rememberMe = "remember_me";
+  static const back = "back";
+  static const String resetPassword2 = "Create_a_New_Password";
 
   // error handler
   static const String badRequestError = "bad_request_error";

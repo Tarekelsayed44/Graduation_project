@@ -20,7 +20,7 @@ TextStyle getRegularStyle(
 // medium style
 
 TextStyle getMediumStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s22, required Color color}) {
   return _getTextStyle(fontSize, FontWeightManager.medium, color);
 }
 
@@ -34,13 +34,13 @@ TextStyle getLightStyle(
 // bold style
 
 TextStyle getBoldStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s22, required Color color}) {
   return _getTextStyle(fontSize, FontWeightManager.bold, color);
 }
 
 // semibold style
 
 TextStyle getSemiBoldStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s22, required Color color}) {
   return _getTextStyle(fontSize, FontWeightManager.semiBold, color);
 }
