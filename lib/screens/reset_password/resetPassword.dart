@@ -13,12 +13,11 @@ class ResetPass extends StatefulWidget {
 }
 
 class _ResetPassState extends State<ResetPass> {
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+  bool checkBoxValue = false;
   @override
   Widget build(BuildContext context) {
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
-    bool checkBoxValue = false;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -71,81 +70,85 @@ class _ResetPassState extends State<ResetPass> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Center(
-                  child: Image(
-                image: AssetImage(ImageAssets.resetpass),
-                width: 198,
-                height: 181,
-              )),
-              SizedBox(
-                height: 25,
-              ),
-              Text(
-                AppStrings.resetPassword2.tr(),
-                style: getBoldStyle(
-                  color: Colors.black,
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 10,
                 ),
-                textAlign: TextAlign.start,
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              defaultFormField(
-                controller: emailController,
-                type: TextInputType.emailAddress,
-                label: AppStrings.emailHint.tr(),
-                prefix: Icons.email,
-                radius: 20,
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              defaultFormField(
-                  controller: passwordController,
-                  isPassword: true,
+                Center(
+                    child: Image(
+                  image: AssetImage(ImageAssets.resetpass),
+                  width: 198,
+                  height: 181,
+                )),
+                SizedBox(
+                  height: 25,
+                ),
+                Text(
+                  AppStrings.resetPassword2.tr(),
+                  style: getBoldStyle(
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                defaultFormField(
+                  controller: emailController,
+                  type: TextInputType.emailAddress,
+                  label: AppStrings.emailHint.tr(),
+                  prefix: Icons.email,
                   radius: 20,
-                  type: TextInputType.visiblePassword,
-                  label: AppStrings.password.tr(),
-                  prefix: Icons.lock,
-                  suffix: Icons.remove_red_eye,
-                  suffixPressed: () {}),
-              Row(
-                children: [
-                  Checkbox(
-                    value: checkBoxValue,
-                    onChanged: (newValue) {
-                      checkBoxValue = !newValue!;
-                    },
-                    activeColor: Color(0xff4b4eb0),
-                    checkColor: Color(0xff4b4eb0),
-                    shape: CircleBorder(
-                        side: BorderSide(style: BorderStyle.solid)),
-                  ),
-                  Text(
-                    AppStrings.rememberMe.tr(),
-                    style: getMediumStyle(color: Colors.black),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              defaultButton(
-                function: () {},
-                text: AppStrings.containue.tr(),
-                color: Color(0xff4b4eb0),
-                textColor: Colors.white,
-                radius: 35,
-                isUpperCase: true,
-              ),
-            ],
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                defaultFormField(
+                    controller: passwordController,
+                    isPassword: true,
+                    radius: 20,
+                    type: TextInputType.visiblePassword,
+                    label: AppStrings.password.tr(),
+                    prefix: Icons.lock,
+                    suffix: Icons.remove_red_eye,
+                    suffixPressed: () {}),
+                Row(
+                  children: [
+                    Checkbox(
+
+                      value: checkBoxValue,
+                      onChanged: (newValue) {
+                        setState((){
+                            checkBoxValue = newValue!;
+                        });
+                      },
+                      // checkColor: Color(0xff4b4eb0),
+                      shape: CircleBorder(
+                          side: BorderSide(style: BorderStyle.solid)),
+                    ),
+                    Text(
+                      AppStrings.rememberMe.tr(),
+                      style: getMediumStyle(color: Colors.black),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                defaultButton(
+                  function: () {},
+                  text: AppStrings.containue.tr(),
+                  color: Color(0xff4b4eb0),
+                  textColor: Colors.white,
+                  radius: 35,
+                  isUpperCase: true,
+                ),
+              ],
+            ),
           ),
         ),
       ),

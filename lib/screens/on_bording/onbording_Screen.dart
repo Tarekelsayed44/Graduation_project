@@ -213,7 +213,7 @@ class _OnBoordingState extends State<OnBoording> {
                     textColor: Color(0xff8993fa),
                     color: Color(0xffedefff),
                     radius:25,
-                  ), // button2 //button2
+                  ), // button2
                 ],
               ),
             ),

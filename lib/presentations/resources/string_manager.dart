@@ -1,5 +1,8 @@
 class AppStrings {
   static const noRouteFound = "No Route Found";
+  static const splashText1 = "welcome_to";
+  static const splashText2 = "Pick Park";
+  static const splashText3 = "splash_Text";
   static const onBoardingTitle1 = "on_boarding_title1";
   static const onBoardingTitle2 = "on_boarding_title2";
   static const onBoardingTitle3 = "on_boarding_title3";
@@ -51,6 +54,10 @@ class AppStrings {
   static const String favourite= "favourite";
   static const String theCar= "the_car";
   static const String account= "account";
+  static const containue = "continue";
+  static const rememberMe = "remember_me";
+  static const back = "back";
+  static const String resetPassword2 = "create_a_new_password";
 
 
 

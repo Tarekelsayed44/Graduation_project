@@ -1,7 +1,7 @@
 {
   "no_route_found": "No Route found",
-  "splashText1": "Welcome To",
-  "splashText3" :"Best Application For Parking Your Car",
+  "welcome_to": "Welcome To",
+  "splash_Text":"Best Application For Parking Your Car",
   "on_boarding_title1": "Locate the nearest parking lot for your car",
   "on_boarding_title2": "Set your parking time",
   "on_boarding_title3": "Make payment easy",
@@ -54,7 +54,7 @@
   "invite_your_friends": "Invite Your Friends",
   "logout": "Logout",
   "reset_password": "Reset Password",
-  "Create_a_New_Password": "Create a New Password",
+  "create_a_new_password": "Create a New Password",
   "continue": "Continue",
   "back": "Back" ,
   "remember_me": "Remember Me"

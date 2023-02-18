@@ -2,6 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pick_park/screens/login_screen/login_screen.dart';
+import 'package:pick_park/screens/on_bording/onbording_Screen.dart';
+import 'package:pick_park/screens/reset_password/resetPassword.dart';
+import 'package:pick_park/screens/splash/splach2.dart';
 import 'package:pick_park/screens/splash/splash1.dart';
 import 'package:pick_park/shared/styles/theme.dart';
 
@@ -34,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       //onGenerateRoute: RouteGenerator.getRoute,
      // initialRoute: Routes.loginRoute,
-     home: loginScreen(),
+     home:IntroScreen(),
       theme: ThemeData(),
     );
   }
