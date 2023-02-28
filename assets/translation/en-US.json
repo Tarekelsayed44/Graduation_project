@@ -14,7 +14,7 @@
   "username_hint": "UserName",
   "password_hint": "Password",
   "login_button": "Login",
-  "forgot_password_text": "Forgot Password",
+  "forgot_password_text": "Forgot Password?",
   "register_text": "Not a member ? Sign up",
   "loading": "Loading....",
   "retry_again": "Retry again",
@@ -57,5 +57,8 @@
   "create_a_new_password": "Create a New Password",
   "continue": "Continue",
   "back": "Back" ,
-  "remember_me": "Remember Me"
+  "remember_me": "Remember Me",
+  "change_account": "Change Account",
+  "fill_form": "fill form",
+  "full_name": "Full name"
 }

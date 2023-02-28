@@ -5,7 +5,6 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'app/app.dart';
 import 'app/di.dart';
 import 'presentations/resources/language_manager.dart';
-import 'screens/login_screen/login_screen.dart';
 import 'screens/settings/settings.dart';
 import 'screens/splash/splash1.dart';
 

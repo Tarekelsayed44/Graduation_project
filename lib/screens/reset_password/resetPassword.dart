@@ -16,6 +16,7 @@ class _ResetPassState extends State<ResetPass> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   bool checkBoxValue = false;
+  bool isPassword = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +26,12 @@ class _ResetPassState extends State<ResetPass> {
         leading: GestureDetector(
           onTap: () {},
           child: Container(
+            height: 3,
+            width: 15,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Color(0xffedefff),
-              borderRadius: BorderRadius.circular(35),
+              borderRadius: BorderRadius.circular(2),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -46,20 +49,6 @@ class _ResetPassState extends State<ResetPass> {
             ),
           ),
         ),
-        //button1,
-        // leading: (defaultButton(
-        //   function: () {},
-        //   icon: Icon(
-        //     Icons.arrow_back,
-        //     size: 10,
-        //     color: Colors.black,
-        //   ),
-        //   text: (AppStrings.back.tr()),
-        //   textColor: Color(0xff777374),
-        //   color: Color(0xffedefff),
-        //   height: 15,
-        //   width: 20
-        // )),
         title: Text(
           AppStrings.resetPassword.tr(),
           style: getBoldStyle(
@@ -114,12 +103,11 @@ class _ResetPassState extends State<ResetPass> {
                     type: TextInputType.visiblePassword,
                     label: AppStrings.password.tr(),
                     prefix: Icons.lock,
-                    suffix: Icons.remove_red_eye,
-                    suffixPressed: () {}),
+
+                ),
                 Row(
                   children: [
                     Checkbox(
-
                       value: checkBoxValue,
                       onChanged: (newValue) {
                         setState((){

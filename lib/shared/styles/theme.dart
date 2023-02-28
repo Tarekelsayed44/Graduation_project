@@ -5,7 +5,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'colors.dart';
 
 ThemeData darktheme = ThemeData(
-  fontFamily: 'Janna',
+  fontFamily: 'Cairo',
   primarySwatch: Colors.blueGrey,
   floatingActionButtonTheme:
   FloatingActionButtonThemeData(backgroundColor: defaultColor),
@@ -41,7 +41,7 @@ ThemeData darktheme = ThemeData(
   ),
 );
 ThemeData lighttheme = ThemeData(
-  fontFamily: 'Janna',
+  fontFamily: 'Cairo',
   primarySwatch: Colors.blueGrey,
   floatingActionButtonTheme:
   FloatingActionButtonThemeData(backgroundColor: defaultColor),

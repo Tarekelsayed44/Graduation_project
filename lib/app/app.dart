@@ -9,6 +9,7 @@ import 'package:pick_park/screens/splash/splash1.dart';
 import 'package:pick_park/shared/styles/theme.dart';
 
 import '../presentations/resources/route_manager.dart';
+import '../screens/settings/settings.dart';
 import 'app_pref.dart';
 import 'di.dart';
 class MyApp extends StatefulWidget {
@@ -37,7 +38,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       //onGenerateRoute: RouteGenerator.getRoute,
      // initialRoute: Routes.loginRoute,
-     home:IntroScreen(),
+     home:loginScreen(),
       theme: ThemeData(),
     );
   }

@@ -14,7 +14,7 @@
   "username_hint": "اسم المستخدم",
   "password_hint": "كلمه السر",
   "login_button": "تسجيل الدخول",
-  "forgot_password_text": "نسيت كلمه السر",
+  "forgot_password_text": "هل نسيت كلمه السر؟",
   "register_text": "لم تقم بالتسجيل؟ سجل الان",
   "loading": "جاري التحميل...",
   "retry_again": "حاول مره اخرق",
@@ -64,5 +64,7 @@
   "continue": "استمر",
   "create_a_new_password": "انشاء كلمة سر جديدة خاصة بك",
   "back": "الرجوع" ,
-  "remember_me": "تذكرني"
+  "remember_me": "تذكرني",
+  "fill_form": "املأ ملف التعريف الخاص بك",
+  "full_name": "الاسم بالكامل"
 }

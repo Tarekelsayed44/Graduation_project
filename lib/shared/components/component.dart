@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 Widget defaultButton({
   double width = double.infinity,
   Color color = Colors.blue,
@@ -6,7 +7,7 @@ Widget defaultButton({
   required String text,
   double radius = 0.0,
   bool isUpperCase = true,
-  Color textColor=Colors.white,
+  Color textColor = Colors.white,
 }) =>
     Container(
       width: width,
@@ -19,13 +20,13 @@ Widget defaultButton({
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
-
         color: color,
       ),
     );
-
+//-------------------------------------------------------------------------------------------
 Widget defaultTextButton({required Function function, required String text}) =>
     TextButton(onPressed: () => function(), child: Text(text.toUpperCase()));
+
 Widget defaultFormField({
   required TextEditingController controller,
   required TextInputType type,
@@ -53,18 +54,17 @@ Widget defaultFormField({
         onSubmit!(value);
       },
       decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
-        prefixIcon: Icon(
-          prefix,
-        ),
-        suffixIcon: IconButton(
-          onPressed: () {
-            suffixPressed!();
-          },
-          icon: Icon(
-            suffix,
+          labelText: label,
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
+          prefixIcon: Icon(
+            prefix,
           ),
-        ),
-      ),
+          suffixIcon: suffix != null
+              ? IconButton(
+                  onPressed: () {
+                    suffixPressed;
+                  },
+                  icon: Icon(suffix))
+              : null),
     );

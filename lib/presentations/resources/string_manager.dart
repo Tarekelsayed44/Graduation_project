@@ -58,6 +58,9 @@ class AppStrings {
   static const rememberMe = "remember_me";
   static const back = "back";
   static const String resetPassword2 = "create_a_new_password";
+  static const String fillForm = "fill_form";
+  static const String fullName = "full_name";
+
 
 
 
