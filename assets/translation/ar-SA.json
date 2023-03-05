@@ -71,5 +71,8 @@
   "birth_date": "تاريخ الميلاد",
   "phone_num": "رقم الهاتف",
   "gender": "النوع",
-  "or": "أو"
+  "or": "أو",
+  "male": "ذكر",
+  "female":"أنثي",
+  "create_account": "أنشئ حسابك"
 }

@@ -31,7 +31,7 @@ class IntroScreen extends StatelessWidget {
                   height: 15,
                 ),
                 Text(
-                  AppStrings.splashText2.tr(),
+                  AppStrings.splashText2,
                   style:getBoldStyle(color: Colors.black),
                 ),
                 SizedBox(

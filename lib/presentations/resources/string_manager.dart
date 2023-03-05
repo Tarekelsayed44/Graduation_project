@@ -67,7 +67,7 @@ class AppStrings {
   static const String male = "male";
   static const String female = "female";
   static const String or = "or";
-
+  static const String createAcoount = "create_account";
 
 
 
