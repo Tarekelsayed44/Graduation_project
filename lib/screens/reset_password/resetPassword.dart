@@ -91,7 +91,6 @@ class _ResetPassState extends State<ResetPass> {
                   type: TextInputType.emailAddress,
                   label: AppStrings.emailHint.tr(),
                   prefix: Icons.email,
-                  radius: 20,
                 ),
                 SizedBox(
                   height: 25,
@@ -99,7 +98,6 @@ class _ResetPassState extends State<ResetPass> {
                 defaultFormField(
                     controller: passwordController,
                     isPassword: true,
-                    radius: 20,
                     type: TextInputType.visiblePassword,
                     label: AppStrings.password.tr(),
                     prefix: Icons.lock,

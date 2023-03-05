@@ -59,6 +59,14 @@
   "back": "Back" ,
   "remember_me": "Remember Me",
   "change_account": "Change Account",
-  "fill_form": "fill form",
-  "full_name": "Full name"
+  "fill_form": "Fill your profile",
+  "full_name": "Full name",
+  "field_error": "This field must not be empty",
+  "birth_date": "Birth Date",
+  "phone_num": "Phone number",
+  "gender": "Gender",
+  "male": "Male",
+  "female": "Female",
+  "or": "Or"
+
 }

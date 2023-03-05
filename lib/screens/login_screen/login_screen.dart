@@ -49,7 +49,6 @@ class _loginScreenState extends State<loginScreen> {
                     type: TextInputType.emailAddress,
                     label: AppStrings.emailHint.tr(),
                     prefix: Icons.email,
-                    radius: 20,
                   validate:(value){
                       if(value.isEmpty){
                         return AppStrings.invalidEmail.tr();
@@ -68,6 +67,11 @@ class _loginScreenState extends State<loginScreen> {
                       }
                       return null;
                     },
+                  onSubmit: (){
+                      if(formKey.currentState!.validate()){
+                        return "invalid";
+                      }
+                  },
                     type: TextInputType.visiblePassword,
                     label: AppStrings.password.tr(),
                     prefix: Icons.lock,
@@ -78,7 +82,6 @@ class _loginScreenState extends State<loginScreen> {
                         isPassword = !isPassword;
                       });
                   },
-                  radius: 20,
 
 
 
@@ -118,7 +121,16 @@ class _loginScreenState extends State<loginScreen> {
                   padding: const EdgeInsets.all(20),
                   child: defaultButton(function: (){}, text: AppStrings.login.tr().toUpperCase(),color: Color(0xff4b4eb0),radius: 20),
                 ),
-                SizedBox(height: 30,),
+                SizedBox(
+                  height: 30,
+                ),
+                // Row(
+                //   children: [
+                //     Divider(thickness: 2,color: Color(0xff4b4eb0),),
+                //     Text(AppStrings.or),
+                //     Divider(thickness: 2,color:  Color(0xff4b4eb0),)
+                //   ],
+                // )
 
 
 

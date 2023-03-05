@@ -22,7 +22,7 @@ class AppStrings {
   static const retryAgain = "retry_again";
   static const ok = "ok";
   static const String emailHint = 'email_hint';
-  static const String invalidEmail = "email_error";
+  static const String invalidEmail = "invalid_email";
   static const String resetPassword = "reset_password";
   static const String success = "success";
   static const String userNameInvalid = "username_hint_message";
@@ -60,6 +60,13 @@ class AppStrings {
   static const String resetPassword2 = "create_a_new_password";
   static const String fillForm = "fill_form";
   static const String fullName = "full_name";
+  static const String errorField = "field_error";
+  static const String birthDate = "birth_date";
+  static const String phoneNum = "phone_num";
+  static const String gender = "gender";
+  static const String male = "male";
+  static const String female = "female";
+  static const String or = "or";
 
 
 
