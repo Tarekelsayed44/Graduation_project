@@ -107,18 +107,7 @@ class _Register_formState extends State<Register_form> {
                       return null;
                     }
                 ),
-                // defaultFormField(
-                //     controller: phoneController,
-                //     type: TextInputType.phone,
-                //     label: AppStrings.phoneNum.tr(),
-                //     prefix: null,
-                //     validate:(value){
-                //       if(value.isEmpty){
-                //         return AppStrings.errorField.tr();
-                //       }
-                //       return null;
-                //     }
-                // ),
+
                 SizedBox(height: 15,),
                 DropdownButtonFormField(
                     items: [AppStrings.male, AppStrings.female].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(),
