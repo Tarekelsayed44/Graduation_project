@@ -71,6 +71,9 @@ class AppStrings {
   static const String orSign = "or_sign";
   static const String notMember = "not_member";
   static const String registerNow = "register_now";
+  static const String editAccount = "edit_account";
+  static const String submit = "submit";
+
 
 
 
