@@ -9,9 +9,7 @@ import 'package:pick_park/screens/sign_up/sign_up1.dart';
 import 'package:pick_park/screens/splash/splach2.dart';
 import 'package:pick_park/screens/splash/splash1.dart';
 import 'package:pick_park/shared/styles/theme.dart';
-
 import '../presentations/resources/route_manager.dart';
-import '../screens/settings/edit_account.dart';
 import '../screens/settings/settings.dart';
 import '../screens/sign_up/sign_up2.dart';
 import 'app_pref.dart';
@@ -42,7 +40,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       //onGenerateRoute: RouteGenerator.getRoute,
      // initialRoute: Routes.loginRoute,
-     home:EditAccount(),
+     home:ResetPass(),
       theme: ThemeData(),
     );
   }
