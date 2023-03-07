@@ -27,8 +27,15 @@ class _Register_formState extends State<Register_form> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text(AppStrings.fillForm.tr(),style: getBoldStyle(color: Colors.black),),
+        title: Row(
+          children: [
+            Text(AppStrings.fillForm.tr(),style: getBoldStyle(color: Colors.black),),
+            Spacer(),
+            backButton()
+          ],
+        ),
         backgroundColor: Colors.white,
+
       ),
       body: Container(
         padding: EdgeInsetsDirectional.only(top: 20,start: 10,end: 10),
@@ -61,7 +68,7 @@ class _Register_formState extends State<Register_form> {
 
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 defaultFormField(
                     controller:birthController ,
@@ -76,7 +83,7 @@ class _Register_formState extends State<Register_form> {
                     }
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
             defaultFormField(
               controller: emailController,
@@ -91,7 +98,7 @@ class _Register_formState extends State<Register_form> {
               }
             ),
                 SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 IntlPhoneField(
                     controller: phoneController,
@@ -108,9 +115,9 @@ class _Register_formState extends State<Register_form> {
                     }
                 ),
 
-                SizedBox(height: 15,),
+                SizedBox(height: 10,),
                 DropdownButtonFormField(
-                    items: [AppStrings.male, AppStrings.female].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(),
+                    items: [AppStrings.male.tr(), AppStrings.female.tr()].map((e) => DropdownMenuItem(child: Text("$e"),value: e,)).toList(),
                     onChanged: (val){
                       setState(() {
                         selctedGender=val;

@@ -68,6 +68,9 @@ class AppStrings {
   static const String female = "female";
   static const String or = "or";
   static const String createAcoount = "create_account";
+  static const String withGoogle = "login_google";
+  static const String withFacebook = "login_facebook";
+  static const String withIphone = "login_iphone";
 
 
 

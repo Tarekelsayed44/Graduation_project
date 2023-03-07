@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:pick_park/screens/login_screen/login_screen.dart';
 import 'package:pick_park/screens/on_bording/onbording_Screen.dart';
 import 'package:pick_park/screens/reset_password/resetPassword.dart';
+import 'package:pick_park/screens/sign_up/sign_up0.dart';
 import 'package:pick_park/screens/sign_up/sign_up1.dart';
 import 'package:pick_park/screens/splash/splach2.dart';
 import 'package:pick_park/screens/splash/splash1.dart';
