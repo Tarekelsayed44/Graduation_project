@@ -65,6 +65,7 @@ Widget defaultFormField({
           prefixIcon: Icon(
             prefix,
           ),
+
           suffixIcon: suffix != null
               ? IconButton(
                   onPressed: () {
@@ -72,6 +73,7 @@ Widget defaultFormField({
                   },
                   icon: Icon(suffix))
               : null),
+
     );
 //-----------------------------------------------------------------------------------------------
 Widget backButton() {

@@ -69,8 +69,9 @@
   "female": "Female",
   "or": "Or",
   "create_account": "Create your account",
-  "login_google": "Login With Google",
-  "login_facebook":"Login With Facebook",
-  "login_iphone":"Login With iPhone"
-
+  "or_sign": "Or sign with",
+  "not_member": "Not a member?",
+  "register_now": "Register Now",
+  "edit_account":"Edit account",
+  "submit": "submit"
 }
