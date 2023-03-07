@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../presentations/resources/assets_manager.dart';
 import '../../presentations/resources/string_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
 import '../../shared/components/component.dart';
@@ -96,7 +97,6 @@ class _CreateAcoountState extends State<CreateAcoount> {
             type: TextInputType.visiblePassword,
             label: AppStrings.password.tr(),
             prefix: Icons.lock,
-            isPassword: isPassword,
             suffix:isPassword? Icons.visibility: Icons.visibility_off,
             suffixPressed: (){
             setState(() {
@@ -138,8 +138,35 @@ class _CreateAcoountState extends State<CreateAcoount> {
             child: defaultButton(function: (){}, text: AppStrings.login.tr().toUpperCase(),color: Color(0xff4b4eb0),radius: 20),
             ),
             SizedBox(height: 30,),
-
-
+            Text(AppStrings.orSign.tr()),
+              SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Image(
+                    image: AssetImage(ImageAssets.googleIcon),
+                    height: 48,
+                    width: 48,
+                  ),
+                  Image(
+                    image: AssetImage(ImageAssets.facebookIcon),
+                    height: 48,
+                    width: 48,
+                  ),
+                  Image(
+                    image: AssetImage(ImageAssets.appleIcon),
+                  ),
+                ],
+              ),
+              SizedBox(height: 50,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(AppStrings.notMember.tr()),
+                  SizedBox(width: 4,),
+                  Text(AppStrings.registerNow.tr(),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)
+                ],
+              )
 
     ],
     ),

@@ -2,8 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 
-import '../../app/app_pref.dart';
-import '../../app/di.dart';
+import '../../presentations/resources/assets_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
 import '../../shared/components/component.dart';
 
@@ -20,9 +19,9 @@ class _loginScreenState extends State<loginScreen> {
   bool isPassword = true;
   var formKey = GlobalKey<FormState>();
   bool checkBoxValue = false;
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -37,7 +36,7 @@ class _loginScreenState extends State<loginScreen> {
       ),
       body: Container(
         height: double.infinity,
-        padding: EdgeInsetsDirectional.only(top: 40,start: 10,end: 10),
+        padding: EdgeInsetsDirectional.only(top: 40, start: 10, end: 10),
         color: Colors.white,
         child: SingleChildScrollView(
           child: Form(
@@ -49,56 +48,53 @@ class _loginScreenState extends State<loginScreen> {
                     type: TextInputType.emailAddress,
                     label: AppStrings.emailHint.tr(),
                     prefix: Icons.email,
-                  validate:(value){
-                      if(value.isEmpty){
+                    validate: (value) {
+                      if (value.isEmpty) {
                         return AppStrings.invalidEmail.tr();
                       }
                       return null;
-                  }
-                ),
+                    }),
                 SizedBox(
                   height: 20,
                 ),
                 defaultFormField(
-                    controller: passwordController,
-                    validate:(value){
-                      if(value.isEmpty){
-                        return  AppStrings.passwordError.tr();
-                      }
-                      return null;
-                    },
-                  onSubmit: (){
-                      if(formKey.currentState!.validate()){
-                        return "invalid";
-                      }
+                  controller: passwordController,
+                  validate: (value) {
+                    if (value.isEmpty) {
+                      return AppStrings.passwordError.tr();
+                    }
+                    return null;
                   },
-                    type: TextInputType.visiblePassword,
-                    label: AppStrings.password.tr(),
-                    prefix: Icons.lock,
-                  isPassword: isPassword,
-                  suffix:isPassword? Icons.visibility: Icons.visibility_off,
-                  suffixPressed: (){
-                      setState(() {
-                        isPassword = !isPassword;
-                      });
+                  onSubmit: () {
+                    if (formKey.currentState!.validate()) {
+                      return "invalid";
+                    }
                   },
+                  type: TextInputType.visiblePassword,
+                  label: AppStrings.password.tr(),
+                  prefix: Icons.lock,
 
-
-
+                  suffix: isPassword==true ? Icons.visibility : Icons.visibility_off,
+                  suffixPressed: () {
+                    isPassword==true ? Icons.visibility : Icons.visibility_off;
+                  },
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Row(
                   children: [
-                    Text(AppStrings.forgetPassword.tr(),style:getMediumStyle(color: Color(0xff4b4eb0)),),
+                    Text(
+                      AppStrings.forgetPassword.tr(),
+                      style: getMediumStyle(color: Color(0xff4b4eb0)),
+                    ),
                     Spacer(),
                     Row(
                       children: [
                         Checkbox(
                           value: checkBoxValue,
                           onChanged: (newValue) {
-                            setState((){
+                            setState(() {
                               checkBoxValue = newValue!;
                             });
                           },
@@ -119,21 +115,49 @@ class _loginScreenState extends State<loginScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20),
-                  child: defaultButton(function: (){}, text: AppStrings.login.tr().toUpperCase(),color: Color(0xff4b4eb0),radius: 20),
+                  child: defaultButton(
+                      function: () {},
+                      text: AppStrings.login.tr().toUpperCase(),
+                      color: Color(0xff4b4eb0),
+                      radius: 20),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 50,
                 ),
-                // Row(
-                //   children: [
-                //     Divider(thickness: 2,color: Color(0xff4b4eb0),),
-                //     Text(AppStrings.or),
-                //     Divider(thickness: 2,color:  Color(0xff4b4eb0),)
-                //   ],
-                // )
-
-
-
+                Row(
+                  children: [
+                    Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Color(0xff4b4eb0),
+                        )),
+                    Text(AppStrings.or.tr()),
+                    Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Color(0xff4b4eb0),
+                        ))
+                  ],
+                ),
+                SizedBox(height: 30,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Image(
+                      image: AssetImage(ImageAssets.googleIcon),
+                      height: 48,
+                      width: 48,
+                    ),
+                    Image(
+                      image: AssetImage(ImageAssets.facebookIcon),
+                      height: 48,
+                      width: 48,
+                    ),
+                    Image(
+                      image: AssetImage(ImageAssets.appleIcon),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
