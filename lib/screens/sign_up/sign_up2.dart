@@ -33,32 +33,6 @@ class _CreateAcoountState extends State<CreateAcoount> {
           ),
         ),
 
-        /*  leading: GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 3,
-                width: 15,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Color(0xffedefff),
-                  borderRadius: BorderRadius.circular(2),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.arrow_back,
-                      color: Colors.black,
-                      size: 15,
-                    ),
-                    Text(
-                      AppStrings.back.tr(),
-                      style: getRegularStyle(color: Color(0xff777374)),
-                    ),
-                  ],
-                ),
-              ),
-            ),*/
       ),
       body: Container(
         height: double.infinity,
@@ -116,7 +90,6 @@ class _CreateAcoountState extends State<CreateAcoount> {
                           checkBoxValue = newValue!;
                         });
                       },
-                      // checkColor: Color(0xff4b4eb0),
                       shape: CircleBorder(
                           side: BorderSide(style: BorderStyle.solid)),
                     ),
