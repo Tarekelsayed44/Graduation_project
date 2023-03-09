@@ -44,7 +44,7 @@ Widget defaultFormField({
   bool isPassword = false,
   Function? suffixPressed,
   Function? onSubmit,
-  var autoValidate = AutovalidateMode.onUserInteraction,
+  var autoValidate = AutovalidateMode.onUserInteraction,  IconButton ?suffixIcon,
 }) =>
     TextFormField(
       validator: validate,
@@ -66,13 +66,7 @@ Widget defaultFormField({
             prefix,
           ),
 
-          suffixIcon: suffix != null
-              ? IconButton(
-                  onPressed: () {
-                    suffixPressed;
-                  },
-                  icon: Icon(suffix))
-              : null),
+      ),
 
     );
 //-----------------------------------------------------------------------------------------------

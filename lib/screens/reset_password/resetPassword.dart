@@ -1,3 +1,4 @@
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
@@ -49,10 +50,10 @@ class _ResetPassState extends State<ResetPass> {
                 ),
                 Center(
                     child: Image(
-                  image: AssetImage(ImageAssets.resetpass),
-                  width: 198,
-                  height: 181,
-                )),
+                      image: AssetImage(ImageAssets.resetpass),
+                      width: 198,
+                      height: 181,
+                    )),
                 SizedBox(
                   height: 25,
                 ),
@@ -76,12 +77,18 @@ class _ResetPassState extends State<ResetPass> {
                   height: 25,
                 ),
                 defaultFormField(
-                    controller: passwordController,
-                    isPassword: true,
-                    type: TextInputType.visiblePassword,
-                    label: AppStrings.password.tr(),
-                    prefix: Icons.lock,
+                  controller: passwordController,
+                  type: TextInputType.visiblePassword,
+                  label: AppStrings.password.tr(),
+                  prefix: Icons.lock,
 
+                  suffixPressed: (){
+                    Icons.remove_red_eye;
+                    setState(() {
+                      isPassword  = !isPassword;
+                    });
+                    Icon(isPassword ? Icons.visibility : Icons.visibility_off);
+                  }
                 ),
                 Row(
                   children: [
@@ -89,7 +96,7 @@ class _ResetPassState extends State<ResetPass> {
                       value: checkBoxValue,
                       onChanged: (newValue) {
                         setState((){
-                            checkBoxValue = newValue!;
+                          checkBoxValue = newValue!;
                         });
                       },
                       // checkColor: Color(0xff4b4eb0),

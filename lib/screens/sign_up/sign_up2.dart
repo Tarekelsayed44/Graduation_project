@@ -26,41 +26,20 @@ class _CreateAcoountState extends State<CreateAcoount> {
         elevation: 0,
         backgroundColor: Colors.white,
         titleSpacing: 20,
-        title: Text(
-          AppStrings.createAcoount.tr(),
-          style: getBoldStyle(
-            color: Colors.black,
-          ),
-        ),
-
-        /*  leading: GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 3,
-                width: 15,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Color(0xffedefff),
-                  borderRadius: BorderRadius.circular(2),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.arrow_back,
-                      color: Colors.black,
-                      size: 15,
-                    ),
-                    Text(
-                      AppStrings.back.tr(),
-                      style: getRegularStyle(color: Color(0xff777374)),
-                    ),
-                  ],
-                ),
+        title: Row(
+          children: [
+            Text(
+              AppStrings.createAcoount.tr(),
+              style: getBoldStyle(
+                color: Colors.black,
               ),
-            ),*/
-      ),
+            ),
 
+          Spacer(),
+          backButton()
+        ],
+      ),
+      ),
       body: Container(
         height: double.infinity,
         padding: EdgeInsetsDirectional.only(top: 40,start: 10,end: 10),
@@ -81,7 +60,7 @@ class _CreateAcoountState extends State<CreateAcoount> {
                         return AppStrings.invalidEmail.tr();
                       }
                       return null;
-                    }
+                    },
                 ),
                 SizedBox(
                   height: 20,
@@ -97,15 +76,6 @@ class _CreateAcoountState extends State<CreateAcoount> {
                   type: TextInputType.visiblePassword,
                   label: AppStrings.password.tr(),
                   prefix: Icons.lock,
-                  suffix:isPassword? Icons.visibility: Icons.visibility_off,
-                  suffixPressed: (){
-                    setState(() {
-                      isPassword = !isPassword;
-                    });
-                  },
-                  radius: 20,
-
-
 
                 ),
                 SizedBox(

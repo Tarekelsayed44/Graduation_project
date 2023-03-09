@@ -73,5 +73,9 @@
   "not_member": "Not a member?",
   "register_now": "Register Now",
   "edit_account":"Edit account",
-  "submit": "submit"
+  "submit": "submit",
+  "login_google": "login with google",
+  "login_facebook":"login with facebook",
+  "login_iphone": "login with iphone",
+  "login_password": "login with password"
 }

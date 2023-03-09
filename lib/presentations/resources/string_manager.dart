@@ -14,7 +14,7 @@ class AppStrings {
   static const username = "username_hint";
   static const password = "password_hint";
   static const usernameError = "username_error";
-  static const passwordError = "password_error";
+  static const passwordError = "invalid_password";
   static const login = "login_button";
   static const forgetPassword = "forgot_password_text";
   static const registerText = "register_text";
@@ -73,7 +73,10 @@ class AppStrings {
   static const String registerNow = "register_now";
   static const String editAccount = "edit_account";
   static const String submit = "submit";
-
+  static const String withGoogle = "login_google";
+  static const String withFacebook = "login_facebook";
+  static const String withIphone = "login_iphone";
+  static const String loginPassword = "login_password";
 
 
 
