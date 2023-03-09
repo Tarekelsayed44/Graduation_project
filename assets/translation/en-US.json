@@ -68,6 +68,10 @@
   "male": "Male",
   "female": "Female",
   "or": "Or",
-  "create_account": "Create your account"
-
+  "create_account": "Create your account",
+  "or_sign": "Or sign with",
+  "not_member": "Not a member?",
+  "register_now": "Register Now",
+  "edit_account":"Edit account",
+  "submit": "submit"
 }

@@ -8,6 +8,10 @@ class ImageAssets {
   static const String onboardingLogo3 = "$imagePath/onboarding_logo3.png";
   static const String resetpass = "$imagePath/resetpass.png";
   static const String profile = "$imagePath/avatar-01.png";
+  static const String googleIcon = "$imagePath/google.png";
+  static const String facebookIcon = "$imagePath/facebook.png";
+  static const String appleIcon = "$imagePath/icons8_apple_logo_50.png";
+
 }
 
 class JsonAssets {

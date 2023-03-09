@@ -68,6 +68,11 @@ class AppStrings {
   static const String female = "female";
   static const String or = "or";
   static const String createAcoount = "create_account";
+  static const String orSign = "or_sign";
+  static const String notMember = "not_member";
+  static const String registerNow = "register_now";
+  static const String editAccount = "edit_account";
+  static const String submit = "submit";
 
 
 

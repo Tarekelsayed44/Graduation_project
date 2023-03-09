@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       //onGenerateRoute: RouteGenerator.getRoute,
      // initialRoute: Routes.loginRoute,
-     home:Register_form(),
+     home:loginScreen(),
       theme: ThemeData(),
     );
   }

@@ -74,5 +74,10 @@
   "or": "أو",
   "male": "ذكر",
   "female":"أنثي",
-  "create_account": "أنشئ حسابك"
+  "create_account": "أنشئ حسابك",
+  "or_sign": "أو التسحيل من خلال",
+  "not_member": "لا تمتلك حسابا؟",
+  "register_now": "التسحيل كمستخدم جديد",
+  "edit_account":"تعديل الحساب",
+  "submit":"تأكيد"
 }
