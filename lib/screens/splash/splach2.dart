@@ -18,6 +18,7 @@ class IntroScreen extends StatelessWidget {
             ImageAssets.splashLogo2,
             height: size.height,
             width: size.width,
+            fit:BoxFit.fitHeight,
           ),
           SafeArea(
             child: Column(
@@ -25,21 +26,22 @@ class IntroScreen extends StatelessWidget {
               children: [
                 Text(
                   AppStrings.splashText1.tr(),
-                  style: getBoldStyle(color: Colors.black),
+                  style: getBoldStyle(color: Color(0xff020202),fontSize: 40),textAlign:TextAlign.start,
+
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 Text(
                   AppStrings.splashText2,
-                  style:getBoldStyle(color: Colors.black),
+                  style:getBoldStyle(color: Color(0xff020202),fontSize: 50),textAlign: TextAlign.end,
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 20,
                 ),
                 Text(
                   AppStrings.splashText3.tr(),
-                  style:getBoldStyle(color: Colors.white),
+                  style:getBoldStyle(color: Color(0xffF8F8F8),fontSize: 30),textAlign: TextAlign.center,
                 ),
                 SizedBox(
                   height: 30,

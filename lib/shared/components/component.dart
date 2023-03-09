@@ -1,21 +1,26 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:pick_park/presentations/resources/string_manager.dart';
 
 Widget defaultButton({
-  double width = double.infinity,
   Color color = Colors.blue,
   required Function function,
   required String text,
-  double radius = 0.0,
+  double radius = 25,
+  double fontSize = 20,
+  FontWeight fontWeight = FontWeight.w500,
   bool isUpperCase = true,
   Color textColor = Colors.white,
 }) =>
     Container(
-      width: width,
+      width: 314,
+      height: 58,
       child: MaterialButton(
         onPressed: () => function(),
         child: Text(
           isUpperCase ? text.toUpperCase() : text,
-          style: TextStyle(color: textColor),
+          style: TextStyle(
+              color: textColor, fontSize: fontSize, fontWeight: fontWeight),
         ),
       ),
       decoration: BoxDecoration(
@@ -60,6 +65,7 @@ Widget defaultFormField({
           prefixIcon: Icon(
             prefix,
           ),
+
           suffixIcon: suffix != null
               ? IconButton(
                   onPressed: () {
@@ -67,4 +73,37 @@ Widget defaultFormField({
                   },
                   icon: Icon(suffix))
               : null),
+
     );
+//-----------------------------------------------------------------------------------------------
+Widget backButton() {
+  return Container(
+    width: 70,
+    height: 28,
+    decoration: BoxDecoration(
+      color: Color(0xffEDEFFF),
+      borderRadius: BorderRadius.circular(14),
+    ),
+
+    child: Row(
+      children: [
+        SizedBox(width: 5,),
+        Text(
+          AppStrings.back.tr(),
+          style: TextStyle(
+            color: Color(0xff736F6F),
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            fontFamily: "Cairo",
+          ),
+        ),
+        SizedBox(width: 5,),
+       Icon(
+          Icons.arrow_forward,
+          size: 20,
+          color: Colors.black,
+        )
+      ],
+    ),
+  );
+}

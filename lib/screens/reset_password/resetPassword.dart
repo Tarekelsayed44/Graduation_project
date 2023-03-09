@@ -23,37 +23,17 @@ class _ResetPassState extends State<ResetPass> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: GestureDetector(
-          onTap: () {},
-          child: Container(
-            height: 3,
-            width: 15,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Color(0xffedefff),
-              borderRadius: BorderRadius.circular(2),
+        title: Row(
+          children: [
+            Text(
+              AppStrings.resetPassword.tr(),
+              style: getBoldStyle(
+                color: Colors.black,
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.arrow_back,
-                  color: Colors.black,
-                  size: 15,
-                ),
-                Text(
-                  AppStrings.back.tr(),
-                  style: getRegularStyle(color: Color(0xff777374)),
-                ),
-              ],
-            ),
-          ),
-        ),
-        title: Text(
-          AppStrings.resetPassword.tr(),
-          style: getBoldStyle(
-            color: Colors.black,
-          ),
+            Spacer(),
+            backButton()
+          ],
         ),
         centerTitle: true,
       ),

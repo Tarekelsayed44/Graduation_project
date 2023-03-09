@@ -54,27 +54,33 @@ class _OnBoordingState extends State<OnBoording> {
               child: Column(
                 children: [
                   Container(
-                    child: Image.asset(ImageAssets.onboardingLogo1),
-                    margin: EdgeInsetsDirectional.all(20),
+                    child: Image.asset(
+                      ImageAssets.onboardingLogo1,
+                      width: 263.07,
+                      height: 263.07,
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                   ),
                   SizedBox(
                     height: 15,
                   ),
                   Text(AppStrings.onBoardingTitle1.tr(),
                       textAlign: TextAlign.center,
-                      style: getBoldStyle(color: Colors.black)),
+                      style:
+                          getSemiBoldStyle(color: Colors.black, fontSize: 30)),
                   SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
                   Text(AppStrings.onBoardingSubTitle1.tr(),
                       textAlign: TextAlign.center,
-                      style: getMediumStyle(color: Colors.black)),
+                      style:
+                          getRegularStyle(color: Colors.black, fontSize: 18)),
                   SizedBox(
-                    height: 30,
+                    height: 40,
                   ),
                   dotview(),
                   SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
                   defaultButton(
                     function: () {
@@ -83,8 +89,8 @@ class _OnBoordingState extends State<OnBoording> {
                           curve: Curves.easeIn);
                     },
                     text: AppStrings.next.tr(),
+                    fontWeight: FontWeight.w400,
                     color: Color(0xff4b4eb0),
-                    radius:25,
                   ),
                   SizedBox(
                     height: 15,
@@ -97,9 +103,9 @@ class _OnBoordingState extends State<OnBoording> {
                               builder: (context) => loginScreen()));
                     },
                     text: AppStrings.skip.tr(),
+                    fontWeight: FontWeight.w400,
                     textColor: Color(0xff8993fa),
                     color: Color(0xffedefff),
-                    radius:25,
                   ), // button2
                 ],
               ),
@@ -109,37 +115,43 @@ class _OnBoordingState extends State<OnBoording> {
               child: Column(
                 children: [
                   Container(
-                    child: Image.asset(ImageAssets.onboardingLogo2),
-                    margin: EdgeInsetsDirectional.all(30),
+                    child: Image.asset(
+                      ImageAssets.onboardingLogo2,
+                      width: 224.22,
+                      height: 192.13,
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 35, horizontal: 20),
                   ), //photo
                   SizedBox(
-                    height: 55,
+                    height: 53,
                   ),
                   Text(AppStrings.onBoardingTitle2.tr(),
                       textAlign: TextAlign.center,
-                      style: getBoldStyle(color: Colors.black)),
+                      style:
+                          getSemiBoldStyle(color: Colors.black, fontSize: 30)),
                   SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
                   Text(AppStrings.onBoardingSubTitle2.tr(),
                       textAlign: TextAlign.center,
-                      style: getMediumStyle(color: Colors.black)),
+                      style:
+                          getRegularStyle(color: Colors.black, fontSize: 18)),
                   SizedBox(
-                    height: 35,
+                    height: 40,
                   ),
                   dotview(),
                   SizedBox(
-                    height: 17,
+                    height: 10,
                   ),
                   defaultButton(
                     function: () {
-                      nextPage.animateToPage(2,
+                      nextPage.animateToPage(1,
                           duration: Duration(milliseconds: 700),
                           curve: Curves.easeIn);
                     },
                     text: AppStrings.next.tr(),
+                    fontWeight: FontWeight.w400,
                     color: Color(0xff4b4eb0),
-                    radius:25,
                   ),
 
                   SizedBox(
@@ -153,9 +165,9 @@ class _OnBoordingState extends State<OnBoording> {
                               builder: (context) => loginScreen()));
                     },
                     text: AppStrings.skip.tr(),
+                    fontWeight: FontWeight.w400,
                     textColor: Color(0xff8993fa),
                     color: Color(0xffedefff),
-                    radius:25,
                   ), // button2
                 ],
               ),
@@ -165,8 +177,9 @@ class _OnBoordingState extends State<OnBoording> {
               child: Column(
                 children: [
                   Container(
-                    child: Image.asset(ImageAssets.onboardingLogo3),
-                    margin: EdgeInsetsDirectional.all(20),
+                    child: Image.asset(ImageAssets.onboardingLogo3,
+                        width: 258, height: 258),
+                    padding: EdgeInsets.symmetric(vertical: 22, horizontal: 20),
                   ), //photo
                   SizedBox(
                     height: 15,
@@ -174,16 +187,17 @@ class _OnBoordingState extends State<OnBoording> {
                   Text(
                     AppStrings.onBoardingTitle3.tr(),
                     textAlign: TextAlign.center,
-                    style: getBoldStyle(color: Colors.black),
+                    style: getSemiBoldStyle(color: Colors.black, fontSize: 30),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
                   Text(AppStrings.onBoardingSubTitle3.tr(),
                       textAlign: TextAlign.center,
-                      style: getMediumStyle(color: Colors.black)),
+                      style:
+                          getRegularStyle(color: Colors.black, fontSize: 18)),
                   SizedBox(
-                    height: 30,
+                    height: 40,
                   ),
                   dotview(),
                   SizedBox(
@@ -197,7 +211,7 @@ class _OnBoordingState extends State<OnBoording> {
                     },
                     text: AppStrings.next.tr(),
                     color: Color(0xff4b4eb0),
-                    radius:25,
+                    radius: 25,
                   ), //button1
                   SizedBox(
                     height: 15,
@@ -210,9 +224,9 @@ class _OnBoordingState extends State<OnBoording> {
                               builder: (context) => loginScreen()));
                     },
                     text: AppStrings.skip.tr(),
+                    fontWeight: FontWeight.w400,
                     textColor: Color(0xff8993fa),
                     color: Color(0xffedefff),
-                    radius:25,
                   ), // button2
                 ],
               ),
