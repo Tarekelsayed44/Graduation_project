@@ -5,6 +5,7 @@ import '../../presentations/resources/assets_manager.dart';
 import '../../presentations/resources/string_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
 import '../../shared/components/component.dart';
+import 'sign_up1.dart';
 
 class CreateAcoount extends StatefulWidget {
   const CreateAcoount({Key? key}) : super(key: key);
@@ -134,7 +135,11 @@ class _CreateAcoountState extends State<CreateAcoount> {
                   children: [
                     Text(AppStrings.notMember.tr()),
                     SizedBox(width: 4,),
-                    Text(AppStrings.registerNow.tr(),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)
+                    TextButton(onPressed: () {
+                      Navigator.push(
+                        context, MaterialPageRoute(
+                        builder: (context) => Register_form())); },
+                    child: Text(AppStrings.registerNow.tr(),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),))
                   ],
                 )
 

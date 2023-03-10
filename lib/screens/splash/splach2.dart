@@ -3,11 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
+import 'package:pick_park/screens/on_bording/onbording_Screen.dart';
 
-class IntroScreen extends StatelessWidget {
+class IntroScreen extends StatefulWidget {
   IntroScreen({Key? key}) : super(key: key);
 
   @override
+  State<IntroScreen> createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends State<IntroScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(
+        Duration(seconds: 4),
+            () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => OnBoording())));
+  }
+
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
@@ -41,7 +55,7 @@ class IntroScreen extends StatelessWidget {
                 ),
                 Text(
                   AppStrings.splashText3.tr(),
-                  style:getBoldStyle(color: Color(0xffF8F8F8),fontSize: 30),textAlign: TextAlign.center,
+                  style:getBoldStyle(color: Color(0xffF8F8F8),fontSize: 22),textAlign: TextAlign.center,
                 ),
                 SizedBox(
                   height: 30,

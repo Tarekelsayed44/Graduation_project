@@ -6,6 +6,9 @@ import 'package:pick_park/presentations/resources/styles_manager.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../presentations/resources/assets_manager.dart';
 import '../../shared/components/component.dart';
+import '../login_screen/login_screen.dart';
+import 'sign_up1.dart';
+import 'sign_up2.dart';
 
 class SignUp0 extends StatefulWidget {
   const SignUp0({Key? key}) : super(key: key);
@@ -124,7 +127,11 @@ class _SignUp0State extends State<SignUp0> {
           ),
               Padding(
                 padding: const EdgeInsets.all(20),
-                child: defaultButton(function: (){}, text: AppStrings.loginPassword.tr().toUpperCase(),color: Color(0xff4b4eb0),radius: 20),
+                child: defaultButton(function: (){
+                  Navigator.push(
+                      context, MaterialPageRoute(
+                      builder: (context) => loginScreen()));
+                }, text: AppStrings.loginPassword.tr().toUpperCase(),color: Color(0xff4b4eb0),radius: 20),
               ),
               SizedBox(height: 20,),
               Row(
@@ -132,7 +139,10 @@ class _SignUp0State extends State<SignUp0> {
                 children: [
                   Text(AppStrings.notMember.tr()),
                   SizedBox(width: 4,),
-                  Text(AppStrings.registerNow.tr(),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)
+                  TextButton(onPressed: () {Navigator.push(
+                              context, MaterialPageRoute(
+                              builder: (context) => CreateAcoount())); },
+                  child: Text(AppStrings.registerNow.tr(),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),))
                 ],
               )
             ],

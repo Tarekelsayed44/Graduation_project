@@ -15,7 +15,6 @@
   "password_hint": "Password",
   "login_button": "Login",
   "forgot_password_text": "Forgot Password?",
-  "register_text": "Not a member ? Sign up",
   "loading": "Loading....",
   "retry_again": "Retry again",
   "error_occurred": "An Error Occurred",
@@ -77,5 +76,13 @@
   "login_google": "login with google",
   "login_facebook":"login with facebook",
   "login_iphone": "login with iphone",
-  "login_password": "login with password"
+  "login_password": "login with password",
+  "privacy": "privacy",
+  "payment_methods": "payment methods",
+  "dark_appearance": "Dark appearance",
+  "book": "booking",
+  "favourite": "favourite",
+  "the_car": "The car",
+  "account": "your account",
+  "help_center": "help center"
 }

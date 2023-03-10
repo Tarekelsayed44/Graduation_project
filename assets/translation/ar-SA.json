@@ -83,5 +83,13 @@
   "login_google": "تسجيل الدخول من خلال جوجل",
   "login_facebook":"تسجيل الدخول من خلال فيسبوك",
   "login_iphone": "تسجيل الدخول من خلال ايفون",
-  "login_password": "تسجيل الدخول بكلمة المرور"
+  "login_password": "تسجيل الدخول بكلمة المرور",
+  "privacy": "الأمان",
+  "payment_methods": "طرق الدفع",
+  "dark_appearance": "مظهر داكن",
+  "book": "الحجز",
+  "favourite": "المفضلة",
+  "the_car": "المركبة",
+  "account": "حسابك",
+  "help_center": "مركز المساعدة"
 }

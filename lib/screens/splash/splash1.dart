@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/route_manager.dart';
+import 'package:pick_park/screens/on_bording/onbording_Screen.dart';
 import 'package:pick_park/screens/splash/splach2.dart';
 import '../../presentations/resources/assets_manager.dart';
 
@@ -12,8 +13,14 @@ class Splash1 extends StatefulWidget {
 
 class _Splash1State extends State<Splash1> {
   @override
+  void initState() {
+    super.initState();
+    Future.delayed(
+        Duration(seconds: 4),
+            () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => IntroScreen())));
+  }
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Center(
@@ -25,9 +32,4 @@ class _Splash1State extends State<Splash1> {
       ),
     );
   }
-  // void navigateToHome(){
-  //   Future.delayed(Duration(seconds: 3)).then((value) {
-  //     return Navigator.pushReplacementNamed(context, Routes.loginRoute) ;
-  //   }) ;
-  // }
 }

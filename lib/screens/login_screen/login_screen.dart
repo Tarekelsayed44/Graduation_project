@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
+import 'package:pick_park/screens/settings/settings.dart';
 
 import '../../presentations/resources/assets_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
@@ -84,9 +85,12 @@ class _loginScreenState extends State<loginScreen> {
                 ),
                 Row(
                   children: [
-                    Text(
-                      AppStrings.forgetPassword.tr(),
-                      style: getMediumStyle(color: Color(0xff4b4eb0)),
+                    TextButton(
+                      onPressed: () { Navigator.push(
+                      context, MaterialPageRoute(
+                      builder: (context) => loginScreen()));
+                      },
+                        child:Text( AppStrings.forgetPassword.tr(), style: getMediumStyle(color: Color(0xff4b4eb0))) ,
                     ),
                     Spacer(),
                     Row(
@@ -116,7 +120,10 @@ class _loginScreenState extends State<loginScreen> {
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: defaultButton(
-                      function: () {},
+                      function: () { Navigator.push(
+                        context, MaterialPageRoute(
+                        builder: (context) => settings()));
+                        },
                       text: AppStrings.login.tr().toUpperCase(),
                       color: Color(0xff4b4eb0),
                       radius: 20),

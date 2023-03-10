@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/screens/login_screen/login_screen.dart';
 
+import '../../screens/on_bording/onbording_Screen.dart';
+
 class Routes {
   static const String splashRoute = "/";
   static const String onBoardingRoute = "/onBoarding";
@@ -19,9 +21,9 @@ class RouteGenerator {
       case Routes.loginRoute:
         //initLoginModule();
         return MaterialPageRoute(builder: (_) => loginScreen());
-     // case Routes.onBoardingRoute:
-        //return MaterialPageRoute(builder: (_) => OnBoardingView());
-     // case Routes.registerRoute:
+     case Routes.onBoardingRoute:
+        return MaterialPageRoute(builder: (_) => OnBoording());
+     case Routes.registerRoute:
         //initRegisterModule();
         //return MaterialPageRoute(builder: (_) => RegisterView());
      // case Routes.forgotPasswordRoute:

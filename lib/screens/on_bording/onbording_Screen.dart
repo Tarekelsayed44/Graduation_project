@@ -6,6 +6,8 @@ import 'package:pick_park/presentations/resources/styles_manager.dart';
 import 'package:pick_park/screens/login_screen/login_screen.dart';
 import 'package:pick_park/shared/components/component.dart';
 
+import '../sign_up/sign_up0.dart';
+
 class OnBoording extends StatefulWidget {
   const OnBoording({Key? key}) : super(key: key);
 
@@ -100,7 +102,7 @@ class _OnBoordingState extends State<OnBoording> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => loginScreen()));
+                              builder: (context) => SignUp0()));
                     },
                     text: AppStrings.skip.tr(),
                     fontWeight: FontWeight.w400,
@@ -145,7 +147,7 @@ class _OnBoordingState extends State<OnBoording> {
                   ),
                   defaultButton(
                     function: () {
-                      nextPage.animateToPage(1,
+                      nextPage.animateToPage(2,
                           duration: Duration(milliseconds: 700),
                           curve: Curves.easeIn);
                     },
@@ -162,7 +164,7 @@ class _OnBoordingState extends State<OnBoording> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => loginScreen()));
+                              builder: (context) => SignUp0()));
                     },
                     text: AppStrings.skip.tr(),
                     fontWeight: FontWeight.w400,
@@ -221,7 +223,7 @@ class _OnBoordingState extends State<OnBoording> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => loginScreen()));
+                              builder: (context) => SignUp0()));
                     },
                     text: AppStrings.skip.tr(),
                     fontWeight: FontWeight.w400,
