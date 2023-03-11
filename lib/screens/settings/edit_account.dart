@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-
 import '../../presentations/resources/string_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
 import '../../shared/components/component.dart';
@@ -24,7 +23,14 @@ class _EditAccountState extends State<EditAccount> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text(AppStrings.editAccount.tr(),style: getBoldStyle(color: Colors.black),),
+        titleSpacing: 20,
+        title: Row(
+          children: [
+            Text(AppStrings.editAccount.tr(),style: getBoldStyle(color: Colors.black,fontSize: 25),),
+            Spacer(),
+            backButton()
+          ],
+        ),
         backgroundColor: Colors.white,
       ),
       body: Container(
@@ -112,7 +118,7 @@ class _EditAccountState extends State<EditAccount> {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 80,
                 ),
                 defaultButton(function: (){}, text:AppStrings.submit.tr(),color:Color(0xff4b4eb0),radius: 35,isUpperCase: true )
               ],

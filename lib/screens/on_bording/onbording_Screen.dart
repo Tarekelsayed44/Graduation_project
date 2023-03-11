@@ -91,6 +91,7 @@ class _OnBoordingState extends State<OnBoording> {
                           curve: Curves.easeIn);
                     },
                     text: AppStrings.next.tr(),
+                    height: 58,
                     fontWeight: FontWeight.w400,
                     color: Color(0xff4b4eb0),
                   ),
@@ -105,6 +106,7 @@ class _OnBoordingState extends State<OnBoording> {
                               builder: (context) => SignUp0()));
                     },
                     text: AppStrings.skip.tr(),
+                    height: 58,
                     fontWeight: FontWeight.w400,
                     textColor: Color(0xff8993fa),
                     color: Color(0xffedefff),
@@ -152,6 +154,7 @@ class _OnBoordingState extends State<OnBoording> {
                           curve: Curves.easeIn);
                     },
                     text: AppStrings.next.tr(),
+                    height: 58,
                     fontWeight: FontWeight.w400,
                     color: Color(0xff4b4eb0),
                   ),
@@ -168,6 +171,7 @@ class _OnBoordingState extends State<OnBoording> {
                     },
                     text: AppStrings.skip.tr(),
                     fontWeight: FontWeight.w400,
+                    height: 58,
                     textColor: Color(0xff8993fa),
                     color: Color(0xffedefff),
                   ), // button2
@@ -212,6 +216,7 @@ class _OnBoordingState extends State<OnBoording> {
                           curve: Curves.easeIn);
                     },
                     text: AppStrings.next.tr(),
+                    height: 58,
                     color: Color(0xff4b4eb0),
                     radius: 25,
                   ), //button1
@@ -228,6 +233,7 @@ class _OnBoordingState extends State<OnBoording> {
                     text: AppStrings.skip.tr(),
                     fontWeight: FontWeight.w400,
                     textColor: Color(0xff8993fa),
+                    height: 58,
                     color: Color(0xffedefff),
                   ), // button2
                 ],

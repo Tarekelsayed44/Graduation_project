@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
+import 'package:pick_park/screens/forget_password/forget_pass.dart';
 import 'package:pick_park/screens/settings/settings.dart';
 
 import '../../presentations/resources/assets_manager.dart';
@@ -27,16 +28,24 @@ class _loginScreenState extends State<loginScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        titleSpacing: 20,
-        title: Text(
-          AppStrings.login.tr(),
-          style: getBoldStyle(
-            color: Colors.black,
-          ),
+        title: Row(
+          children: [
+            Text(
+              AppStrings.login.tr(),
+              textAlign: TextAlign.start,
+              style: getBoldStyle(
+                color: Colors.black,
+                fontSize: 32,
+              ),
+            ),
+            Spacer(),
+            backButton(),
+          ],
         ),
       ),
+      backgroundColor: Colors.white,
       body: Container(
-        height: double.infinity,
+        margin: EdgeInsets.only(top: 50),
         padding: EdgeInsetsDirectional.only(top: 40, start: 10, end: 10),
         color: Colors.white,
         child: SingleChildScrollView(
@@ -56,7 +65,7 @@ class _loginScreenState extends State<loginScreen> {
                       return null;
                     }),
                 SizedBox(
-                  height: 20,
+                  height: 25,
                 ),
                 defaultFormField(
                   controller: passwordController,
@@ -74,10 +83,12 @@ class _loginScreenState extends State<loginScreen> {
                   type: TextInputType.visiblePassword,
                   label: AppStrings.password.tr(),
                   prefix: Icons.lock,
-
                   suffix: isPassword==true ? Icons.visibility : Icons.visibility_off,
                   suffixPressed: () {
-                    isPassword==true ? Icons.visibility : Icons.visibility_off;
+                    setState(() {
+                      isPassword==true ? Icons.visibility : Icons.visibility_off;
+                    });
+
                   },
                 ),
                 SizedBox(
@@ -88,9 +99,9 @@ class _loginScreenState extends State<loginScreen> {
                     TextButton(
                       onPressed: () { Navigator.push(
                       context, MaterialPageRoute(
-                      builder: (context) => loginScreen()));
+                      builder: (context) => ForgetPass()));
                       },
-                        child:Text( AppStrings.forgetPassword.tr(), style: getMediumStyle(color: Color(0xff4b4eb0))) ,
+                        child:Text( AppStrings.forgetPassword.tr(), style: getRegularStyle(color: Color(0xff4b4eb0),fontSize: 13),) ,
                     ),
                     Spacer(),
                     Row(
@@ -108,14 +119,14 @@ class _loginScreenState extends State<loginScreen> {
                         ),
                         Text(
                           AppStrings.rememberMe.tr(),
-                          style: getMediumStyle(color: Colors.black),
+                          style: getBoldStyle(color: Colors.black,fontSize: 15),
                         ),
                       ],
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 60,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20),
@@ -126,7 +137,7 @@ class _loginScreenState extends State<loginScreen> {
                         },
                       text: AppStrings.login.tr().toUpperCase(),
                       color: Color(0xff4b4eb0),
-                      radius: 20),
+                  ),
                 ),
                 SizedBox(
                   height: 50,
@@ -135,18 +146,20 @@ class _loginScreenState extends State<loginScreen> {
                   children: [
                     Expanded(
                         child: Divider(
-                          thickness: 0.5,
-                          color: Color(0xff4b4eb0),
+                          thickness: 4,
+                          color: Color(0xffEEEFFF),
                         )),
-                    Text(AppStrings.or.tr()),
+                    Text(AppStrings.or.tr(),style: getRegularStyle(color: Color(0xff6F6F6F),fontSize: 20),),
                     Expanded(
                         child: Divider(
-                          thickness: 0.5,
-                          color: Color(0xff4b4eb0),
+                          thickness: 4,
+                          color: Color(0xffEEEFFF),
                         ))
                   ],
                 ),
-                SizedBox(height: 30,),
+                SizedBox(
+                  height: 30,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

@@ -76,7 +76,10 @@ class AppStrings {
   static const String withFacebook = "login_facebook";
   static const String withIphone = "login_iphone";
   static const String loginPassword = "login_password";
-
+  static const String forgetPassTitle = "forgetpass_tittle";
+  static const String massage = "massage";
+  static const String phone = "num_phone";
+  static const String emailEx = "email_ex";
 
 
 

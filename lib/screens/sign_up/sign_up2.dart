@@ -32,18 +32,18 @@ class _CreateAcoountState extends State<CreateAcoount> {
             Text(
               AppStrings.createAcoount.tr(),
               style: getBoldStyle(
+                fontSize: 25,
                 color: Colors.black,
               ),
             ),
-
           Spacer(),
           backButton()
         ],
       ),
       ),
+      backgroundColor: Colors.white,
       body: Container(
-        height: double.infinity,
-        padding: EdgeInsetsDirectional.only(top: 40,start: 10,end: 10),
+        padding: EdgeInsetsDirectional.only(top: 70,start: 10,end: 10),
         color: Colors.white,
         child: SingleChildScrollView(
           child: Form(
@@ -77,7 +77,6 @@ class _CreateAcoountState extends State<CreateAcoount> {
                   type: TextInputType.visiblePassword,
                   label: AppStrings.password.tr(),
                   prefix: Icons.lock,
-
                 ),
                 SizedBox(
                   height: 10,
@@ -97,7 +96,7 @@ class _CreateAcoountState extends State<CreateAcoount> {
                     ),
                     Text(
                       AppStrings.rememberMe.tr(),
-                      style: getMediumStyle(color: Colors.black),
+                        style: getBoldStyle(color: Colors.black,fontSize: 15)
                     ),
                   ],
                 ),

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pick_park/screens/forget_password/forget_pass.dart';
 import 'package:pick_park/screens/login_screen/login_screen.dart';
 import 'package:pick_park/screens/on_bording/onbording_Screen.dart';
 import 'package:pick_park/screens/reset_password/resetPassword.dart';
@@ -10,6 +11,7 @@ import 'package:pick_park/screens/splash/splash1.dart';
 import 'package:pick_park/shared/styles/theme.dart';
 
 import '../presentations/resources/route_manager.dart';
+import '../screens/settings/edit_account.dart';
 import '../screens/reset_password/verification_otp.dart';
 import '../screens/settings/settings.dart';
 import '../screens/sign_up/sign_up0.dart';

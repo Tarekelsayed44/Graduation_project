@@ -114,14 +114,14 @@ class _SignUp0State extends State<SignUp0> {
             children: [
               Expanded(
                   child: Divider(
-                    thickness: 0.5,
-                    color: Color(0xff4b4eb0),
+                    thickness: 4,
+                    color: Color(0xffEEEFFF),
                   )),
               Text(AppStrings.or.tr()),
               Expanded(
                   child: Divider(
-                    thickness: 0.5,
-                    color: Color(0xff4b4eb0),
+                    thickness: 4,
+                    color: Color(0xffEEEFFF),
                   ))
             ],
           ),

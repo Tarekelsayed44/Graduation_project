@@ -8,13 +8,14 @@ Widget defaultButton({
   required String text,
   double radius = 25,
   double fontSize = 20,
+  double height=51.2,
   FontWeight fontWeight = FontWeight.w500,
   bool isUpperCase = true,
   Color textColor = Colors.white,
 }) =>
     Container(
       width: 314,
-      height: 58,
+      height: height,
       child: MaterialButton(
         onPressed: () => function(),
         child: Text(
