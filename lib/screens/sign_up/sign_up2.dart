@@ -1,5 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:pick_park/presentations/resources/font_manager.dart';
+import 'package:pick_park/screens/login_screen/login_screen.dart';
+import 'package:pick_park/screens/sign_up/sign_up0.dart';
 
 import '../../presentations/resources/assets_manager.dart';
 import '../../presentations/resources/string_manager.dart';
@@ -7,14 +10,14 @@ import '../../presentations/resources/styles_manager.dart';
 import '../../shared/components/component.dart';
 import 'sign_up1.dart';
 
-class CreateAcoount extends StatefulWidget {
-  const CreateAcoount({Key? key}) : super(key: key);
+class CreateAccount extends StatefulWidget {
+  const CreateAccount({Key? key}) : super(key: key);
 
   @override
-  State<CreateAcoount> createState() => _CreateAcoountState();
+  State<CreateAccount> createState() => _CreateAccountState();
 }
 
-class _CreateAcoountState extends State<CreateAcoount> {
+class _CreateAccountState extends State<CreateAccount> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   bool isPassword = true;
@@ -24,6 +27,7 @@ class _CreateAcoountState extends State<CreateAcoount> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: Colors.white,
         titleSpacing: 20,
@@ -37,7 +41,11 @@ class _CreateAcoountState extends State<CreateAcoount> {
               ),
             ),
           Spacer(),
-          backButton()
+            // backButton(
+            //     function: (){
+            //   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SignUp0()));
+            //
+            // })
         ],
       ),
       ),
@@ -64,7 +72,7 @@ class _CreateAcoountState extends State<CreateAcoount> {
                     },
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 defaultFormField(
                   controller: passwordController,
@@ -90,7 +98,6 @@ class _CreateAcoountState extends State<CreateAcoount> {
                           checkBoxValue = newValue!;
                         });
                       },
-                      // checkColor: Color(0xff4b4eb0),
                       shape: CircleBorder(
                           side: BorderSide(style: BorderStyle.solid)),
                     ),
@@ -104,41 +111,48 @@ class _CreateAcoountState extends State<CreateAcoount> {
                   height: 50,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: defaultButton(function: (){}, text: AppStrings.login.tr().toUpperCase(),color: Color(0xff4b4eb0),radius: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: defaultButton(function: (){
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                        builder: (context) => loginScreen()));
+                  },
+                      text: AppStrings.login.tr().toUpperCase(),color: Color(0xff4b4eb0),fontSize: 18,fontWeight: FontWeightManager.regular),
                 ),
-                SizedBox(height: 30,),
-                Text(AppStrings.orSign.tr()),
-                SizedBox(height: 15,),
+                SizedBox(height: 40,),
+                Text(AppStrings.orSign.tr(),style: getRegularStyle(color: Colors.black,fontSize: 20),),
+                SizedBox(height: 40,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image(
                       image: AssetImage(ImageAssets.googleIcon),
-                      height: 48,
-                      width: 48,
+                      height: 29,
+                      width: 29,
                     ),
                     Image(
                       image: AssetImage(ImageAssets.facebookIcon),
-                      height: 48,
-                      width: 48,
+                      height: 29,
+                      width: 29,
                     ),
                     Image(
                       image: AssetImage(ImageAssets.appleIcon),
+                      height: 29,
+                      width: 29,
                     ),
                   ],
                 ),
-                SizedBox(height: 50,),
+                SizedBox(height: 40,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(AppStrings.notMember.tr()),
+                    Text(AppStrings.notMember.tr(),style: getRegularStyle(color: Colors.black,fontSize: 15),),
                     SizedBox(width: 4,),
                     TextButton(onPressed: () {
                       Navigator.push(
                         context, MaterialPageRoute(
                         builder: (context) => Register_form())); },
-                    child: Text(AppStrings.registerNow.tr(),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),))
+                    child: Text(AppStrings.registerNow.tr(),style:getRegularStyle(color: Color(0xff4D5DFA),fontSize: 15) ))
                   ],
                 )
 

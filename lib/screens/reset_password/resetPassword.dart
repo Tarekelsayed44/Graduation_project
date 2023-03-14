@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
+import 'package:pick_park/screens/reset_password/verification_otp.dart';
 import 'package:pick_park/shared/components/component.dart';
 
 class ResetPass extends StatefulWidget {
@@ -22,6 +23,7 @@ class _ResetPassState extends State<ResetPass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         elevation: 0,
         title: Row(
@@ -33,7 +35,13 @@ class _ResetPassState extends State<ResetPass> {
               ),
             ),
             Spacer(),
-            backButton()
+            backButton(
+              function: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                        builder: (context) => verificationOtp()));
+              },
+            )
           ],
         ),
         centerTitle: true,

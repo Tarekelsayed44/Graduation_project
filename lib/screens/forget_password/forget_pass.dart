@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
+import 'package:pick_park/screens/login_screen/login_screen.dart';
 import 'package:pick_park/shared/components/component.dart';
 
 class ForgetPass extends StatefulWidget {
@@ -26,7 +27,13 @@ class _ForgetPassState extends State<ForgetPass> {
               style: getSemiBoldStyle(color: Colors.black, fontSize: 25),
             ),
             Spacer(),
-            backButton(),
+            backButton(
+              function: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                        builder: (context) => loginScreen()));
+              },
+            ),
           ],
         ),
       ),

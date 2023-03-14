@@ -1,8 +1,8 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
+import 'package:pick_park/screens/on_bording/onbording_Screen.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../presentations/resources/assets_manager.dart';
 import '../../shared/components/component.dart';
@@ -19,137 +19,184 @@ class SignUp0 extends StatefulWidget {
 
 class _SignUp0State extends State<SignUp0> {
   final RoundedLoadingButtonController googleController =
-  RoundedLoadingButtonController();
+      RoundedLoadingButtonController();
   final RoundedLoadingButtonController facebookController =
-  RoundedLoadingButtonController();
+      RoundedLoadingButtonController();
   final RoundedLoadingButtonController iphoneController =
-  RoundedLoadingButtonController();
+      RoundedLoadingButtonController();
+
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-      elevation: 0,
-      backgroundColor: Colors.white,
-      titleSpacing: 20,
-      title: Row(
-        children: [
-          Text(
-            AppStrings.login.tr(),
+        appBar: AppBar(
+          automaticallyImplyLeading:false,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: Text(
+            AppStrings.login.tr().toUpperCase(),
             style: getBoldStyle(
               color: Colors.black,
+              fontSize: 27
             ),
           ),
-
-          Spacer(),
-          backButton()
-        ],
-      ),
-    ),
-      body:SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(80),
-          child: Column(
-            children: [
-              RoundedLoadingButton(controller:googleController ,color: Colors.white ,
-                 // width: size.width,
-                  width: 400,
-                   onPressed: (){},
-                  child: Wrap(
-                    alignment: WrapAlignment.start ,
-                children: [
-                  Image(
-                  image: AssetImage(ImageAssets.googleIcon),
-                    height: 30,
-                    width: 25,
-                  ),
-                  SizedBox(width: 15,),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(AppStrings.withGoogle.tr(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                  )
-                ],
-              )),
-              SizedBox(height: 15,),
-              RoundedLoadingButton(controller:facebookController ,color: Colors.white ,
-                  // width: size.width,
-                  width: 400,
-                  onPressed: (){},
-                  child: Wrap(
-                    children: [
-                      Image(
-
-                        image: AssetImage(ImageAssets.facebookIcon),
-                        height: 30,
-                        width: 25,
-                      ),
-                      SizedBox(width: 15,),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(AppStrings.withFacebook.tr(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                      )
-                    ],
-                  )),
-              SizedBox(height: 15,),
-              RoundedLoadingButton(controller:iphoneController ,color: Colors.white ,
-                  // width: size.width,
-                  width: 400,
-                  onPressed: (){},
-                  child: Wrap(
-                    children: [
-                      Image(
-                        image: AssetImage(ImageAssets.appleIcon),
-                        height: 30,
-                        width: 25,
-                      ),
-                      SizedBox(width: 15,),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(AppStrings.withIphone.tr(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                      )
-                    ],
-                  )),
-          SizedBox(height: 15,),
-          Row(
-            children: [
-              Expanded(
-                  child: Divider(
-                    thickness: 4,
-                    color: Color(0xffEEEFFF),
-                  )),
-              Text(AppStrings.or.tr()),
-              Expanded(
-                  child: Divider(
-                    thickness: 4,
-                    color: Color(0xffEEEFFF),
-                  ))
-            ],
-          ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: defaultButton(function: (){
-                  Navigator.push(
-                      context, MaterialPageRoute(
-                      builder: (context) => loginScreen()));
-                }, text: AppStrings.loginPassword.tr().toUpperCase(),color: Color(0xff4b4eb0),radius: 20),
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(AppStrings.notMember.tr()),
-                  SizedBox(width: 4,),
-                  TextButton(onPressed: () {Navigator.push(
-                              context, MaterialPageRoute(
-                              builder: (context) => CreateAcoount())); },
-                  child: Text(AppStrings.registerNow.tr(),style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),))
-                ],
-              )
-            ],
-          ),
         ),
-      )
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 70),
+            child: Column(
+              children: [
+                RoundedLoadingButton(
+                  controller: googleController,
+                  color: Colors.white,
+                  elevation: 0.5,
+                  width: double.infinity,
+                  borderRadius: 19,
+                  height: 66,
+                  onPressed: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      children: [
+                        Image(
+                          image: AssetImage(ImageAssets.googleIcon),
+                          height: 29,
+                          width: 29,
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          AppStrings.withGoogle.tr(),
+                          style: getRegularStyle(
+                              color: Colors.black, fontSize: 18),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                RoundedLoadingButton(
+                    controller: facebookController,
+                    color: Colors.white,
+                    elevation: 0.5,
+                    borderRadius: 19,
+                    height: 66,
+                    width: double.infinity,
+                    onPressed: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        children: [
+                          Image(
+                            image: AssetImage(ImageAssets.facebookIcon),
+                            height: 29,
+                            width: 29,
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            AppStrings.withFacebook.tr(),
+                            style: getRegularStyle(
+                                color: Colors.black, fontSize: 18),
+                          )
+                        ],
+                      ),
+                    )),
+                SizedBox(
+                  height: 20,
+                ),
+                RoundedLoadingButton(
+                    controller: iphoneController,
+                    elevation: 0.5,
+                    color: Colors.white,
+                    width:double.infinity,
+                    borderRadius: 19,
+                    height: 66,
+                    onPressed: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        children: [
+                          Image(
+                            image: AssetImage(ImageAssets.appleIcon),
+                            height: 29,
+                            width: 29,
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            AppStrings.withIphone.tr(),
+                            style: getRegularStyle(color: Colors.black,fontSize:18 ),
+                          )
+                        ],
+                      ),
+                    )),
+                SizedBox(
+                  height: 80,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                        child: Divider(
+                      thickness: 4,
+                      color: Color(0xffEEEFFF),
+                    )),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0,right: 7),
+                      child: Text(AppStrings.or.tr(),style: getBoldStyle(color: Color(0xff6F6F6F),fontSize: 18),),
+                    ),
+                    Expanded(
+                        child: Divider(
+                      thickness: 4,
+                      color: Color(0xffEEEFFF),
+                    ))
+                  ],
+                ),
+                SizedBox(
+                  height: 60,
+                ),
+                defaultButton(
+                    function: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateAccount()));
+                    },
+                    text: AppStrings.loginPassword.tr().toUpperCase(),
+                    color: Color(0xff4b4eb0),
 
-    );
+                    ),
+                // SizedBox(
+                //   height: 40,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Text(AppStrings.notMember.tr()),
+                //     SizedBox(
+                //       width: 4,
+                //     ),
+                //     TextButton(
+                //         onPressed: () {
+                //           Navigator.push(
+                //               context,
+                //               MaterialPageRoute(
+                //                   builder: (context) => CreateAccount()));
+                //         },
+                //         child: Text(
+                //           AppStrings.registerNow.tr(),
+                //           style: getRegularStyle(color: Color(0xff4D5DFA,),fontSize: 15)
+                //         ))
+                //   ],
+                // )
+              ],
+            ),
+          ),
+        ));
   }
 }

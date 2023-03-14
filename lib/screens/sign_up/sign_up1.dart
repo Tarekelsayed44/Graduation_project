@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
+import 'package:pick_park/screens/sign_up/sign_up2.dart';
 import 'package:pick_park/shared/components/component.dart';
 
 import '../../presentations/resources/string_manager.dart';
@@ -26,12 +27,19 @@ class _Register_formState extends State<Register_form> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         title: Row(
           children: [
             Text(AppStrings.fillForm.tr(),style: getBoldStyle(color: Colors.black),),
             Spacer(),
-            backButton()
+            backButton(
+              function: () {
+                // Navigator.of(context).pushReplacement(
+                //     MaterialPageRoute(
+                //         builder: (context) => CreateAccount()));
+              },
+            )
           ],
         ),
         backgroundColor: Colors.white,

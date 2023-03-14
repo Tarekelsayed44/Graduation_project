@@ -17,7 +17,7 @@ class _IntroScreenState extends State<IntroScreen> {
   void initState() {
     super.initState();
     Future.delayed(
-        Duration(seconds: 4),
+        Duration(seconds: 2),
             () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => OnBoording())));
   }
