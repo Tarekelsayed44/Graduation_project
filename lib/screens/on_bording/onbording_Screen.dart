@@ -205,21 +205,7 @@ class _OnBoordingState extends State<OnBoording> {
                   ),
                   dotview(),
                   SizedBox(
-                    height: 10,
-                  ),
-                  defaultButton(
-                    function: () {
-                      nextPage.animateToPage(2,
-                          duration: Duration(milliseconds: 700),
-                          curve: Curves.easeIn);
-                    },
-                    text: AppStrings.next.tr(),
-                    height: 58,
-                    color: Color(0xff4b4eb0),
-                    radius: 25,
-                  ), //button1
-                  SizedBox(
-                    height: 15,
+                    height: 40,
                   ),
                   defaultButton(
                     function: () {
@@ -227,12 +213,11 @@ class _OnBoordingState extends State<OnBoording> {
                           MaterialPageRoute(
                               builder: (context) => SignUp0()));
                     },
-                    text: AppStrings.skip.tr(),
-                    fontWeight: FontWeight.w400,
-                    textColor: Color(0xff8993fa),
+                    text: AppStrings.next.tr(),
                     height: 58,
-                    color: Color(0xffedefff),
-                  ), // button2
+                    color: Color(0xff4b4eb0),
+                    radius: 25,
+                  ),
                 ],
               ),
             ),

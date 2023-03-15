@@ -80,7 +80,7 @@
   "login_password": "login with password",
   "forgetpass_tittle": "Choose which contact details should be used\nTo reset your password",
   "massage": " Text massage",
-  "num_phone": "+2010*****236",
+  "num_phone": "+20 10*****236",
   "email_ex": "exampel@example.com",
   "privacy": "privacy",
   "payment_methods": "payment methods",
@@ -89,5 +89,6 @@
   "favourite": "favourite",
   "the_car": "The car",
   "account": "your account",
-  "help_center": "help center"
+  "help_center": "help center",
+  "code_sent": "Code has been sent to"
 }

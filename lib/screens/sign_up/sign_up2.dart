@@ -41,11 +41,11 @@ class _CreateAccountState extends State<CreateAccount> {
               ),
             ),
           Spacer(),
-            // backButton(
-            //     function: (){
-            //   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SignUp0()));
-            //
-            // })
+            backButton(
+                function: (){
+              Navigator.push(context,MaterialPageRoute(builder: (context)=> SignUp0()));
+
+            })
         ],
       ),
       ),

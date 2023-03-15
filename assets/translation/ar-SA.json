@@ -87,5 +87,6 @@
   "forgetpass_tittle": "حدد تفاصيل  الاتصال التي يجب ان تستخدم \nلاعاده تعين كلمه المرور الخاصه بك",
   "massage": "رسالة نصية",
   "num_phone": "+20 10*****236",
-  "email_ex": "exampel@example.com"
+  "email_ex": "exampel@example.com",
+  "code_sent": "تم ارسال الرمز الى"
 }

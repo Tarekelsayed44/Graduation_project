@@ -6,6 +6,7 @@ import 'package:pick_park/screens/forget_password/forget_pass.dart';
 import '../../presentations/resources/string_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
 import '../../shared/components/component.dart';
+
 class verificationOtp extends StatefulWidget {
   const verificationOtp({Key? key}) : super(key: key);
 
@@ -16,7 +17,7 @@ class verificationOtp extends StatefulWidget {
 class _verificationOtpState extends State<verificationOtp> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
@@ -33,102 +34,124 @@ class _verificationOtpState extends State<verificationOtp> {
             Spacer(),
             backButton(
               function: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                        builder: (context) => ForgetPass()));
+                // Navigator.of(context).pushReplacement(
+                //     MaterialPageRoute(
+                //         builder: (context) => ForgetPass()));
               },
             )
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                width: 50,
-                height: 50,
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(1),
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    if (value.length == 1) {
-                      FocusScope.of(context).nextFocus();
-                    }
-                    if (value.isEmpty) {
-                      FocusScope.of(context).previousFocus();
-                    }
-                  }
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.only(left: 10.0, right: 10, top: 90),
+        child: Column(
+          children: [
+            Text(
+              AppStrings.codeSent.tr(),
+              style: getRegularStyle(color: Colors.black, fontSize: 18),
+            ),
+            Text(
+              AppStrings.phone.tr(),
+              style: getSemiBoldStyle(color: Colors.black, fontSize: 19),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  width: 67,
+                  height: 61,
+                  child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(1),
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        if (value.length == 1) {
+                          FocusScope.of(context).nextFocus();
+                        }
+                        if (value.isEmpty) {
+                          FocusScope.of(context).previousFocus();
+                        }
+                      }),
                 ),
-              ),  SizedBox(
-                width: 50,
-                height: 50,
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(1),
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                    textAlign: TextAlign.center,
-                    onChanged: (value) {
-                    if (value.length == 1) {
-                      FocusScope.of(context).nextFocus();
-                    }
-                    if (value.isEmpty) {
-                      FocusScope.of(context).previousFocus();
-                    }
-                  }
+                SizedBox(
+                  width: 67,
+                  height: 61,
+                  child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(1),
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        if (value.length == 1) {
+                          FocusScope.of(context).nextFocus();
+                        }
+                        if (value.isEmpty) {
+                          FocusScope.of(context).previousFocus();
+                        }
+                      }),
                 ),
-              ),  SizedBox(
-                width: 50,
-                height: 50,
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(1),
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                    textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    if (value.length == 1) {
-                      FocusScope.of(context).nextFocus();
-                    }
-                    if (value.isEmpty) {
-                      FocusScope.of(context).previousFocus();
-                    }
-                  }
+                SizedBox(
+                  width: 67,
+                  height: 61,
+                  child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(1),
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        if (value.length == 1) {
+                          FocusScope.of(context).nextFocus();
+                        }
+                        if (value.isEmpty) {
+                          FocusScope.of(context).previousFocus();
+                        }
+                      }),
                 ),
-              ),
-              SizedBox(
-                width: 50,
-                height: 50,
-                child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(1),
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    textAlign: TextAlign.center,
-                    onChanged: (value) {
-                      if (value.length == 1) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                      if (value.isEmpty) {
-                        FocusScope.of(context).previousFocus();
-                      }
-                    }
+                SizedBox(
+                  width: 67,
+                  height: 61,
+                  child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(1),
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        if (value.length == 1) {
+                          FocusScope.of(context).nextFocus();
+                        }
+                        if (value.isEmpty) {
+                          FocusScope.of(context).previousFocus();
+                        }
+                      }),
                 ),
-              ),
-            ],
-          ),
-          Spacer(),
-          defaultButton(function: (){}, text: AppStrings.containue.tr()),
-        ],
+              ],
+            ),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: defaultButton(
+                  function: () {},
+                  text: AppStrings.containue.tr(),
+                  isUpperCase: true,
+                  color: Color(0xff4B4EB0),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18),
+            ),
+          ],
+        ),
       ),
     );
   }

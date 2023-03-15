@@ -80,6 +80,7 @@ class AppStrings {
   static const String massage = "massage";
   static const String phone = "num_phone";
   static const String emailEx = "email_ex";
+  static const String codeSent = "code_sent";
 
 
 
