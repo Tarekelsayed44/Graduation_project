@@ -32,6 +32,8 @@ class _loginScreenState extends State<loginScreen> {
         backgroundColor: Colors.white,
         title: Row(
           children: [
+            backButton(),
+            Spacer(),
             Text(
               AppStrings.login.tr(),
               textAlign: TextAlign.start,
@@ -40,10 +42,8 @@ class _loginScreenState extends State<loginScreen> {
                 fontSize: 32,
               ),
             ),
-            Spacer(),
-            backButton(
-              function: () {},
-            ),
+
+
           ],
         ),
       ),

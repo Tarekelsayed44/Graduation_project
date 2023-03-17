@@ -33,6 +33,8 @@ class _CreateAccountState extends State<CreateAccount> {
         titleSpacing: 20,
         title: Row(
           children: [
+            backButton(),
+            Spacer(),
             Text(
               AppStrings.createAcoount.tr(),
               style: getBoldStyle(
@@ -40,12 +42,8 @@ class _CreateAccountState extends State<CreateAccount> {
                 color: Colors.black,
               ),
             ),
-          Spacer(),
-            backButton(
-                function: (){
-              Navigator.push(context,MaterialPageRoute(builder: (context)=> SignUp0()));
 
-            })
+
         ],
       ),
       ),

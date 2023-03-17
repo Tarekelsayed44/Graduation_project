@@ -31,15 +31,11 @@ class _Register_formState extends State<Register_form> {
         elevation: 0,
         title: Row(
           children: [
-            Text(AppStrings.fillForm.tr(),style: getBoldStyle(color: Colors.black),),
+            backButton(),
             Spacer(),
-            backButton(
-              function: () {
-                // Navigator.of(context).pushReplacement(
-                //     MaterialPageRoute(
-                //         builder: (context) => CreateAccount()));
-              },
-            )
+            Text(AppStrings.fillForm.tr(),style: getBoldStyle(color: Colors.black),),
+
+
           ],
         ),
         backgroundColor: Colors.white,
@@ -55,8 +51,8 @@ class _Register_formState extends State<Register_form> {
               children: [
                 CircleAvatar(
                   radius: 70,
-                  backgroundColor: Colors.white,
-                  child: Image.asset(ImageAssets.profile,),
+                  backgroundColor: Colors.grey,
+                  child: Icon(Icons.person_add_outlined, size: 40,),
                 ),
                 SizedBox(
                   height: 25,

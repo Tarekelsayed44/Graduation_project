@@ -11,6 +11,7 @@ import 'package:pick_park/screens/splash/splash1.dart';
 import 'package:pick_park/shared/styles/theme.dart';
 
 import '../presentations/resources/route_manager.dart';
+import '../screens/home_screen/home_screen.dart';
 import '../screens/settings/edit_account.dart';
 import '../screens/reset_password/verification_otp.dart';
 import '../screens/settings/settings.dart';
@@ -44,7 +45,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       //onGenerateRoute: RouteGenerator.getRoute,
      // initialRoute: Routes.loginRoute,
-     home:Splash1(),
+     home:HomeScreen(),
       theme: ThemeData(),
     );
   }

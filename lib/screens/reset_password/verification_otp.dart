@@ -25,20 +25,16 @@ class _verificationOtpState extends State<verificationOtp> {
         titleSpacing: 20,
         title: Row(
           children: [
+            backButton(),
+            Spacer(),
             Text(
               AppStrings.forgetPassword.tr(),
               style: getBoldStyle(
                 color: Colors.black,
               ),
             ),
-            Spacer(),
-            backButton(
-              function: () {
-                // Navigator.of(context).pushReplacement(
-                //     MaterialPageRoute(
-                //         builder: (context) => ForgetPass()));
-              },
-            )
+
+
           ],
         ),
       ),

@@ -29,15 +29,22 @@ class _SignUp0State extends State<SignUp0> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+
           automaticallyImplyLeading:false,
           elevation: 0,
           backgroundColor: Colors.white,
-          title: Text(
-            AppStrings.login.tr().toUpperCase(),
-            style: getBoldStyle(
-              color: Colors.black,
-              fontSize: 27
-            ),
+          title: Row(
+            children: [
+              backButton(),
+              Spacer(),
+              Text(
+                AppStrings.login.tr().toUpperCase(),
+                style: getBoldStyle(
+                  color: Colors.black,
+                  fontSize: 27
+                ),
+              ),
+            ],
           ),
         ),
         backgroundColor: Colors.white,
@@ -171,29 +178,29 @@ class _SignUp0State extends State<SignUp0> {
                     color: Color(0xff4b4eb0),
 
                     ),
-                // SizedBox(
-                //   height: 40,
-                // ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Text(AppStrings.notMember.tr()),
-                //     SizedBox(
-                //       width: 4,
-                //     ),
-                //     TextButton(
-                //         onPressed: () {
-                //           Navigator.push(
-                //               context,
-                //               MaterialPageRoute(
-                //                   builder: (context) => CreateAccount()));
-                //         },
-                //         child: Text(
-                //           AppStrings.registerNow.tr(),
-                //           style: getRegularStyle(color: Color(0xff4D5DFA,),fontSize: 15)
-                //         ))
-                //   ],
-                // )
+                SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(AppStrings.notMember.tr()),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateAccount()));
+                        },
+                        child: Text(
+                          AppStrings.registerNow.tr(),
+                          style: getRegularStyle(color: Color(0xff4D5DFA,),fontSize: 15)
+                        ))
+                  ],
+                )
               ],
             ),
           ),

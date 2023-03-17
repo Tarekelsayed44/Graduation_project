@@ -28,20 +28,16 @@ class _ResetPassState extends State<ResetPass> {
         elevation: 0,
         title: Row(
           children: [
+            backButton(),
+            Spacer(),
             Text(
               AppStrings.resetPassword.tr(),
               style: getBoldStyle(
                 color: Colors.black,
               ),
             ),
-            Spacer(),
-            backButton(
-              function: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                        builder: (context) => verificationOtp()));
-              },
-            )
+
+
           ],
         ),
         centerTitle: true,

@@ -71,10 +71,12 @@ Widget defaultFormField({
     );
 //-----------------------------------------------------------------------------------------------
 Widget backButton({
-  required Function function,
+   Function ?function,
 }) {
   return GestureDetector(
-    onTap: function(),
+    onTap: (){
+      Navigator.pushReplacement;
+    },
     child: Container(
       width: 89,
       height: 28,

@@ -4,6 +4,8 @@
         android:label="pickpark"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyBYkM_PaCuwzo6y42g58e3IsQNyqBa8Jag"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

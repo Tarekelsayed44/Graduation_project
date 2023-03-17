@@ -6,6 +6,8 @@ import 'package:pick_park/presentations/resources/styles_manager.dart';
 import 'package:pick_park/screens/login_screen/login_screen.dart';
 import 'package:pick_park/shared/components/component.dart';
 
+import '../reset_password/verification_otp.dart';
+
 class ForgetPass extends StatefulWidget {
   const ForgetPass({Key? key}) : super(key: key);
 
@@ -22,17 +24,11 @@ class _ForgetPassState extends State<ForgetPass> {
         elevation: 0,
         title: Row(
           children: [
+            backButton(),
+            Spacer(),
             Text(
               AppStrings.forgetPassword.tr(),
               style: getSemiBoldStyle(color: Colors.black, fontSize: 25),
-            ),
-            Spacer(),
-            backButton(
-              function: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                        builder: (context) => loginScreen()));
-              },
             ),
           ],
         ),
@@ -163,7 +159,11 @@ class _ForgetPassState extends State<ForgetPass> {
                 height: 30,
               ),
               defaultButton(
-                  function: () {},
+                  function: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(
+                        builder: (context) => verificationOtp()));
+                  },
                   text: AppStrings.containue.tr(),
                   color: Color(0xff4B4EB0),
                   fontSize: 18,
