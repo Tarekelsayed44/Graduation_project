@@ -22,16 +22,13 @@ class _EditAccountState extends State<EditAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
         elevation: 0,
         titleSpacing: 20,
         title: Row(
           children: [
             Text(AppStrings.editAccount.tr(),style: getBoldStyle(color: Colors.black,fontSize: 25),),
             Spacer(),
-            backButton(
-              function: () {},
-            )
           ],
         ),
         backgroundColor: Colors.white,

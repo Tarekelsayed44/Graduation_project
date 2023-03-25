@@ -27,11 +27,11 @@ class _Register_formState extends State<Register_form> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
         elevation: 0,
         title: Row(
           children: [
-            backButton(),
+
             Spacer(),
             Text(AppStrings.fillForm.tr(),style: getBoldStyle(color: Colors.black),),
 

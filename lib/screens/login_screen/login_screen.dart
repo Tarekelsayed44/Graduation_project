@@ -27,12 +27,11 @@ class _loginScreenState extends State<loginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
         elevation: 0,
         backgroundColor: Colors.white,
         title: Row(
           children: [
-            backButton(),
             Spacer(),
             Text(
               AppStrings.login.tr(),

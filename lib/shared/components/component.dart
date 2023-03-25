@@ -72,10 +72,10 @@ Widget defaultFormField({
 //-----------------------------------------------------------------------------------------------
 Widget backButton({
    Function ?function,
-}) {
-  return GestureDetector(
+})=>
+   GestureDetector(
     onTap: (){
-      Navigator.pushReplacement;
+     Navigator.pop;
     },
     child: Container(
       width: 89,
@@ -88,6 +88,14 @@ Widget backButton({
         padding: const EdgeInsets.only(left: 8, right: 15),
         child: Row(
           children: [
+            Icon(
+              Icons.arrow_back,
+              size: 20,
+              color: Colors.black,
+            ),
+            SizedBox(
+              width: 5,
+            ),
             Text(
               AppStrings.back.tr(),
               style: TextStyle(
@@ -97,17 +105,11 @@ Widget backButton({
                 fontFamily: "Cairo",
               ),
             ),
-            SizedBox(
-              width: 5,
-            ),
-            Icon(
-              Icons.arrow_forward,
-              size: 20,
-              color: Colors.black,
-            )
+
+
           ],
         ),
       ),
     ),
   );
-}
+

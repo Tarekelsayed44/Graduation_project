@@ -27,13 +27,12 @@ class _CreateAccountState extends State<CreateAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
         elevation: 0,
         backgroundColor: Colors.white,
         titleSpacing: 20,
         title: Row(
           children: [
-            backButton(),
             Spacer(),
             Text(
               AppStrings.createAcoount.tr(),

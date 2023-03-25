@@ -21,10 +21,10 @@ class _ForgetPassState extends State<ForgetPass> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
         elevation: 0,
         title: Row(
           children: [
-            backButton(),
             Spacer(),
             Text(
               AppStrings.forgetPassword.tr(),

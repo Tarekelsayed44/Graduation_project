@@ -19,11 +19,13 @@ class _settingsState extends State<settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
         title:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(AppStrings.account.tr()),
             Icon(Icons.keyboard_control),
+
           ],
         ),
         
