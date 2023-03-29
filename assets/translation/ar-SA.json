@@ -88,5 +88,8 @@
   "massage": "رسالة نصية",
   "num_phone": "+20 10*****236",
   "email_ex": "exampel@example.com",
-  "code_sent": "تم ارسال الرمز الى"
+  "code_sent": "تم ارسال الرمز الى",
+  "choose_payment": "اختر طريقة الدفع",
+  "add_card": "اضافة بطاقة جديدة"
+
 }

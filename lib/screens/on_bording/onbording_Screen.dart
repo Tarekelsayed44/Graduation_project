@@ -100,7 +100,7 @@ class _OnBoordingState extends State<OnBoording> {
                   ),
                   defaultButton(
                     function: () {
-                      Navigator.of(context).pushReplacement(
+                      Navigator.push(context,
                           MaterialPageRoute(
                               builder: (context) => SignUp0()));
                     },
@@ -163,7 +163,7 @@ class _OnBoordingState extends State<OnBoording> {
                   ),
                   defaultButton(
                     function: () {
-                      Navigator.of(context).pushReplacement(
+                      Navigator.push(context,
                           MaterialPageRoute(
                               builder: (context) => SignUp0()));
                     },
@@ -209,7 +209,7 @@ class _OnBoordingState extends State<OnBoording> {
                   ),
                   defaultButton(
                     function: () {
-                      Navigator.of(context).pushReplacement(
+                      Navigator.push(context,
                           MaterialPageRoute(
                               builder: (context) => SignUp0()));
                     },

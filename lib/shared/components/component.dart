@@ -12,6 +12,7 @@ Widget defaultButton({
   double height = 51.2,
   FontWeight fontWeight = FontWeight.w500,
   bool isUpperCase = true,
+  Color borderColor = Colors.purple,
   Color textColor = Colors.white,
 }) =>
     Container(
@@ -27,6 +28,7 @@ Widget defaultButton({
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
+        border: Border.all(width: 2, color: borderColor),
         color: color,
       ),
     );
@@ -105,8 +107,6 @@ Widget backButton({
                 fontFamily: "Cairo",
               ),
             ),
-
-
           ],
         ),
       ),

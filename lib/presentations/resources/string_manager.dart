@@ -81,6 +81,11 @@ class AppStrings {
   static const String phone = "num_phone";
   static const String emailEx = "email_ex";
   static const String codeSent = "code_sent";
+  static const String choosingPay = "choose_payment";
+  static const String paypal = "paypal";
+  static const String googlePay = "Google pay";
+  static const String applePay = "Apple pay";
+  static const String addCard = "add_card";
 
 
 

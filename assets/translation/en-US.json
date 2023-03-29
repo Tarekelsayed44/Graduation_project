@@ -90,5 +90,8 @@
   "the_car": "The car",
   "account": "your account",
   "help_center": "help center",
-  "code_sent": "Code has been sent to"
+  "code_sent": "Code has been sent to",
+  "choose_payment": "Choose The Payment way ",
+  "add_card": " Add New Card"
+
 }

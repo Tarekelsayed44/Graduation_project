@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:pick_park/screens/payment_screens/payment1.dart';
+import '../screens/forget_password/forget_pass.dart';
 import '../screens/home_screen/home_screen.dart';
+import '../screens/settings/settings.dart';
 import '../screens/splash/splash1.dart';
 class MyApp extends StatefulWidget {
   // named constructor
@@ -28,7 +31,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       //onGenerateRoute: RouteGenerator.getRoute,
      // initialRoute: Routes.loginRoute,
-     home:Splash1(),
+     home:settings(),
       theme: ThemeData(),
     );
   }

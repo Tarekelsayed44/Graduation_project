@@ -9,6 +9,7 @@ class ImageAssets {
   static const String resetpass = "$imagePath/resetpass.png";
   static const String profile = "$imagePath/avatar-01.png";
   static const String googleIcon = "$imagePath/google.png";
+  static const String paypalIcon = "$imagePath/payPal.png";
   static const String facebookIcon = "$imagePath/facebook.png";
   static const String appleIcon = "$imagePath/icons8_apple_logo_50.png";
   static const String forgetPass = "$imagePath/forgetpass.png";
