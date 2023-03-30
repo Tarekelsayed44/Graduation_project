@@ -1,16 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:pick_park/screens/payment_screens/payment1.dart';
-import '../screens/forget_password/forget_pass.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pick_park/screens/login_screen/login_screen.dart';
+import 'package:pick_park/screens/sign_up/auth/auth_cubit.dart';
 import '../screens/home_screen/home_screen.dart';
-import '../screens/settings/settings.dart';
+import '../screens/payment_screens/payment1.dart';
 import '../screens/splash/splash1.dart';
+import '../shared/components/constants.dart';
 class MyApp extends StatefulWidget {
-  // named constructor
-  MyApp._internal();
-  int appState = 0;
-  static final MyApp _instance = MyApp._internal(); // singleton or single instance
-  factory MyApp() => _instance; // factory
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -24,15 +21,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(providers:[ BlocProvider(create: (context)=>AuthCubit()),], child:
+
+      MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       //onGenerateRoute: RouteGenerator.getRoute,
      // initialRoute: Routes.loginRoute,
-     home:settings(),
+        home: Splash1(),
+    // home:token != null ? const HomeScreen() : loginScreen(),
       theme: ThemeData(),
+      )
+
     );
   }
 }

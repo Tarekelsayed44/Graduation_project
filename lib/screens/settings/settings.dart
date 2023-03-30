@@ -4,7 +4,6 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'dart:math' as math;
 import '../../app/app.dart';
 import '../../app/app_pref.dart';
-import '../../app/di.dart';
 import '../../presentations/resources/language_manager.dart';
 import '../../presentations/resources/string_manager.dart';
 class settings extends StatefulWidget {
