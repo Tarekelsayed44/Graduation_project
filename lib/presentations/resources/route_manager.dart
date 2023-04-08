@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
-import 'package:pick_park/screens/login_screen/login_screen.dart';
 
-import '../../screens/on_bording/onbording_Screen.dart';
+import '../login_screen/login_screen.dart';
+import '../on_bording/onbording_Screen.dart';
 
 class Routes {
   static const String splashRoute = "/";

@@ -92,6 +92,8 @@
   "help_center": "help center",
   "code_sent": "Code has been sent to",
   "choose_payment": "Choose The Payment way ",
-  "add_card": " Add New Card"
+  "add_card": " Add New Card",
+  "add_the_card": "Add the card",
+  "new_card": "New Card"
 
 }

@@ -1,11 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:get_it/get_it.dart';
 import 'dart:math' as math;
-import '../../app/app.dart';
-import '../../app/app_pref.dart';
-import '../../presentations/resources/language_manager.dart';
-import '../../presentations/resources/string_manager.dart';
+import '../../../app/app_pref.dart';
+import '../../resources/language_manager.dart';
+import '../../resources/string_manager.dart';
+//final instance = GetIt.instance;
 class settings extends StatefulWidget {
   const settings({Key? key}) : super(key: key);
 
@@ -14,6 +15,7 @@ class settings extends StatefulWidget {
 }
 
 class _settingsState extends State<settings> {
+ // final AppPreferences _appPreferences = instance<AppPreferences>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,18 +58,17 @@ class _settingsState extends State<settings> {
                 leading:Icon(Icons.visibility) ,
                 title: Text(AppStrings.darkAppearance.tr()),
               ),
-             /* ListTile(
-                leading: Icon(Icons.language),
-                title: Text(AppStrings.changeLanguage.tr()),
-                trailing: Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.rotationY( isRtl() ? math.pi : 0),
-                ),
-                onTap: () {
-                  _changelanguage();
-                },
-              ),
-*/
+              // ListTile(
+              //   leading: Icon(Icons.language),
+              //   title: Text(AppStrings.changeLanguage.tr()),
+              //   trailing: Transform(
+              //     alignment: Alignment.center,
+              //     transform: Matrix4.rotationY( isRtl() ? math.pi : 0),
+              //   ),
+              //   onTap: () {
+              //     _changelanguage();
+              //   },
+              // ),
               ListTile(
                 leading: Icon(Icons.logout),
                 title: Text(AppStrings.logout.tr(),
@@ -75,26 +76,15 @@ class _settingsState extends State<settings> {
               )
             ],
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            items: [
-              BottomNavigationBarItem(icon:Icon(Icons.home),label: AppStrings.home.tr()),
-              BottomNavigationBarItem(icon:Icon(Icons.list_alt),label: AppStrings.book.tr()),
-              BottomNavigationBarItem(icon:Icon(Icons.bookmark),label: AppStrings.favourite.tr()),
-              BottomNavigationBarItem(icon:Icon(Icons.directions_car),label: AppStrings.theCar.tr()),
-              BottomNavigationBarItem(icon:Icon(Icons.person),label: AppStrings.account.tr()),
-
-            ],
-          ),
         );
 
   }
 
-  _changelanguage() {
-
-    Phoenix.rebirth(context);
-  }
-  bool isRtl() {
-    return context.locale == ARABIC_LOCAL;
-  }
+  // _changelanguage() {
+  //   _appPreferences.changeAppLanguage();
+  //   Phoenix.rebirth(context);
+  // }
+  // bool isRtl() {
+  //   return context.locale == ARABIC_LOCAL;
+  // }
 }

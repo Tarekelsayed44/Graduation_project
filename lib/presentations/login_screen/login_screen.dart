@@ -2,16 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
-import 'package:pick_park/screens/forget_password/forget_pass.dart';
-import 'package:pick_park/screens/settings/settings.dart';
-import 'package:pick_park/screens/sign_up/auth/auth_cubit.dart';
-import 'package:pick_park/screens/sign_up/auth/auth_state.dart';
-import 'package:pick_park/screens/sign_up/sign_up2.dart';
 
-import '../../presentations/resources/assets_manager.dart';
-import '../../presentations/resources/styles_manager.dart';
+import '../../domain/auth/auth_cubit.dart';
+import '../../domain/auth/auth_state.dart';
 import '../../shared/components/component.dart';
-import '../home_screen/home_screen.dart';
+import '../Main/home/home_screen.dart';
+import '../forget_password/forget_pass.dart';
+import '../resources/assets_manager.dart';
+import '../resources/styles_manager.dart';
 
 class loginScreen extends StatefulWidget {
   const loginScreen({Key? key}) : super(key: key);

@@ -86,8 +86,8 @@ class AppStrings {
   static const String googlePay = "Google pay";
   static const String applePay = "Apple pay";
   static const String addCard = "add_card";
-
-
+  static const String addTheCard = "add_the_card";
+  static const String newCard = "new_card";
 
 
   // error handler

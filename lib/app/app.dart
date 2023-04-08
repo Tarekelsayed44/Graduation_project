@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pick_park/screens/login_screen/login_screen.dart';
-import 'package:pick_park/screens/sign_up/auth/auth_cubit.dart';
-import '../screens/home_screen/home_screen.dart';
-import '../screens/payment_screens/payment1.dart';
-import '../screens/splash/splash1.dart';
-import '../shared/components/constants.dart';
+import 'package:pick_park/presentations/splash/splash1.dart';
+
+import '../domain/auth/auth_cubit.dart';
+import '../presentations/Main/main_view.dart';
+import '../presentations/Main/settings/settings.dart';
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();

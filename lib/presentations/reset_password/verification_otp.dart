@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pick_park/screens/forget_password/forget_pass.dart';
-
 import '../../presentations/resources/string_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
 import '../../shared/components/component.dart';

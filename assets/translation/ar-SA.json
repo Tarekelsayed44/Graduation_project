@@ -90,6 +90,8 @@
   "email_ex": "exampel@example.com",
   "code_sent": "تم ارسال الرمز الى",
   "choose_payment": "اختر طريقة الدفع",
-  "add_card": "اضافة بطاقة جديدة"
+  "add_card": "اضافة بطاقة جديدة",
+  "add_the_card": "اضافة البطاقة",
+  "new_card": "بطاقة جديدة"
 
 }

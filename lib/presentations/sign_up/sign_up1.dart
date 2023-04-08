@@ -1,15 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:pick_park/presentations/resources/assets_manager.dart';
-import 'package:pick_park/screens/home_screen/home_screen.dart';
-import 'package:pick_park/screens/sign_up/auth/auth_cubit.dart';
-import 'package:pick_park/screens/sign_up/auth/auth_state.dart';
-import 'package:pick_park/screens/sign_up/sign_up2.dart';
 import 'package:pick_park/shared/components/component.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../domain/auth/auth_cubit.dart';
+import '../../domain/auth/auth_state.dart';
 import '../../presentations/resources/string_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
+import '../Main/home/home_screen.dart';
 
 class Register_form extends StatefulWidget {
   const Register_form({Key? key}) : super(key: key);
@@ -25,7 +23,6 @@ class _Register_formState extends State<Register_form> {
   var phoneController = TextEditingController();
   var formKey = GlobalKey<FormState>();
   var selctedGender;
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit,AuthStates>(
@@ -93,10 +90,18 @@ class _Register_formState extends State<Register_form> {
                       CircleAvatar(
                         radius: 70,
                         backgroundColor: Colors.grey,
-                        child: Icon(Icons.person_add_outlined, size: 40,),
                       ),
-                      SizedBox(
-                        height: 25,
+                      Positioned(
+                        bottom: 20.0,
+                        right: 20.0,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: Colors.teal,
+                            size: 28.0,
+                          ),
+                        ),
                       ),
                       defaultFormField(
                           controller: nameController,

@@ -1,11 +1,10 @@
 import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:http/http.dart';
-import 'package:pick_park/screens/sign_up/auth/auth_state.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../app/app_pref.dart';
+import 'auth_state.dart';
 class AuthCubit extends Cubit<AuthStates>{
   AuthCubit():super (AuthInitialState());
   void Register({required String name , required String calender,required String email , required String phone }) async {

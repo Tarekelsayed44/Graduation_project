@@ -2,13 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
-import 'package:pick_park/screens/on_bording/onbording_Screen.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../presentations/resources/assets_manager.dart';
 import '../../shared/components/component.dart';
 import '../login_screen/login_screen.dart';
 import 'sign_up1.dart';
-import 'sign_up2.dart';
 
 class SignUp0 extends StatefulWidget {
   const SignUp0({Key? key}) : super(key: key);
@@ -29,7 +27,7 @@ class _SignUp0State extends State<SignUp0> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
+         // leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
 
           elevation: 0,
           backgroundColor: Colors.white,
@@ -169,10 +167,10 @@ class _SignUp0State extends State<SignUp0> {
                 ),
                 defaultButton(
                     function: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => CreateAccount()));
+                              builder: (context) => loginScreen()));
                     },
                     text: AppStrings.loginPassword.tr().toUpperCase(),
                     color: Color(0xff4b4eb0),
@@ -193,7 +191,7 @@ class _SignUp0State extends State<SignUp0> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CreateAccount()));
+                                  builder: (context) => Register_form()));
                         },
                         child: Text(
                           AppStrings.registerNow.tr(),

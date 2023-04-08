@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
-import 'package:pick_park/screens/on_bording/onbording_Screen.dart';
+
+import '../on_bording/onbording_Screen.dart';
 
 class IntroScreen extends StatefulWidget {
   IntroScreen({Key? key}) : super(key: key);

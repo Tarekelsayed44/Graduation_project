@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pick_park/presentations/resources/route_manager.dart';
-import 'package:pick_park/screens/on_bording/onbording_Screen.dart';
-import 'package:pick_park/screens/splash/splach2.dart';
 import '../../presentations/resources/assets_manager.dart';
+import 'splach2.dart';
 
 class Splash1 extends StatefulWidget {
   Splash1({Key? key}) : super(key: key);

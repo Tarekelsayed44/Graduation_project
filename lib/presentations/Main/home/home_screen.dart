@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../presentations/resources/string_manager.dart';
+import '../../resources/string_manager.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -62,27 +62,6 @@ void initState(){
 
           });
         },
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-        BottomNavigationBarItem(icon:Icon(Icons.home),label: AppStrings.home.tr()),
-        BottomNavigationBarItem(icon:Icon(Icons.list_alt),label: AppStrings.book.tr()),
-        BottomNavigationBarItem(icon:Icon(Icons.bookmark),label: AppStrings.favourite.tr()),
-        BottomNavigationBarItem(icon:Icon(Icons.directions_car),label: AppStrings.theCar.tr()),
-        BottomNavigationBarItem(icon:Icon(Icons.person),label: AppStrings.account.tr()),
-      ],
-        backgroundColor: Colors.white,
-        onTap: (index){
-          setState(() {
-            selectedIndex=index;
-          });
-        },
-        currentIndex: selectedIndex,
-        selectedItemColor:Color(0xff4B4EB0),
-        unselectedItemColor: Color(0xff9E9E9E),
-        showSelectedLabels:true ,
-        showUnselectedLabels: true,
-
       ),
     );
   }

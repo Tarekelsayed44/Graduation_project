@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
-import 'package:pick_park/screens/login_screen/login_screen.dart';
 import 'package:pick_park/shared/components/component.dart';
 
 import '../sign_up/sign_up0.dart';
@@ -100,7 +99,7 @@ class _OnBoordingState extends State<OnBoording> {
                   ),
                   defaultButton(
                     function: () {
-                      Navigator.push(context,
+                      Navigator.pushReplacement(context,
                           MaterialPageRoute(
                               builder: (context) => SignUp0()));
                     },
@@ -163,7 +162,7 @@ class _OnBoordingState extends State<OnBoording> {
                   ),
                   defaultButton(
                     function: () {
-                      Navigator.push(context,
+                      Navigator.pushReplacement(context,
                           MaterialPageRoute(
                               builder: (context) => SignUp0()));
                     },
@@ -209,7 +208,7 @@ class _OnBoordingState extends State<OnBoording> {
                   ),
                   defaultButton(
                     function: () {
-                      Navigator.push(context,
+                      Navigator.pushReplacement(context,
                           MaterialPageRoute(
                               builder: (context) => SignUp0()));
                     },

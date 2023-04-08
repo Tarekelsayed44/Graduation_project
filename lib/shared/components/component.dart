@@ -126,3 +126,7 @@ void showAlertDialog({required BuildContext context,required Color backgroundCol
     );
   });
 }
+OutlineInputBorder border = OutlineInputBorder(
+borderSide: BorderSide(
+color: Colors.grey.withOpacity(0.7),
+width: 2.0));
