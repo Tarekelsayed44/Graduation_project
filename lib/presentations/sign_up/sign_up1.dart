@@ -74,18 +74,9 @@ class _Register_formState extends State<Register_form> {
                 Navigator.pop(context);
               }, icon: Icon(Icons.arrow_back, color: Colors.black),),
               elevation: 0,
-              title: Row(
-                children: [
-
-                  Spacer(),
-                  Text(AppStrings.fillForm.tr(),
-                    style: getBoldStyle(color: Colors.black),),
-
-
-                ],
-              ),
+              title: Text(AppStrings.fillForm.tr(),
+                style: getBoldStyle(color: Colors.black),),
               backgroundColor: Colors.white,
-
             ),
             body: Container(
               padding: EdgeInsetsDirectional.only(top: 20, start: 10, end: 10),
@@ -128,7 +119,6 @@ class _Register_formState extends State<Register_form> {
                             }
                             return null;
                           }
-
                       ),
                       SizedBox(
                         height: 10,
@@ -243,6 +233,7 @@ class _Register_formState extends State<Register_form> {
              FloatingActionButton(onPressed: (){ takePhoto(ImageSource.camera);},
                child: Icon(Icons.camera_alt),
              ),
+            SizedBox( width:  10,),
             FloatingActionButton(onPressed: (){takePhoto(ImageSource.gallery);},child: Icon(Icons.photo),)
            ])
          ],

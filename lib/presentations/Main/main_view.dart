@@ -45,6 +45,7 @@ class _MainViewState extends State<MainView> {
           BoxShadow(color: Colors.white)
         ]),
         child: BottomNavigationBar(
+          showUnselectedLabels: true,
           selectedItemColor: defaultColor,
           unselectedItemColor:Colors.grey,
           currentIndex: _currentIndex,

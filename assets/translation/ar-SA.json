@@ -32,7 +32,7 @@
   "email_hint": "البريد الالكتروني",
   "notification": "الاشعارات",
   "search": "البحث",
-  "home": "الرىيسيه",
+  "home": "الرئيسية",
   "settings": "الاعدادات",
   "services": "الخدمات",
   "details": "التفاصيل",
@@ -92,6 +92,9 @@
   "choose_payment": "اختر طريقة الدفع",
   "add_card": "اضافة بطاقة جديدة",
   "add_the_card": "اضافة البطاقة",
-  "new_card": "بطاقة جديدة"
+  "new_card": "بطاقة جديدة",
+  "booking_tittle": "حجوزاتي",
+  "choose_vehicle": "حدد مركبة",
+  "location_service_error": "خدمة الموقع ليست متاحة"
 
 }

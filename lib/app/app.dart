@@ -6,6 +6,7 @@ import 'package:pick_park/presentations/splash/splash1.dart';
 import '../domain/auth/auth_cubit.dart';
 import '../presentations/Main/main_view.dart';
 import '../presentations/Main/settings/settings.dart';
+import '../presentations/payment_screens/payment2.dart';
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();

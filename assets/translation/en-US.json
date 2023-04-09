@@ -94,6 +94,9 @@
   "choose_payment": "Choose The Payment way ",
   "add_card": " Add New Card",
   "add_the_card": "Add the card",
-  "new_card": "New Card"
+  "new_card": "New Card",
+  "booking_tittle": "My bookings",
+  "choose_vehicle": "Choose Vehicle",
+  "location_service_error": "Location Service Not Enabled"
 
 }

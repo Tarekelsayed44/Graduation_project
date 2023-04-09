@@ -88,6 +88,10 @@ class AppStrings {
   static const String addCard = "add_card";
   static const String addTheCard = "add_the_card";
   static const String newCard = "new_card";
+  static const String fakeName = "Jack Cohen";
+  static const String booking = "booking_tittle";
+  static const String chooseVehicle = "choose_vehicle";
+  static const String locationServiceError = "location_service_error";
 
 
   // error handler
