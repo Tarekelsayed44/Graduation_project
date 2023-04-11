@@ -7,6 +7,7 @@ import 'package:pick_park/presentations/resources/styles_manager.dart';
 import 'package:pick_park/shared/components/component.dart';
 
 import '../../resources/string_manager.dart';
+// ignore: const_initialized_with_non_constant_value
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -50,15 +51,52 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Expanded(
           child: _kGooglePlex == null
               ? CircularProgressIndicator()
-              : GoogleMap(
-                  initialCameraPosition: _kGooglePlex,
-                  markers: Set<Marker>.of(_marker),
-                  mapType: MapType.normal,
-                  myLocationEnabled: true,
-                  compassEnabled: false,
-                  onMapCreated: (GoogleMapController controller) {
-                    _controller.complete(controller);
-                  },
+              : Stack(
+                  children: [
+                    GoogleMap(
+                      initialCameraPosition: _kGooglePlex,
+                      markers: Set<Marker>.of(_marker),
+                      mapType: MapType.normal,
+                      myLocationEnabled: false,
+                      compassEnabled: false,
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.notification_important_sharp,
+                                color: Color(0xff4B4EB0),
+                              ),
+                            ),
+                            radius: 20,
+                            backgroundColor: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          CircleAvatar(
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.search,
+                                color: Color(0xff4B4EB0),
+                              ),
+                            ),
+                            radius: 20,
+                            backgroundColor: Colors.white,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                  alignment: Alignment.topRight,
                 ),
         ),
       ),
@@ -67,7 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () async {
           GoogleMapController controller = await _controller.future;
           controller.animateCamera(CameraUpdate.newCameraPosition(
-              CameraPosition(target: LatLng(31.04094931, 31.378469), zoom: 14)));
+              CameraPosition(
+                  target: LatLng(31.04094931, 31.378469), zoom: 14)));
           setState(() {});
         },
       ),

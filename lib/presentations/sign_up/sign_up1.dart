@@ -23,7 +23,7 @@ class Register_form extends StatefulWidget {
 }
 
 class _Register_formState extends State<Register_form> {
-   late PickedFile _imageFile;
+    PickedFile? _imageFile;
   var nameController = TextEditingController();
   var birthController = TextEditingController();
   var emailController = TextEditingController();
@@ -89,7 +89,8 @@ class _Register_formState extends State<Register_form> {
                       CircleAvatar(
                         radius: 70,
                         backgroundColor: Colors.grey,
-                        backgroundImage: _imageFile == null? null:FileImage(File(_imageFile.path)),
+                        backgroundImage: _imageFile == null? null
+                            :FileImage(File(_imageFile!.path)),
                       ),
                       Positioned(
                         bottom: 20.0,
