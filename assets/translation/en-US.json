@@ -97,6 +97,7 @@
   "new_card": "New Card",
   "booking_tittle": "My bookings",
   "choose_vehicle": "Choose Vehicle",
-  "location_service_error": "Location Service Not Enabled"
+  "location_service_error": "Location Service Not Enabled",
+  "booking_details": "Booking details"
 
 }

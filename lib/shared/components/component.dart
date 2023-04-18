@@ -38,7 +38,7 @@ Widget defaultTextButton({required Function function, required String text}) =>
 //---------------------------------------------------------------------------------------------------
 Widget defaultFormField({
   required TextEditingController controller,
-  required TextInputType type,
+  TextInputType ?type,
   Function? onchange,
   validate,
   double radius = 20.0,
@@ -50,6 +50,7 @@ Widget defaultFormField({
   Function? onSubmit,
   var autoValidate = AutovalidateMode.onUserInteraction,
   IconButton? suffixIcon,
+  Function? onTap
 }) =>
     TextFormField(
       validator: validate,
@@ -59,6 +60,8 @@ Widget defaultFormField({
       obscureText: isPassword,
       onChanged: (value) {
         onchange;
+      },
+      onTap: (){
       },
       onFieldSubmitted: (String value) {
         onSubmit!(value);
@@ -112,9 +115,6 @@ Widget backButton({
       ),
     ),
   );
-
-//---------------------------------------------------------------------------------------------------------------
-
 void showAlertDialog({required BuildContext context,required Color backgroundColor,required Widget content,List<Widget>? actions}){
   showDialog(context: context, builder: (context){
     return AlertDialog(

@@ -92,7 +92,7 @@ class AppStrings {
   static const String booking = "booking_tittle";
   static const String chooseVehicle = "choose_vehicle";
   static const String locationServiceError = "location_service_error";
-
+  static const String bookingDetails = "booking_details";
 
   // error handler
   static const String badRequestError = "bad_request_error";

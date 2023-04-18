@@ -5,6 +5,7 @@ import 'package:pick_park/shared/components/component.dart';
 
 import '../../presentations/resources/assets_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
+import 'payment2.dart';
 
 class Payment1 extends StatefulWidget {
   const Payment1({Key? key}) : super(key: key);
@@ -175,7 +176,9 @@ class _Payment1State extends State<Payment1> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal:5),
                   child: defaultButton(
-                    function: () {},
+                    function: () {
+                      Navigator.push(context, MaterialPageRoute(builder:  (context) => AddPaymentCard()));
+                    },
                     text: AppStrings.addCard.tr(),
                     color: Colors.white,
                     borderColor: Color(0xff4B4EB0),

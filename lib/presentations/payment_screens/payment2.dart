@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
+import 'package:pick_park/shared/components/component.dart';
 
 import '../../presentations/resources/styles_manager.dart';
 
@@ -107,39 +108,25 @@ class _AddPaymentCardState extends State<AddPaymentCard> {
                     const SizedBox(
                       height: 20,
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        // color: const Color(0xff1b447b),
-                      ),
-                      child: Container(
-                        margin: const EdgeInsets.all(12),
-                        child:  Text(
+                    defaultButton(
+                         text:
                           AppStrings.addTheCard.tr(),
-                          style: TextStyle(
-                            fontSize: 14,
-                            package: 'flutter_credit_card',
+                        function: () {
+                      if (formKey.currentState!.validate()) {
+                        print('valid!');
+                      } else {
+                        print('invalid!');
+                      }
+                    },
                           ),
-                        ),
-                      ),
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          print('valid!');
-                        } else {
-                          print('invalid!');
-                        }
-                      },
-                    ),
-                  ],
-                ),
+              ]
+              )
+              )
+              )
+        ]
+    )
               ),
-            ),
-          ],
-        ),
-      ),
-    );
+            );
   }
 
   void onCreditCardModelChange(CreditCardModel? creditCardModel) {

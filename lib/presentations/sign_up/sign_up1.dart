@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
@@ -25,9 +26,11 @@ class Register_form extends StatefulWidget {
 class _Register_formState extends State<Register_form> {
     PickedFile? _imageFile;
   var nameController = TextEditingController();
-  var birthController = TextEditingController();
+  var _date = TextEditingController();
   var emailController = TextEditingController();
+  var passwordController = TextEditingController();
   var phoneController = TextEditingController();
+  bool isPassword = true;
   var formKey = GlobalKey<FormState>();
   var selctedGender;
   final ImagePicker _picker = ImagePicker();
@@ -124,18 +127,31 @@ class _Register_formState extends State<Register_form> {
                       SizedBox(
                         height: 10,
                       ),
-                      defaultFormField(
-                          controller: birthController,
-                          type: TextInputType.datetime,
-                          label: AppStrings.birthDate.tr(),
-                          prefix: Icons.calendar_month,
-                          validate: (value) {
-                            if (value.isEmpty) {
-                              return AppStrings.errorField.tr();
+                        TextFormField(
+                          controller: _date,
+                           decoration: InputDecoration(
+                             label: Text(AppStrings.birthDate.tr()),
+                             prefixIcon: Icon(Icons.calendar_month,),
+                             border:OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                           ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return AppStrings.errorField.tr();
+                              }
+                              return null;
+                            },
+                            onTap: ()async {
+                             DateTime ?pickedDate= await showDatePicker(context: context,
+                                  initialDate: DateTime.now(), firstDate: DateTime(1800), lastDate: DateTime(2100));
+                              if(pickedDate!=null){
+                                setState(() {
+                                  _date.text=DateFormat('yyy-MM-dd').format(pickedDate);
+                                });
+
+                              }
                             }
-                            return null;
-                          }
-                      ),
+                          ),
+
                       SizedBox(
                         height: 10,
                       ),
@@ -150,6 +166,36 @@ class _Register_formState extends State<Register_form> {
                             }
                             return null;
                           }
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      defaultFormField(
+                        controller: passwordController,
+                        validate: (value) {
+                          if (value.isEmpty) {
+                            return AppStrings.passwordError.tr();
+                          }
+                          return null;
+                        },
+                        onSubmit: () {
+                          if (formKey.currentState!.validate()) {
+                            return "invalid";
+                          }
+                        },
+                        type: TextInputType.visiblePassword,
+                        label: AppStrings.password.tr(),
+                        prefix: Icons.lock,
+                        suffix: isPassword == true
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        suffixPressed: () {
+                          setState(() {
+                            isPassword == true
+                                ? Icons.visibility
+                                : Icons.visibility_off;
+                          });
+                        },
                       ),
                       SizedBox(
                         height: 10,
@@ -194,10 +240,10 @@ class _Register_formState extends State<Register_form> {
                       ),
                       defaultButton(function: () {
                         if(formKey.currentState!.validate()){
-                            BlocProvider.of<AuthCubit>(context).Register(name: nameController.text, calender:birthController.text , email: emailController.text, phone: phoneController.text);
+                            BlocProvider.of<AuthCubit>(context).Register(name: nameController.text,password: passwordController.text, email: emailController.text, phone: phoneController.text, selctedGender: selctedGender, birth: _date.text);
                         }
                       },
-                          text: State is RegisterLoadingState?AppStrings.loading.tr(): AppStrings.login.tr(),
+                          text: State is RegisterLoadingState?AppStrings.loading.tr(): AppStrings.containue.tr(),
                           color: Color(0xff4b4eb0),
                           radius: 35,
                           isUpperCase: true)

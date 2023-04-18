@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pick_park/presentations/splash/splash1.dart';
 
 import '../domain/auth/auth_cubit.dart';
-import '../presentations/Main/home/home_screen.dart';
 import '../presentations/Main/main_view.dart';
 import '../presentations/Main/settings/settings.dart';
+import '../presentations/booking_details/booking_details.dart';
 import '../presentations/payment_screens/payment2.dart';
 class MyApp extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       //onGenerateRoute: RouteGenerator.getRoute,
      // initialRoute: Routes.loginRoute,
-        home: MainView(),
+        home: Splash1(),
     // home:token != null ? const HomeScreen() : loginScreen(),
       theme: ThemeData(),
       )
