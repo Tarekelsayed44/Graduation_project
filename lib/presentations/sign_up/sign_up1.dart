@@ -1,12 +1,10 @@
-
-
 import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'package:pick_park/shared/components/component.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,6 +32,8 @@ class _Register_formState extends State<Register_form> {
   var formKey = GlobalKey<FormState>();
   var selctedGender;
   final ImagePicker _picker = ImagePicker();
+  PhoneNumber? phone;
+  //DateTime?_dateTime;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit,AuthStates>(
@@ -201,14 +201,21 @@ class _Register_formState extends State<Register_form> {
                         height: 10,
                       ),
                       IntlPhoneField(
-                          controller: phoneController,
+                          controller:phoneController,
+                          initialCountryCode: 'EG',
+                        // onChanged: (phone) {
+                        //   print(phone.completeNumber);
+                        // },
+                        // onCountryChanged: (phone) {
+                        //   print(phone.code);
+                        // },
+
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                     Radius.circular(20))),
                             labelText: AppStrings.phoneNum.tr(),
                           ),
-
                           validator: (value) {
                             if (value!.toString().isEmpty) {
                               return AppStrings.errorField.tr();
@@ -240,7 +247,7 @@ class _Register_formState extends State<Register_form> {
                       ),
                       defaultButton(function: () {
                         if(formKey.currentState!.validate()){
-                            BlocProvider.of<AuthCubit>(context).Register(name: nameController.text,password: passwordController.text, email: emailController.text, phone: phoneController.text, selctedGender: selctedGender, birth: _date.text);
+                            BlocProvider.of<AuthCubit>(context).Register(name: nameController.text,password: passwordController.text, email: emailController.text, phone:phone!.completeNumber, selctedGender: selctedGender, birth: _date.text, country:phone!.countryISOCode,image: _imageFile!.path);
                         }
                       },
                           text: State is RegisterLoadingState?AppStrings.loading.tr(): AppStrings.containue.tr(),

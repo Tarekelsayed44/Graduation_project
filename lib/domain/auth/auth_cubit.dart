@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl_phone_field/phone_number.dart';
 import 'package:pick_park/shared/components/constants.dart';
 
 import '../../../app/app_pref.dart';
@@ -11,19 +13,20 @@ class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() :super (AuthInitialState());
 
   void Register(
-      {required String name, required String birth, required String email, required String password, required String phone, required selctedGender }) async {
+      {required String name,  required String email,required String birth, required String password, required String  phone, required Enum selctedGender,required String country , String? image }) async {
     emit(RegisterLoadingState());
     Response response = await http.post(
         Uri.parse(Api),
         body: {
           'name': name,
           'email': email,
-          'birth': birth,
-          'password': password,
           'gender': selctedGender,
+          'password': password,
+          'avatar':image,
           'phone': phone,
+          'birth': birth,
+          'country':country
         }
-
     );
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
@@ -67,3 +70,36 @@ class AuthCubit extends Cubit<AuthStates> {
     }
   }
 }
+//image
+// class Service{
+//   Future<int> submitSubscription({File ?file,String ?filename,String ?token})async{
+//     ///MultiPart request
+//     var request = http.MultipartRequest(
+//       'POST', Uri.parse("https://your api url with endpoint"),
+//
+//     );
+//     Map<String,String> headers={
+//       "Authorization":"Bearer $token",
+//       "Content-type": "multipart/form-data"
+//     };
+//     request.files.add(
+//       http.MultipartFile(
+//         'file',
+//         file!.readAsBytes().asStream(),
+//         file!.lengthSync(),
+//         filename: filename,
+//         contentType: MediaType('image','jpeg'),
+//       ),
+//     );
+//     request.headers.addAll(headers);
+//     request.fields.addAll({
+//       "name":"test",
+//       "email":"test@gmail.com",
+//       "id":"12345"
+//     });
+//     print("request: "+request.toString());
+//     var res = await request.send();
+//     print("This is response:"+res.toString());
+//     return res.statusCode;
+//   }
+// }
