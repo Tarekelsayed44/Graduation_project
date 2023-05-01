@@ -13,36 +13,45 @@ class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() :super (AuthInitialState());
 
   void Register(
-      {required String name,  required String email,required String birth, required String password, required String  phone, required Enum selctedGender,required String country , String? image }) async {
+      {required String name, required String email,
+         required String birth,
+         required String password,
+        required String phone,
+       required String  selctedGender,
+        required String country,
+          String? image
+      } )async {
     emit(RegisterLoadingState());
-    Response response = await http.post(
-        Uri.parse(Api),
-        body: {
-          'name': name,
-          'email': email,
-          'gender': selctedGender,
-          'password': password,
-          'avatar':image,
-          'phone': phone,
-          'birth': birth,
-          'country':country
+    try{
+      Response response = await http.post(
+          Uri.parse(Api),
+          body: {
+            'name': name,
+            'email': email,
+            'gender': selctedGender,
+             'password': password,
+            'avatar': image,
+             'phone': phone,
+             'birth': birth,
+            'country': country
+          }
+      );
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        if (data['status'] == true) {
+          print(data);
+          emit(RegisterSuccessState());
         }
-    );
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-      if (data['status'] == true) {
-        debugPrint("Response is : $data");
-        emit(RegisterSuccessState());
-      }
-      else {
-        debugPrint("Response is : $data");
-        emit(RegisterFailedState(message: data['message']));
+        else {
+          print(data);
+          emit(RegisterFailedState(message: data['message']));
+        }
       }
     }
-  }
-  cache(e){
-  debugPrint("Failed to Register , reason : $e");
-  emit(RegisterFailedState(message: e.toString()));
+    catch(e) {
+      print("Failed to Register , reason : $e");
+      emit(RegisterFailedState(message: e.toString()));
+    }
   }
   void login({required String email , required String password}) async {
     emit(loginLoadingState());
@@ -75,7 +84,7 @@ class AuthCubit extends Cubit<AuthStates> {
 //   Future<int> submitSubscription({File ?file,String ?filename,String ?token})async{
 //     ///MultiPart request
 //     var request = http.MultipartRequest(
-//       'POST', Uri.parse("https://your api url with endpoint"),
+//       'POST', Uri.parse(Api+'upload'),
 //
 //     );
 //     Map<String,String> headers={
@@ -88,7 +97,6 @@ class AuthCubit extends Cubit<AuthStates> {
 //         file!.readAsBytes().asStream(),
 //         file!.lengthSync(),
 //         filename: filename,
-//         contentType: MediaType('image','jpeg'),
 //       ),
 //     );
 //     request.headers.addAll(headers);
@@ -102,4 +110,4 @@ class AuthCubit extends Cubit<AuthStates> {
 //     print("This is response:"+res.toString());
 //     return res.statusCode;
 //   }
-// }
+//  }
