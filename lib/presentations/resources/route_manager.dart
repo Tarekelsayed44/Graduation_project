@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:pick_park/presentations/Main/home/home_screen.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 
+import '../Main/main_view.dart';
 import '../login_screen/login_screen.dart';
 import '../on_bording/onbording_Screen.dart';
 
@@ -31,7 +33,7 @@ class RouteGenerator {
         //return MaterialPageRoute(builder: (_) => ForgotPasswordView());
       case Routes.mainRoute:
        // initHomeModule();
-        //return MaterialPageRoute(builder: (_) => MainView());
+        return MaterialPageRoute(builder: (_) => HomeScreen());
 
       default:
         return unDefinedRoute();

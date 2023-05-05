@@ -1,18 +1,20 @@
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'package:pick_park/shared/components/component.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/auth/auth_cubit.dart';
-import '../../domain/auth/auth_state.dart';
+import '../../app/Graphql/app_mutation.dart';
 import '../../presentations/resources/string_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
 import '../Main/home/home_screen.dart';
+import '../forget_password/forget_pass.dart';
+import '../login_screen/login_screen.dart';
+import '../resources/route_manager.dart';
 
 class Register_form extends StatefulWidget {
   const Register_form({Key? key}) : super(key: key);
@@ -37,40 +39,6 @@ class _Register_formState extends State<Register_form> {
   String  countryCode = '';
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthStates>(
-        listener: (context, state) {
-          if (state is RegisterLoadingState) {
-            showAlertDialog(
-                context: context,
-                backgroundColor: Colors.white,
-                content: AnimatedContainer(
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.easeIn,
-                  child: Row(
-                    children:
-                    [
-                      SizedBox(width: 12.5),
-                      Text(AppStrings.loading.tr(),
-                        style: TextStyle(fontWeight: FontWeight.w500),),
-                    ],
-                  ),
-                )
-            );
-          }
-          else if (state is RegisterFailedState) {
-            showAlertDialog(
-                context: context,
-                backgroundColor: Colors.red,
-                content: Text(state.message,)
-            );
-          }
-          else if (state is RegisterSuccessState) {
-            Navigator.pop(context);
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => HomeScreen()));
-          }
-        },
-        builder: (context, state) {
          return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () {
@@ -81,7 +49,7 @@ class _Register_formState extends State<Register_form> {
           style: getBoldStyle(color: Colors.black),),
         backgroundColor: Colors.white,
       ),
-      body: Container(
+      body:Container(
           padding: EdgeInsetsDirectional.only(top: 20, start: 10, end: 10),
           color: Colors.white,
           child: Form(
@@ -250,35 +218,56 @@ class _Register_formState extends State<Register_form> {
                         SizedBox(
                           height: 30,
                         ),
-                        defaultButton(function: () {
-                           if (formKey.currentState!.validate() == true) {
-                             BlocProvider.of<AuthCubit>(context).Register(
-                                name: nameController.text,
-                                email: emailController.text,
-                                 selctedGender: selctedGender.toString(),
-                                 password: passwordController.text,
-                                   image: _imageFile?.path,
-                                 birth: _date.text,
-                                phone: fullPhone,
-                              country:  countryCode,
-                             );
-                          }
-                        },
-                            text: state is RegisterLoadingState
-                                ? AppStrings.loading.tr()
-                                : AppStrings.containue.tr(),
-                            color: Color(0xff4b4eb0),
-                            radius: 35,
-                            isUpperCase: true)
-                      ],
+                        Mutation(
+                              options: MutationOptions(
+                              document: gql(AppMutations.registerAsUser),
+                              onCompleted:(dynamic resultData) {
+                                print(resultData);
+                                // (_) =>  Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //   builder: (context) => ForgetPass()))),
+                              }),
+                            builder: (
+                              RunMutation? runMutation,
+                              QueryResult? result){ if (result!.isLoading){ return Text(AppStrings.loading.tr());}
+
+                                  if (result.hasException) {
+                                    print(result.exception);
+                                  }
+                                  else{
+                                    print(result);
+                                  }
+                                return defaultButton(function: () {
+                                    runMutation!({
+                                      "registerAsUser": { "input": {
+                                        'name': nameController.text,
+                                        'email': emailController.text,
+                                        'gender': selctedGender,
+                                        'password': passwordController.text,
+                                        'phone': fullPhone,
+                                        'country': countryCode,
+                                      },
+                                        "data":{
+                                          "id"
+                                          "name"
+                                        }
+                                      } });
+                                },
+                                    text:
+                                    AppStrings.containue.tr(),
+                                    color: Color(0xff4b4eb0),
+                                    radius: 35,
+                                    isUpperCase: true);
+                              })],
                     ),
                   ),
           )
                 )
          );
               }
-          );
-  }
+
+
 
   Widget bottomSheet() {
     return Container(
@@ -327,4 +316,14 @@ class _Register_formState extends State<Register_form> {
       _imageFile = pickedFile!;
     });
   }
+    void _showSnackBar(BuildContext context, String theMessage, bool succsess) {
+    final snackBar = SnackBar(
+    content: ListTile(
+    title: Text(theMessage),
+    leading: succsess
+    ? Icon(Icons.check, color: Colors.green)
+        : Icon(Icons.close, color: Colors.red)),
+    backgroundColor: Color(0xff222222));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
 }

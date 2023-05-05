@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pick_park/app/app.dart';
+import 'package:pick_park/app.dart';
 import 'package:pick_park/main.dart';
 
 void main() {

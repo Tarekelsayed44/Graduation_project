@@ -2,9 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
-
-import '../../domain/auth/auth_cubit.dart';
-import '../../domain/auth/auth_state.dart';
 import '../../shared/components/component.dart';
 import '../Main/home/home_screen.dart';
 import '../forget_password/forget_pass.dart';
@@ -53,42 +50,8 @@ class _loginScreenState extends State<loginScreen> {
         margin: EdgeInsets.only(top: 50),
         padding: EdgeInsetsDirectional.only(top: 40, start: 10, end: 10),
         color: Colors.white,
-        child: BlocConsumer<AuthCubit,AuthStates>(
-          listener: (context,state){
-            if( state is loginLoadingState )
-            {
-              showAlertDialog(
-                  context: context,
-                  backgroundColor: Colors.white,
-                  content: AnimatedContainer(
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.easeIn,
-                    child: Row(
-                      children:
-                      [
-                        SizedBox(width: 12.5),
-                        Text(AppStrings.loading.tr(),style: TextStyle(fontWeight: FontWeight.w500),),
-                      ],
-                    ),
-                  )
-              );
-            }
-            else if( state is loginFailedState )
-            {
-              showAlertDialog(
-                  context: context,
-                  backgroundColor: Colors.red,
-                  content: Text(state.message)
-              );
-            }
-            else if ( state is loginSuccessState )
-            {
-              Navigator.pop(context);   // عشان يخرج من alertDialog
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-            }
-          },
-          builder: (context,state){
-            return SingleChildScrollView(
+        child:
+             SingleChildScrollView(
               child: Form(
                 key: formKey,
                 child: Column(
@@ -182,11 +145,9 @@ class _loginScreenState extends State<loginScreen> {
                       child: defaultButton(
                         function: () {
                           if(formKey.currentState!.validate()==true){
-                            BlocProvider.of<AuthCubit>(context).login(email: emailController.text, password: passwordController.text);
-
                           }
                         },
-                        text: state is loginLoadingState ? AppStrings.loading.tr(): AppStrings.login.tr().toUpperCase(),
+                        text:  AppStrings.login.tr().toUpperCase(),
                         color: Color(0xff4b4eb0),
                       ),
                     ),
@@ -241,10 +202,8 @@ class _loginScreenState extends State<loginScreen> {
                   ],
                 ),
               ),
-            );
-          } ,
-        )
       ),
+            )
     );
   }
 }
