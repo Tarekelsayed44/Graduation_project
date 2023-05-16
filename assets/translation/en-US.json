@@ -98,6 +98,6 @@
   "booking_tittle": "My bookings",
   "choose_vehicle": "Choose Vehicle",
   "location_service_error": "Location Service Not Enabled",
-  "booking_details": "Booking details"
-
+  "booking_details": "Booking details",
+  "email_verification": "Email Submit"
 }

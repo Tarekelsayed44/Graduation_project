@@ -1,27 +1,25 @@
-import 'package:bloc/bloc.dart';
-
-class MyBlocObserver extends BlocObserver {
-  @override
-  void onCreate(BlocBase bloc) {
-    super.onCreate(bloc);
-    print('onCreate -- ${bloc.runtimeType}');
-  }
-
-  @override
-  void onChange(BlocBase bloc, Change change) {
-    super.onChange(bloc, change);
-    print('onChange -- ${bloc.runtimeType}, $change');
-  }
-
-  @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    print('onError -- ${bloc.runtimeType}, $error');
-    super.onError(bloc, error, stackTrace);
-  }
-
-  @override
-  void onClose(BlocBase bloc) {
-    super.onClose(bloc);
-    print('onClose -- ${bloc.runtimeType}');
-  }
-}
+// import 'package:bloc/bloc.dart';
+// import 'package:graphql_flutter/graphql_flutter.dart';
+//
+// part 'auth_state.dart';
+//
+// class HelloWorldBloc extends Bloc<AuthStates, AuthInitialState> {
+//   final GraphQLClient client;
+//
+//   HelloWorldBloc({required this.client}) : super(());
+//
+//   @override
+//   Stream<AuthStates> mapEventToState(HelloWorldEvent event) async* {
+//     if (event is FetchHelloWorld) {
+//       yield loginLoadingState();
+//       final result = await client.query(
+//           QueryOptions(document: QueryService.helloWorldQuery));
+//       if (result.hasException) {
+//         yield loginFailedState(message: 'failed');
+//       } else {
+//         final hello = result.data?['hello'];
+//         yield loginSuccessState();
+//       }
+//     }
+//   }
+// }

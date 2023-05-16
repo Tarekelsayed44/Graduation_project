@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
+import '../../app/Graphql/app_mutation.dart';
 import '../../shared/components/component.dart';
 import '../Main/home/home_screen.dart';
 import '../forget_password/forget_pass.dart';
@@ -142,15 +144,49 @@ class _loginScreenState extends State<loginScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: defaultButton(
-                        function: () {
-                          if(formKey.currentState!.validate()==true){
+                      child:Mutation(
+                        options: MutationOptions(
+                        document: gql(AppMutations.emailAndPasswordLogin),
+                            update: (GraphQLDataProxy cache , QueryResult  ) {
+                          return cache;},
+                        onCompleted:(dynamic resultData) {
+                        print(resultData);
+                        (_) =>  Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) => HomeScreen()));
+                        }),
+                        builder: (
+                        RunMutation? runMutation,
+                        QueryResult? result) {
+                          if (result!.isLoading) {
+                            return Text(AppStrings.loading.tr());
                           }
-                        },
-                        text:  AppStrings.login.tr().toUpperCase(),
-                        color: Color(0xff4b4eb0),
-                      ),
-                    ),
+
+                          if (result.hasException) {
+                            print(result.exception);
+                          }
+                          return defaultButton(
+                            function: () {
+                              if (formKey.currentState!.validate() == true) {
+                                    runMutation!(
+                                      {
+                                        "emailAndPasswordLogin": { "input": {
+                                          'email': emailController.text,
+                                          'password': passwordController.text,
+                                        },
+                                          "data":{
+                                            "id"
+                                            "token"
+                                          }
+                                        } });
+                              }
+                            },
+                            text: AppStrings.login.tr().toUpperCase(),
+                            color: Color(0xff4b4eb0),
+                          );
+
+                        } )),
                     SizedBox(
                       height: 50,
                     ),

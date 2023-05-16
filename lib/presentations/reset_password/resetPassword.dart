@@ -1,9 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:pick_park/presentations/login_screen/login_screen.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
 import 'package:pick_park/shared/components/component.dart';
+
+import '../../app/Graphql/app_mutation.dart';
 
 class ResetPass extends StatefulWidget {
   const ResetPass({Key? key}) : super(key: key);
@@ -17,6 +21,7 @@ class _ResetPassState extends State<ResetPass> {
   var passwordController = TextEditingController();
   bool checkBoxValue = false;
   bool isPassword = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,15 +118,51 @@ class _ResetPassState extends State<ResetPass> {
                 SizedBox(
                   height: 50,
                 ),
-                defaultButton(
-                  function: () {},
+              Mutation(
+              options: MutationOptions(
+              document: gql(AppMutations.resetPasswordByEmail),
+              update: (GraphQLDataProxy cache , QueryResult  ) {
+                return cache;},
+              onCompleted:(dynamic resultData) {
+              print(resultData);
+              (_) =>  Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder: (context) => loginScreen()));
+              }),
+              builder: (
+              RunMutation? runMutation,
+              QueryResult? result) {
+                if (result!.isLoading) {
+                  return Text(AppStrings.loading.tr());
+                }
+
+                if (result.hasException) {
+                  print(result.exception);
+                }
+                return defaultButton(
+                  function: () {
+                    runMutation!(
+                        {
+                          "resetPasswordByEmail": { "input": {
+                            'email': emailController.text,
+                            'newPassword': passwordController.text,
+                          },
+                            "data":{
+                              "id"
+                                  "token"
+                            }
+                          } });
+
+                  },
+
                   text: AppStrings.containue.tr(),
                   color: Color(0xff4b4eb0),
                   textColor: Colors.white,
                   radius: 35,
                   isUpperCase: true,
-                ),
-              ],
+                );
+              }) ],
             ),
           ),
         ),

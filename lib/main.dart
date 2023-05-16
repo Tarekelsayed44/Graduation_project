@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'app.dart';
 import 'app/app_pref.dart';
 import 'app/bloc_observer.dart';
@@ -10,7 +11,8 @@ import 'shared/components/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer = MyBlocObserver();
+ await initHiveForFlutter();
+ // Bloc.observer = MyBlocObserver();
   await CasheNetwork.Cacheinitialization();
   token = CasheNetwork.getCacheData(key: 'token');
   await EasyLocalization.ensureInitialized();

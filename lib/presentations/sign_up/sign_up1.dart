@@ -15,6 +15,7 @@ import '../Main/home/home_screen.dart';
 import '../forget_password/forget_pass.dart';
 import '../login_screen/login_screen.dart';
 import '../resources/route_manager.dart';
+import 'verified_email/email_verification.dart';
 
 class Register_form extends StatefulWidget {
   const Register_form({Key? key}) : super(key: key);
@@ -178,10 +179,8 @@ class _Register_formState extends State<Register_form> {
                             initialCountryCode: 'EG',
                              onChanged: (phone) {
                                fullPhone = phone.completeNumber;
+                               countryCode = phone.countryISOCode;
                              },
-                            onCountryChanged: (phone) {
-                              countryCode = phone.code;
-                            },
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
@@ -221,12 +220,14 @@ class _Register_formState extends State<Register_form> {
                         Mutation(
                               options: MutationOptions(
                               document: gql(AppMutations.registerAsUser),
+                                  update: (GraphQLDataProxy cache , QueryResult  ) {
+                                    return cache;},
                               onCompleted:(dynamic resultData) {
                                 print(resultData);
-                                // (_) =>  Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //   builder: (context) => ForgetPass()))),
+                                (_) =>  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                  builder: (context) => EnailVerification()));
                               }),
                             builder: (
                               RunMutation? runMutation,
@@ -316,14 +317,4 @@ class _Register_formState extends State<Register_form> {
       _imageFile = pickedFile!;
     });
   }
-    void _showSnackBar(BuildContext context, String theMessage, bool succsess) {
-    final snackBar = SnackBar(
-    content: ListTile(
-    title: Text(theMessage),
-    leading: succsess
-    ? Icon(Icons.check, color: Colors.green)
-        : Icon(Icons.close, color: Colors.red)),
-    backgroundColor: Color(0xff222222));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
 }
