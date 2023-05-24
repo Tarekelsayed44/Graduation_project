@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
@@ -10,7 +11,6 @@ import 'sign_up1.dart';
 
 class SignUp0 extends StatefulWidget {
   const SignUp0({Key? key}) : super(key: key);
-
   @override
   State<SignUp0> createState() => _SignUp0State();
 }

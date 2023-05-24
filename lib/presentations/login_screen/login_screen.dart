@@ -23,7 +23,8 @@ class _loginScreenState extends State<loginScreen> {
   bool isPassword = true;
   var formKey = GlobalKey<FormState>();
   bool checkBoxValue = false;
-
+  String email = "";
+  String password = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,14 +148,15 @@ class _loginScreenState extends State<loginScreen> {
                       child:Mutation(
                         options: MutationOptions(
                         document: gql(AppMutations.emailAndPasswordLogin),
-                            update: (GraphQLDataProxy cache , QueryResult  ) {
+                            update: (GraphQLDataProxy cache , QueryResult   ) {
                           return cache;},
                         onCompleted:(dynamic resultData) {
-                        print(resultData);
-                        (_) =>  Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                        builder: (context) => HomeScreen()));
+                        var data =resultData.data["emailAndPasswordLogin"];
+                        setState(() {
+                          email= data["email"];
+                          password = data["password"];
+                        });
+                        print(data);
                         }),
                         builder: (
                         RunMutation? runMutation,
@@ -171,15 +173,10 @@ class _loginScreenState extends State<loginScreen> {
                               if (formKey.currentState!.validate() == true) {
                                     runMutation!(
                                       {
-                                        "emailAndPasswordLogin": { "input": {
+                                        "input": {
                                           'email': emailController.text,
                                           'password': passwordController.text,
-                                        },
-                                          "data":{
-                                            "id"
-                                            "token"
-                                          }
-                                        } });
+                                        }});
                               }
                             },
                             text: AppStrings.login.tr().toUpperCase(),

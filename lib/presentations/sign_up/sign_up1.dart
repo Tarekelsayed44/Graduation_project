@@ -9,6 +9,7 @@ import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'package:pick_park/shared/components/component.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../app/Graphql/app_mutation.dart';
+import '../../models/user_model.dart';
 import '../../presentations/resources/string_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
 import '../Main/home/home_screen.dart';
@@ -19,7 +20,6 @@ import 'verified_email/email_verification.dart';
 
 class Register_form extends StatefulWidget {
   const Register_form({Key? key}) : super(key: key);
-
   @override
   State<Register_form> createState() => _Register_formState();
 }
@@ -34,6 +34,13 @@ class _Register_formState extends State<Register_form> {
   bool isPassword = true;
   var formKey = GlobalKey<FormState>();
   var selctedGender;
+  var gender = '';
+String  name = "";
+  String email = "";
+  String password = "";
+  String mygender =  "";
+  String  myphone =  "";
+  String  country = "";
   final ImagePicker _picker = ImagePicker();
   PhoneNumber? phone;
   String fullPhone = '';
@@ -204,6 +211,7 @@ class _Register_formState extends State<Register_form> {
                           onChanged: (val) {
                             setState(() {
                               selctedGender = selctedGender;
+                              gender = val.toString();
                             });
                           },
 
@@ -220,40 +228,35 @@ class _Register_formState extends State<Register_form> {
                         Mutation(
                               options: MutationOptions(
                               document: gql(AppMutations.registerAsUser),
-                                  update: (GraphQLDataProxy cache , QueryResult  ) {
-                                    return cache;},
                               onCompleted:(dynamic resultData) {
-                                print(resultData);
-                                (_) =>  Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                  builder: (context) => EnailVerification()));
-                              }),
+                                var data =resultData.data["registerAsUser"];
+                                setState(() {
+                                email= data["email"];
+                                password = data["password"];
+                                myphone= data["phone"];
+                                name= data["name"];
+                                mygender= data["gender"];
+                                country= data["country"];
+                                });
+                                print(data);
+                                }),
                             builder: (
                               RunMutation? runMutation,
                               QueryResult? result){ if (result!.isLoading){ return Text(AppStrings.loading.tr());}
-
-                                  if (result.hasException) {
-                                    print(result.exception);
-                                  }
-                                  else{
-                                    print(result);
-                                  }
+                            if(result.hasException){
+                              print(result);
+                            }
                                 return defaultButton(function: () {
                                     runMutation!({
-                                      "registerAsUser": { "input": {
+                                       "input": {
                                         'name': nameController.text,
                                         'email': emailController.text,
-                                        'gender': selctedGender,
+                                        'gender': gender,
                                         'password': passwordController.text,
                                         'phone': fullPhone,
                                         'country': countryCode,
                                       },
-                                        "data":{
-                                          "id"
-                                          "name"
-                                        }
-                                      } });
+                                       });
                                 },
                                     text:
                                     AppStrings.containue.tr(),

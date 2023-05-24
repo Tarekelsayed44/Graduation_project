@@ -1,15 +1,22 @@
 class AppMutations {
   static const registerAsUser =
-  r'''mutation RegisterAsUser {
-    registerAsUser(input: {name: $name, email: $email, gender: $gender, password: $password, phone: $phone, country: $country}) {
-         data{
+  r'''mutation {
+  registerAsUser(input:{
+    name: $name
+    email: $email
+    password: $password
+    gender: $gender
+    phone: $phone
+    country: $country
+  }) {
+    data{
       id
       name
     }
-        success
-        code
-        message
-    }
+    code
+    success
+    message
+  }
 }
  '''  ;
   static const sendEmail =

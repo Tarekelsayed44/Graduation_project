@@ -15,7 +15,10 @@ class EnailVerification extends StatefulWidget {
 }
 
 class _EnailVerificationState extends State<EnailVerification> {
-  var _code = TextEditingController();
+  var _code1 = TextEditingController();
+  var _code2 = TextEditingController();
+  var _code3 = TextEditingController();
+  var _code4 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(
@@ -60,7 +63,7 @@ class _EnailVerificationState extends State<EnailVerification> {
                   width: 67,
                   height: 61,
                   child: TextFormField(
-                    controller: _code,
+                    controller: _code1,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
@@ -80,6 +83,7 @@ class _EnailVerificationState extends State<EnailVerification> {
                   width: 67,
                   height: 61,
                   child: TextFormField(
+                      controller: _code2,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
@@ -99,6 +103,7 @@ class _EnailVerificationState extends State<EnailVerification> {
                   width: 67,
                   height: 61,
                   child: TextFormField(
+                      controller: _code3,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
@@ -118,6 +123,7 @@ class _EnailVerificationState extends State<EnailVerification> {
                   width: 67,
                   height: 61,
                   child: TextFormField(
+                      controller: _code4,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(1),
@@ -166,13 +172,15 @@ class _EnailVerificationState extends State<EnailVerification> {
                   return defaultButton(
                       function: () {
                         runMutation!({
-                          "verifyUserByEmail": { "input": {
-                            'code': _code.text
+                           "input": {
+                            'code': _code1.text + _code2.text + _code3.text + _code4.text,
                           },
-                            "data": {
-                              "id"
-                                  "name"
-                            }}});
+                            "data" : {
+                              'id'
+                              'name'
+                              'token'
+                            }
+                           });
                       },
                       text: AppStrings.containue.tr(),
                       isUpperCase: true,
