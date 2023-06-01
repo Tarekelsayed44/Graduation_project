@@ -1,14 +1,12 @@
-
-import 'dart:html';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pick_park/shared/components/component.dart';
 import 'package:pick_park/shared/styles/colors.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import '../resources/string_manager.dart';
 import '../resources/styles_manager.dart';
+
+
 class booking_details extends StatefulWidget {
   const booking_details({Key? key}) : super(key: key);
 
@@ -17,7 +15,7 @@ class booking_details extends StatefulWidget {
 }
 
 class _booking_detailsState extends State<booking_details> {
-  late Map<DateTime, List<Event>> selectedEvents;
+  // late Map<DateTime, List<Event>> selectedEvents;
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
@@ -109,7 +107,6 @@ class _booking_detailsState extends State<booking_details> {
           ),
           defaultButton(function: (){}, text: AppStrings.containue.tr())
         ],
-
       ),
     );
   }

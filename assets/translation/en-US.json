@@ -88,7 +88,7 @@
   "book": "booking",
   "favourite": "favourite",
   "the_car": "The car",
-  "account": "your account",
+  "account": "Your Account",
   "help_center": "help center",
   "code_sent": "Code has been sent to",
   "choose_payment": "Choose The Payment way ",
@@ -99,5 +99,12 @@
   "choose_vehicle": "Choose Vehicle",
   "location_service_error": "Location Service Not Enabled",
   "booking_details": "Booking details",
-  "email_verification": "Email Submit"
+  "email_verification": "Email Submit",
+  "create_vehicle": "Create Vehicle",
+  "send_email": "Send Your Email",
+  "send": "Send",
+  "description" : "Description",
+  "plate_number" : "Plate Digits",
+  "plate_letter" : "Plate Letters",
+  "create" : "Create"
 }

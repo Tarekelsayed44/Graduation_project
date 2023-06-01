@@ -23,7 +23,6 @@ class _MainViewState extends State<MainView> {
     FavouriteScreen(),
     VehicleScreen(),
     settings(),
-
   ];
   List<String> titles = [
     AppStrings.home.tr(),

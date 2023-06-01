@@ -94,6 +94,13 @@ class AppStrings {
   static const String locationServiceError = "location_service_error";
   static const String bookingDetails = "booking_details";
   static const String emailVerification = "email_verification";
+  static const String createVehicle = "create_vehicle";
+  static const String sendEmail = "send_email";
+  static const String send = "send";
+  static const String description = "description";
+  static const String plateNum = "plate_number";
+  static const String plateLetter = "plate_letter";
+  static const String create = "create";
   // error handler
   static const String badRequestError = "bad_request_error";
 }

@@ -40,6 +40,7 @@ class _OnBoordingState extends State<OnBoording> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -52,172 +53,180 @@ class _OnBoordingState extends State<OnBoording> {
           controller: nextPage,
           children: [
             SafeArea(
-              child: Column(
-                children: [
-                  Container(
-                    child: Image.asset(
-                      ImageAssets.onboardingLogo1,
-                      width: 263.07,
-                      height: 263.07,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Image.asset(
+                        ImageAssets.onboardingLogo1,
+                        width: size.width - size.width / 4,
+                        height: size.height / 3,
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(AppStrings.onBoardingTitle1.tr(),
-                      textAlign: TextAlign.center,
-                      style:
-                          getSemiBoldStyle(color: Colors.black, fontSize: 30)),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(AppStrings.onBoardingSubTitle1.tr(),
-                      textAlign: TextAlign.center,
-                      style:
-                          getRegularStyle(color: Colors.black, fontSize: 18)),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  dotview(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  defaultButton(
-                    function: () {
-                      nextPage.animateToPage(1,
-                          duration: Duration(milliseconds: 700),
-                          curve: Curves.easeIn);
-                    },
-                    text: AppStrings.next.tr(),
-                    height: 58,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xff4b4eb0),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  defaultButton(
-                    function: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(
-                              builder: (context) => SignUp0()));
-                    },
-                    text: AppStrings.skip.tr(),
-                    height: 58,
-                    fontWeight: FontWeight.w400,
-                    textColor: Color(0xff8993fa),
-                    color: Color(0xffedefff),
-                  ), // button2
-                ],
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(AppStrings.onBoardingTitle1.tr(),
+                        textAlign: TextAlign.center,
+                        style:
+                            getSemiBoldStyle(color: Colors.black, fontSize: 30)),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(AppStrings.onBoardingSubTitle1.tr(),
+                        textAlign: TextAlign.center,
+                        style:
+                            getRegularStyle(color: Colors.black, fontSize: 18)),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    dotview(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    defaultButton(
+                      function: () {
+                        nextPage.animateToPage(1,
+                            duration: Duration(milliseconds: 700),
+                            curve: Curves.easeIn);
+                      },
+                      text: AppStrings.next.tr(),
+                      height: 58,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xff4b4eb0),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    defaultButton(
+                      function: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => SignUp0()));
+                      },
+                      text: AppStrings.skip.tr(),
+                      height: 58,
+                      fontWeight: FontWeight.w400,
+                      textColor: Color(0xff8993fa),
+                      color: Color(0xffedefff),
+                    ), // button2
+                  ],
+                ),
               ),
             ),
             //page1
             SafeArea(
-              child: Column(
-                children: [
-                  Container(
-                    child: Image.asset(
-                      ImageAssets.onboardingLogo2,
-                      width: 224.22,
-                      height: 192.13,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20,right: 20,bottom: 20),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Image.asset(
+                        ImageAssets.onboardingLogo2,
+                        width: size.width - size.width / 4,
+                        height: size.height / 3,
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 35, horizontal: 20),
+                    ), //photo
+                    SizedBox(
+                      height: 10,
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 35, horizontal: 20),
-                  ), //photo
-                  SizedBox(
-                    height: 53,
-                  ),
-                  Text(AppStrings.onBoardingTitle2.tr(),
-                      textAlign: TextAlign.center,
-                      style:
-                          getSemiBoldStyle(color: Colors.black, fontSize: 30)),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(AppStrings.onBoardingSubTitle2.tr(),
-                      textAlign: TextAlign.center,
-                      style:
-                          getRegularStyle(color: Colors.black, fontSize: 18)),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  dotview(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  defaultButton(
-                    function: () {
-                      nextPage.animateToPage(2,
-                          duration: Duration(milliseconds: 700),
-                          curve: Curves.easeIn);
-                    },
-                    text: AppStrings.next.tr(),
-                    height: 58,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xff4b4eb0),
-                  ),
+                    Text(AppStrings.onBoardingTitle2.tr(),
+                        textAlign: TextAlign.center,
+                        style:
+                            getSemiBoldStyle(color: Colors.black, fontSize: 30)),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(AppStrings.onBoardingSubTitle2.tr(),
+                        textAlign: TextAlign.center,
+                        style:
+                            getRegularStyle(color: Colors.black, fontSize: 18)),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    dotview(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    defaultButton(
+                      function: () {
+                        nextPage.animateToPage(2,
+                            duration: Duration(milliseconds: 700),
+                            curve: Curves.easeIn);
+                      },
+                      text: AppStrings.next.tr(),
+                      height: 58,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xff4b4eb0),
+                    ),
 
-                  SizedBox(
-                    height: 15,
-                  ),
-                  defaultButton(
-                    function: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(
-                              builder: (context) => SignUp0()));
-                    },
-                    text: AppStrings.skip.tr(),
-                    fontWeight: FontWeight.w400,
-                    height: 58,
-                    textColor: Color(0xff8993fa),
-                    color: Color(0xffedefff),
-                  ), // button2
-                ],
+                    SizedBox(
+                      height: 15,
+                    ),
+                    defaultButton(
+                      function: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => SignUp0()));
+                      },
+                      text: AppStrings.skip.tr(),
+                      fontWeight: FontWeight.w400,
+                      height: 58,
+                      textColor: Color(0xff8993fa),
+                      color: Color(0xffedefff),
+                    ), // button2
+                  ],
+                ),
               ),
             ),
             //page2
             SafeArea(
-              child: Column(
-                children: [
-                  Container(
-                    child: Image.asset(ImageAssets.onboardingLogo3,
-                        width: 258, height: 258),
-                    padding: EdgeInsets.symmetric(vertical: 22, horizontal: 20),
-                  ), //photo
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    AppStrings.onBoardingTitle3.tr(),
-                    textAlign: TextAlign.center,
-                    style: getSemiBoldStyle(color: Colors.black, fontSize: 30),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(AppStrings.onBoardingSubTitle3.tr(),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20,right:20,bottom: 10),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Image.asset(ImageAssets.onboardingLogo3,
+                          width: size.width-size.width/4,
+                          height: size.height/3
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 22, horizontal: 20),
+                    ), //photo
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      AppStrings.onBoardingTitle3.tr(),
                       textAlign: TextAlign.center,
-                      style:
-                          getRegularStyle(color: Colors.black, fontSize: 18)),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  dotview(),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  defaultButton(
-                    function: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(
-                              builder: (context) => SignUp0()));
-                    },
-                    text: AppStrings.next.tr(),
-                    height: 58,
-                    color: Color(0xff4b4eb0),
-                    radius: 25,
-                  ),
-                ],
+                      style: getSemiBoldStyle(color: Colors.black, fontSize: 30),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(AppStrings.onBoardingSubTitle3.tr(),
+                        textAlign: TextAlign.center,
+                        style:
+                            getRegularStyle(color: Colors.black, fontSize: 18)),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    dotview(),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    defaultButton(
+                      function: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => SignUp0()));
+                      },
+                      text: AppStrings.next.tr(),
+                      height: 58,
+                      color: Color(0xff4b4eb0),
+                      radius: 25,
+                    ),
+                  ],
+                ),
               ),
             ),
             //page3

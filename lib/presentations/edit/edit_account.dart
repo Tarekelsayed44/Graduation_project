@@ -26,12 +26,9 @@ class _EditAccountState extends State<EditAccount> {
         leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
         elevation: 0,
         titleSpacing: 20,
-        title: Row(
-          children: [
-            Text(AppStrings.editAccount.tr(),style: getBoldStyle(color: Colors.black,fontSize: 25),),
-            Spacer(),
-          ],
-        ),
+        automaticallyImplyLeading: false,
+        title: Text(AppStrings.editAccount.tr(),style: getBoldStyle(color: Colors.black,fontSize: 25),),
+        centerTitle: true,
         backgroundColor: Colors.white,
       ),
       body: Container(

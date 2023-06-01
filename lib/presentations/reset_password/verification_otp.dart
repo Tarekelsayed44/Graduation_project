@@ -21,23 +21,17 @@ class _verificationOtpState extends State<verificationOtp> {
         elevation: 0,
         backgroundColor: Colors.white,
         titleSpacing: 20,
-        title: Row(
-          children: [
-            Spacer(),
-            Text(
-              AppStrings.emailVerification.tr(),
-              style: getBoldStyle(
-                color: Colors.black,
-              ),
-            ),
-
-
-          ],
+        title: Text(
+          AppStrings.emailVerification.tr(),
+          style: getBoldStyle(
+            color: Colors.black,
+          ),
         ),
+        centerTitle: true,
       ),
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.only(left: 10.0, right: 10, top: 90),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 90),
         child: Column(
           children: [
             Text(

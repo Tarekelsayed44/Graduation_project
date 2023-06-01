@@ -25,13 +25,14 @@ class _settingsState extends State<settings> {
       appBar: AppBar(
         title: Text(
           AppStrings.account.tr(),
-          style: getSemiBoldStyle(
+          style: getBoldStyle(
             color: Colors.black,
             fontSize: 25,
           ),
         ),
         elevation: 0,
         backgroundColor: Colors.white,
+        centerTitle: true,
       ),
       backgroundColor: Colors.white,
       body: ListView(
@@ -41,43 +42,61 @@ class _settingsState extends State<settings> {
             radius: 70,
             child: Image.asset(ImageAssets.profile),
           ),
-          Text(AppStrings.fakeName,style: getRegularStyle(color: Colors.black,fontSize: 32),textAlign: TextAlign.center,),
-          Text(AppStrings.emailEx.tr(),style: getRegularStyle(color: Colors.black,fontSize: 13),textAlign: TextAlign.center,),
-          Divider(thickness: 1,height: 1,color: Colors.grey,),
+          Text(
+            AppStrings.fakeName,
+            style: getRegularStyle(color: Colors.black, fontSize: 32),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            AppStrings.emailEx.tr(),
+            style: getRegularStyle(color: Colors.black, fontSize: 13),
+            textAlign: TextAlign.center,
+          ),
+          Divider(
+            thickness: 1,
+            height: 1,
+            color: Colors.grey,
+          ),
           ListTile(
             leading: Icon(Icons.person),
-            title: Text(AppStrings.changeAccount.tr(),
-              style: getRegularStyle(color: Colors.black,fontSize: 20),
+            title: Text(
+              AppStrings.changeAccount.tr(),
+              style: getRegularStyle(color: Colors.black, fontSize: 20),
             ),
           ),
           ListTile(
             leading: Icon(Icons.credit_card),
-            title: Text(AppStrings.paymentMethods.tr(),
-              style: getRegularStyle(color: Colors.black,fontSize: 20),
+            title: Text(
+              AppStrings.paymentMethods.tr(),
+              style: getRegularStyle(color: Colors.black, fontSize: 20),
             ),
           ),
           ListTile(
             leading: Icon(Icons.notifications),
-            title: Text(AppStrings.notifications.tr(),
-              style: getRegularStyle(color: Colors.black,fontSize: 20),
+            title: Text(
+              AppStrings.notifications.tr(),
+              style: getRegularStyle(color: Colors.black, fontSize: 20),
             ),
           ),
           ListTile(
             leading: Icon(Icons.lock),
-            title: Text(AppStrings.privacy.tr(),
-              style: getRegularStyle(color: Colors.black,fontSize: 20),
+            title: Text(
+              AppStrings.privacy.tr(),
+              style: getRegularStyle(color: Colors.black, fontSize: 20),
             ),
           ),
           ListTile(
             leading: Icon(Icons.error),
-            title: Text(AppStrings.contactUs.tr(),
-              style: getRegularStyle(color: Colors.black,fontSize: 20),
+            title: Text(
+              AppStrings.contactUs.tr(),
+              style: getRegularStyle(color: Colors.black, fontSize: 20),
             ),
           ),
           ListTile(
             leading: Icon(Icons.visibility),
-            title: Text(AppStrings.darkAppearance.tr(),
-              style: getRegularStyle(color: Colors.black,fontSize: 20),
+            title: Text(
+              AppStrings.darkAppearance.tr(),
+              style: getRegularStyle(color: Colors.black, fontSize: 20),
             ),
           ),
           // ListTile(
@@ -92,10 +111,13 @@ class _settingsState extends State<settings> {
           //   },
           // ),
           ListTile(
-            leading: Icon(Icons.logout,color: Colors.red,),
+            leading: Icon(
+              Icons.logout,
+              color: Colors.red,
+            ),
             title: Text(
               AppStrings.logout.tr(),
-              style: getRegularStyle(color: Colors.red,fontSize: 20),
+              style: getRegularStyle(color: Colors.red, fontSize: 20),
             ),
           )
         ],

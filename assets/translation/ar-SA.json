@@ -97,5 +97,13 @@
   "choose_vehicle": "حدد مركبة",
   "location_service_error": "خدمة الموقع ليست متاحة",
   "booking_details": "تفاصيل الحجز",
-  "email_verification": "تأكيد الحساب"
+  "email_verification": "تأكيد الحساب",
+  "create_vehicle": "أضف مركبة",
+  "send_email": "أرسل بريدك الألكتروني",
+  "send" : "إرسال",
+  "description" : "الوصف",
+  "plate_number": "أرقام اللوحة",
+  "plate_letter" : "حروف اللوحة",
+  "create" : "اضافة"
+
 }

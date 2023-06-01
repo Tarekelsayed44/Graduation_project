@@ -42,6 +42,7 @@ Widget defaultFormField({
   Function? onchange,
   validate,
   double radius = 20.0,
+  int max =1,
   required String label,
   required IconData? prefix,
   IconData? suffix,
@@ -54,6 +55,7 @@ Widget defaultFormField({
 }) =>
     TextFormField(
       validator: validate,
+      maxLines: max,
       autovalidateMode: autoValidate,
       controller: controller,
       keyboardType: type,
