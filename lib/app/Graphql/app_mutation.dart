@@ -19,7 +19,7 @@ class AppMutations {
 }
  ''';
 
-  static const sendEmail = r'''mutation SendEmailVerificationCode {
+  static const sendCode = r'''mutation SendEmailVerificationCode {
     sendEmailVerificationCode(input: {email: $email, useCase: $useCase}) {
         data
         success
@@ -88,4 +88,14 @@ class AppMutations {
     }
   }
       ''';
+  static const deleteVehicle=r'''
+  mutation DeleteVehicle {
+    deleteVehicle(vehicleId: $vehicleId) {
+        data
+        success
+        code
+        message
+    }
+}
+  ''';
 }

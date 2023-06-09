@@ -88,7 +88,7 @@ class _VehicleScreenState extends State<VehicleScreen> {
                           children: [
                             FloatingActionButton(
                               child: Row(
-                                children: [Icon(Icons.edit), Text("Edit Todo")],
+                                children: [Icon(Icons.edit), Text("Edit")],
                               ),
                               onPressed: () {
                                 Navigator.push(
@@ -105,7 +105,8 @@ class _VehicleScreenState extends State<VehicleScreen> {
                                   Text("Delete vehicle")
                                 ],
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                              },
                             )
                           ],
                         )

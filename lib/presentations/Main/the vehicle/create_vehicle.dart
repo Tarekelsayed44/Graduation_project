@@ -163,7 +163,7 @@ class _CreatevehiclePageState extends State<CreatevehiclePage> {
               Spacer(),
               Mutation(
                   options: MutationOptions(
-                      document: gql(AppMutations.sendEmail),
+                      document: gql(AppMutations.createVehicle),
                       onCompleted: (dynamic resultData) {
                         Navigator.push(
                             context,

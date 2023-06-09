@@ -175,13 +175,17 @@ class _SendEmailState extends State<SendEmail> {
               Spacer(),
               Mutation(
                   options: MutationOptions(
-                      document: gql(AppMutations.sendEmail),
+                      document: gql(AppMutations.sendCode),
+                      variables:{
+                          'useCase': 'EMAIL_VERIFICATION'
+                  },
                       onCompleted: (dynamic resultData) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => ResetPass()));
-                      }),
+                      }
+                      ),
                   builder: (RunMutation? runMutation, QueryResult? result) {
                     if (result!.isLoading) {
                       return Text(AppStrings.loading.tr());

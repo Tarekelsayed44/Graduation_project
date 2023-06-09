@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:pick_park/app/Graphql/app_queries.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
 
@@ -28,30 +30,35 @@ class _TagsState extends State<Tags> {
         ),
       ),
       backgroundColor: Colors.white,
-      body:SafeArea(
-        child: Column(
-          children: [
-            Text(
-              "TagID",
-              style: getRegularStyle(color: Colors.black, fontSize: 18),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  color: Color(0xffF0F1F3),
-                  borderRadius: BorderRadius.circular(8)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 5
-                ),
-                child: Text("555555555"),
-              ),
-            ),
-          ],
+      body: Query(
+        options: QueryOptions(
+          document: gql(AppQueries.myTag),
+          pollInterval: const Duration(seconds: 10),
         ),
-      ) ,
-    );
+        builder: (QueryResult result, { VoidCallback? refetch, FetchMore? fetchMore }) {
+          if (result.hasException) {
+             print(result.exception.toString());
+          }
+
+          if (result.isLoading) {
+            return const Text('Loading');
+          }
+
+          List? myTags = result.data?['id']?['tagUID']?['createdAt'];
+
+          if (myTags == null) {
+            return const Text('No repositories');
+          }
+
+          return ListView.builder(
+              itemCount: myTags.length,
+              itemBuilder: (context, index) {
+                final repository = myTags[index];
+
+                return Text(repository['name']);
+              });
+        },
+      )
+      );
   }
 }

@@ -21,6 +21,7 @@ class _EmailVerificationState extends State<EmailVerification> {
   var _code2 = TextEditingController();
   var _code3 = TextEditingController();
   var _code4 = TextEditingController();
+  var emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -150,8 +151,7 @@ class _EmailVerificationState extends State<EmailVerification> {
               child: Mutation(
                   options: MutationOptions(
                       document: gql(AppMutations.verifyUserByEmail),
-                      // update: (GraphQLDataProxy cache , QueryResult   ) {
-                      //   return cache;},
+
                       onCompleted: (dynamic resultData) {
                         Navigator.push(
                             context,
@@ -176,12 +176,8 @@ class _EmailVerificationState extends State<EmailVerification> {
                                   _code2.text +
                                   _code3.text +
                                   _code4.text,
+                              'email': emailController.text
                             },
-                            "data": {
-                              'id'
-                                  'name'
-                                  'token'
-                            }
                           });
                         },
                         text: AppStrings.containue.tr(),

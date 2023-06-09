@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get_it/get_it.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'dart:math' as math;
+import '../../../app/Graphql/app_queries.dart';
 import '../../../app/app_pref.dart';
 import '../../resources/language_manager.dart';
 import '../../resources/string_manager.dart';
@@ -35,13 +37,30 @@ class _settingsState extends State<settings> {
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
-      body: ListView(
+      body:  Query(
+        options: QueryOptions(document: gql(AppQueries.userQuery)),
+    builder: (QueryResult? result,
+    {VoidCallback? refetch, FetchMore? fetchMore}) {
+      if (result!.data == null) {
+        return Center(
+          child: Text("Data not found"),
+        );
+      }
+
+      if (result!.isLoading) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+      List? user = result.data?['name']?['verifiedEmail'];
+      return ListView(
         padding: EdgeInsets.all(22),
         children: [
           CircleAvatar(
             radius: 70,
             child: Image.asset(ImageAssets.profile),
           ),
+
           Text(
             AppStrings.fakeName,
             style: getRegularStyle(color: Colors.black, fontSize: 32),
@@ -121,8 +140,8 @@ class _settingsState extends State<settings> {
             ),
           )
         ],
-      ),
-    );
+      );
+    }));
   }
 
 // _changelanguage() {

@@ -39,7 +39,7 @@ updatedAt
 }
 ''';
 static const userQuery = r''' query {
-  user (userId: "d7b3209c-1841-412b-beeb-f2f379680aaf") {
+  user (userId: $id) {
     data {
       id
       name
@@ -51,5 +51,48 @@ static const userQuery = r''' query {
 }
 
 
+''';
+static const myTag = r'''query MyTags {
+    myTags {
+        success
+        code
+        message
+        data {
+            id
+            userId
+            tagUID
+            isActive
+            createdAt
+            updatedAt
+        }
+    }
+}
+''';
+static const me = r'''
+query Me {
+    me {
+        success
+        code
+        message
+        data {
+            id
+            name
+            slug
+            verifiedEmail
+            phone
+            gender
+            role
+            avatar
+            country
+            birthDate
+            isAdmin
+            isActive
+            isBlocked
+            token
+            createdAt
+            updatedAt
+        }
+    }
+}
 ''';
 }
