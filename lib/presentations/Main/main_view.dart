@@ -4,6 +4,7 @@ import 'package:pick_park/presentations/Main/booking/booking_screen.dart';
 import 'package:pick_park/presentations/Main/favourite/favourite_screen.dart';
 import 'package:pick_park/presentations/Main/home/home_screen.dart';
 import 'package:pick_park/presentations/Main/settings/settings.dart';
+import 'package:pick_park/presentations/Main/tags/tags.dart';
 import 'package:pick_park/presentations/Main/the%20vehicle/vehicle_screen.dart';
 import 'package:pick_park/shared/styles/colors.dart';
 
@@ -22,14 +23,19 @@ class _MainViewState extends State<MainView> {
     BookingScreen(),
     FavouriteScreen(),
     VehicleScreen(),
-    settings(),
+    Tags(),
+    settings()
+
   ];
   List<String> titles = [
     AppStrings.home.tr(),
     AppStrings.book.tr(),
     AppStrings.favourite.tr(),
     AppStrings.theCar.tr(),
+    AppStrings.tags,
     AppStrings.settings.tr(),
+
+
   ];
 
   var _title = AppStrings.home.tr();
@@ -54,7 +60,8 @@ class _MainViewState extends State<MainView> {
             BottomNavigationBarItem(icon:Icon(Icons.list_alt),label: AppStrings.book.tr()),
             BottomNavigationBarItem(icon:Icon(Icons.bookmark),label: AppStrings.favourite.tr()),
             BottomNavigationBarItem(icon:Icon(Icons.directions_car),label: AppStrings.theCar.tr()),
-            BottomNavigationBarItem(icon:Icon(Icons.person),label: AppStrings.account.tr()),
+            BottomNavigationBarItem(icon:Icon(Icons.tag),label: AppStrings.tags),
+            BottomNavigationBarItem(icon:Icon(Icons.person),label: AppStrings.accountTittle.tr()),
           ],
         ),
       ),

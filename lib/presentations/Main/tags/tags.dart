@@ -19,7 +19,7 @@ class _TagsState extends State<Tags> {
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text(
-          AppStrings.createVehicle.tr(),
+          AppStrings.tags,
           textAlign: TextAlign.start,
           style: getBoldStyle(
             color: Colors.black,

@@ -53,6 +53,7 @@ class AppStrings {
   static const String favourite= "favourite";
   static const String theCar= "the_car";
   static const String account= "account";
+  static const String accountTittle= "account_tittle";
   static const containue = "continue";
   static const rememberMe = "remember_me";
   static const back = "back";
@@ -101,6 +102,7 @@ class AppStrings {
   static const String plateNum = "plate_number";
   static const String plateLetter = "plate_letter";
   static const String create = "create";
+  static const String tags = "Tags";
   // error handler
   static const String badRequestError = "bad_request_error";
 }

@@ -237,6 +237,7 @@ class _Register_formState extends State<Register_form> {
                             document: gql(AppMutations.registerAsUser),
                             onCompleted: (dynamic resultData) {
                               Navigator.push(context, MaterialPageRoute(builder: (context)=>EmailVerification()));
+
                             }),
                         builder:
                             (RunMutation? runMutation, QueryResult? result) {

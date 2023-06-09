@@ -102,6 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.location_disabled_outlined),
+
         onPressed: () async {
           GoogleMapController controller = await _controller.future;
           controller.animateCamera(CameraUpdate.newCameraPosition(
@@ -110,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {});
         },
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
 
