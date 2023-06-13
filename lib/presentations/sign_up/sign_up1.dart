@@ -7,6 +7,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:pick_park/app/Graphql/app_queries.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
+import 'package:pick_park/presentations/send_email/send_email.dart';
 import 'package:pick_park/shared/components/component.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../app/Graphql/app_mutation.dart';
@@ -237,8 +238,7 @@ class _Register_formState extends State<Register_form> {
                         options: MutationOptions(
                             document: gql(AppMutations.registerAsUser),
                             onCompleted: (dynamic resultData) {
-                             // gql(AppMutations.sendCode);
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>EmailVerification()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>SendEmail()));
 
                             }),
                         builder:

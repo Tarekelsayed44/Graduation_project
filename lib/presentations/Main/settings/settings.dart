@@ -62,12 +62,12 @@ class _settingsState extends State<settings> {
           ),
 
           Text(
-            AppStrings.fakeName,
+            result.data?['name'],
             style: getRegularStyle(color: Colors.black, fontSize: 32),
             textAlign: TextAlign.center,
           ),
           Text(
-            AppStrings.emailEx.tr(),
+            result.data?['verifiedEmail'],
             style: getRegularStyle(color: Colors.black, fontSize: 13),
             textAlign: TextAlign.center,
           ),

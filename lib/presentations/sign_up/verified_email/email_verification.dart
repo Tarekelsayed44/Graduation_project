@@ -151,12 +151,8 @@ class _EmailVerificationState extends State<EmailVerification> {
               child: Mutation(
                   options: MutationOptions(
                       document: gql(AppMutations.verifyUserByEmail),
-
                       onCompleted: (dynamic resultData) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MainView()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>MainView()));
                       }),
                   builder: (RunMutation? runMutation, QueryResult? result) {
                     if (result!.isLoading) {

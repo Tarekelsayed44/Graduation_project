@@ -95,4 +95,43 @@ query Me {
     }
 }
 ''';
+static const searchquery= r'''
+query Query($filter: ParkingSpacesFilter, $paginate: PaginateInput) {
+  parkingSpaces(filter: $filter, paginate: $paginate) {
+    code
+    data {
+      items {
+        id
+        userId
+        name
+        slug
+        email
+        type
+        zipCode
+        long
+        lat
+        price
+        address
+        details
+        images
+        isActive
+        isBlocked
+        token
+        createdAt
+        updatedAt
+      }
+      pageInfo {
+        page
+        totalPages
+        totalCount
+        limit
+        hasNext
+        hasBefore
+      }
+    }
+    message
+    success
+  }
+}
+''';
 }

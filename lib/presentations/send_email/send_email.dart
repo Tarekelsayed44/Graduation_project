@@ -109,6 +109,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:pick_park/presentations/reset_password/verification_otp.dart';
 
 import '../../app/Graphql/app_mutation.dart';
 import '../../shared/components/component.dart';
@@ -176,14 +177,11 @@ class _SendEmailState extends State<SendEmail> {
               Mutation(
                   options: MutationOptions(
                       document: gql(AppMutations.sendCode),
-                      variables:{
-                          'useCase': 'EMAIL_VERIFICATION'
-                  },
                       onCompleted: (dynamic resultData) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ResetPass()));
+                                builder: (context) => verificationOtp()));
                       }
                       ),
                   builder: (RunMutation? runMutation, QueryResult? result) {
@@ -201,6 +199,7 @@ class _SendEmailState extends State<SendEmail> {
                             runMutation!({
                               "input": {
                                 'email': emailController.text,
+                                'useCase': 'EMAIL_VERIFICATION'
                               },
                             });
                           },
