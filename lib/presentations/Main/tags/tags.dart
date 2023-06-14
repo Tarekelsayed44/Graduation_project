@@ -22,7 +22,7 @@ class _TagsState extends State<Tags> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Text(
-          AppStrings.tags,
+          AppStrings.tags.tr(),
           textAlign: TextAlign.start,
           style: getBoldStyle(
             color: Colors.black,
@@ -40,22 +40,17 @@ class _TagsState extends State<Tags> {
           if (result.hasException) {
              print(result.exception.toString());
           }
-
           if (result.isLoading) {
             return const Text('Loading');
           }
-
           List? myTags = result.data?['id']?['tagUID']?['createdAt'];
-
           if (myTags == null) {
             return const Text('No repositories');
           }
-
           return ListView.builder(
               itemCount: myTags.length,
               itemBuilder: (context, index) {
                 final repository = myTags[index];
-
                 return Text(repository['name']);
               });
         },

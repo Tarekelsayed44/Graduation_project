@@ -65,8 +65,8 @@
   "birth_date": "Birth Date",
   "phone_num": "Phone number",
   "gender": "Gender",
-  "male": "Male",
-  "female": "Female",
+  "male": "MALE",
+  "female": "FEMALE",
   "or": "Or",
   "create_account": "Create your account",
   "or_sign": "Or sign with",
@@ -107,5 +107,6 @@
   "description" : "Description",
   "plate_number" : "Plate Digits",
   "plate_letter" : "Plate Letters",
-  "create" : "Create"
+  "create" : "Create",
+  "tags" : "Tags"
 }

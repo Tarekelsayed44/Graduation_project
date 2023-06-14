@@ -69,7 +69,7 @@ class _Register_formState extends State<Register_form> {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(left: 10,right: 10,top: 20),
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
             child: SingleChildScrollView(
               child: Form(
                 key: formKey,
@@ -99,7 +99,8 @@ class _Register_formState extends State<Register_form> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 15),
                       child: defaultFormField(
                           controller: nameController,
                           type: TextInputType.name,
@@ -146,7 +147,8 @@ class _Register_formState extends State<Register_form> {
                           }),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 15),
                       child: defaultFormField(
                           controller: emailController,
                           type: TextInputType.emailAddress,
@@ -191,7 +193,8 @@ class _Register_formState extends State<Register_form> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10,right: 10,top: 15,bottom: 5),
+                      padding: const EdgeInsets.only(
+                          left: 10, right: 10, top: 15, bottom: 5),
                       child: IntlPhoneField(
                           controller: phoneController,
                           initialCountryCode: 'EG',
@@ -213,7 +216,9 @@ class _Register_formState extends State<Register_form> {
                           }),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10,),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
                       child: DropdownButtonFormField(
                         items: [AppStrings.male.tr(), AppStrings.female.tr()]
                             .map((e) => DropdownMenuItem(
@@ -239,8 +244,10 @@ class _Register_formState extends State<Register_form> {
                         options: MutationOptions(
                             document: gql(AppMutations.registerAsUser),
                             onCompleted: (dynamic resultData) {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>SendEmail()));
-
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SendEmail()));
                             }),
                         builder:
                             (RunMutation? runMutation, QueryResult? result) {
@@ -251,18 +258,19 @@ class _Register_formState extends State<Register_form> {
                             print(result);
                           }
                           return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 15),
                             child: defaultButton(
                                 function: () {
                                   runMutation!({
-                                    "input": {
+                                    'input' : {
                                       'name': nameController.text,
                                       'email': emailController.text,
                                       'gender': gender,
                                       'password': passwordController.text,
                                       'phone': fullPhone,
                                       'country': countryCode,
-                                    },
+                                    }
                                   });
                                 },
                                 text: AppStrings.containue.tr(),

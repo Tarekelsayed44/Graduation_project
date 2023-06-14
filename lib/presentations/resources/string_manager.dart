@@ -102,7 +102,7 @@ class AppStrings {
   static const String plateNum = "plate_number";
   static const String plateLetter = "plate_letter";
   static const String create = "create";
-  static const String tags = "Tags";
+  static const String tags = "tags";
   // error handler
   static const String badRequestError = "bad_request_error";
 }

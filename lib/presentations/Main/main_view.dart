@@ -32,10 +32,8 @@ class _MainViewState extends State<MainView> {
     AppStrings.book.tr(),
     AppStrings.favourite.tr(),
     AppStrings.theCar.tr(),
-    AppStrings.tags,
+    AppStrings.tags.tr(),
     AppStrings.settings.tr(),
-
-
   ];
 
   var _title = AppStrings.home.tr();
@@ -60,7 +58,7 @@ class _MainViewState extends State<MainView> {
             BottomNavigationBarItem(icon:Icon(Icons.list_alt),label: AppStrings.book.tr()),
             BottomNavigationBarItem(icon:Icon(Icons.bookmark),label: AppStrings.favourite.tr()),
             BottomNavigationBarItem(icon:Icon(Icons.directions_car),label: AppStrings.theCar.tr()),
-            BottomNavigationBarItem(icon:Icon(Icons.tag),label: AppStrings.tags),
+            BottomNavigationBarItem(icon:Icon(Icons.tag),label: AppStrings.tags.tr()),
             BottomNavigationBarItem(icon:Icon(Icons.person),label: AppStrings.accountTittle.tr()),
           ],
         ),

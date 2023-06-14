@@ -197,7 +197,7 @@ class _SendEmailState extends State<SendEmail> {
                       child: defaultButton(
                           function: () {
                             runMutation!({
-                              "input": {
+                              'input': {
                                 'email': emailController.text,
                                 'useCase': 'EMAIL_VERIFICATION'
                               },

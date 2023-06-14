@@ -1,14 +1,8 @@
 class AppMutations {
 
-  static const registerAsUser = r'''mutation {
-  registerAsUser(input:{
-    name: $name
-    email: $email
-    password: $password
-    gender: $gender
-    phone: $phone
-    country: $country
-  }) {
+  static const registerAsUser = r'''
+  mutation registerAsUser($input: RegisterAsUserInput!){
+  registerAsUser(input: $input) {
     data{
       id
       name
@@ -19,17 +13,19 @@ class AppMutations {
   }
 }
  ''';
-  static const sendCode = r'''mutation SendEmailVerificationCode {
-    sendEmailVerificationCode(input: {email: $email, useCase: $useCase}) {
-        data
-        success
-        code
-        message
-    }
+  static const sendCode = r'''
+  mutation sendEmailVerificationCode($input: SendEmailVerificationCodeInput!){
+  sendEmailVerificationCode(input: $input){
+    data
+    success
+    code
+    message
+  }
 }
-      ''';
-  static const emailAndPasswordLogin = r'''mutation EmailAndPasswordLogin {
-    emailAndPasswordLogin(input: {email: $email, password: $password}) {
+''';
+  static const emailAndPasswordLogin = r'''
+  mutation emailAndPasswordLogin($input: EmailAndPasswordLoginInput!){
+    emailAndPasswordLogin(input:$input) {
         success
         code
         message
@@ -38,10 +34,11 @@ class AppMutations {
             token
         }
     }
-}
+  }
   ''';
-  static const verifyUserByEmail = r'''mutation VerifyUserByEmail {
-    verifyUserByEmail(input: {email: $email, code: $code}) {
+  static const verifyUserByEmail = r'''
+  mutation verifyUserByEmail($input: VerifyUserByEmailInput!) {
+    verifyUserByEmail(input: $input) {
         data {
             id
             name
@@ -51,10 +48,11 @@ class AppMutations {
         code
         message
     }
-}
+  }
   ''';
-  static const resetPasswordByEmail = r'''mutation ResetPasswordByEmail {
-    resetPasswordByEmail(input: {email: $email, code: $code, newPassword: $newPassword}) {
+  static const resetPasswordByEmail = r'''
+  mutation resetPasswordByEmail($input: ResetPasswordByEmailInput!){
+    resetPasswordByEmail(input: $input) {
         success
         code
         message
@@ -63,18 +61,11 @@ class AppMutations {
             token
         }
     }
-    }
+  }
   ''';
-  static const createVehicle = r'''mutation mutation CreateVehicle {
-    createVehicle(
-        input: {
-        description: $description, 
-        country: $country, 
-        plateDigits: $plateDigits, 
-        plateLetters: $plateLetter, 
-        isPrimary: $isPrimary
-        }
-    ) {
+  static const createVehicle = r'''
+  mutation createVehicle($input: CreateVehicleInput!) {
+    createVehicle(input:$input) {
         success
         code
         message
@@ -87,17 +78,17 @@ class AppMutations {
         }
     }
   }
-      ''';
+''';
   static const deleteVehicle=r'''
-  mutation DeleteVehicle {
+  mutation deleteVehicle($vehicleId:UUID!){
     deleteVehicle(vehicleId: $vehicleId) {
         data
         success
         code
         message
     }
-}
-  ''';
+  }
+ ''';
 }
   // registerAsUser(input:{
 //     name: $name
