@@ -1,4 +1,5 @@
 class AppMutations {
+
   static const registerAsUser = r'''mutation {
   registerAsUser(input:{
     name: $name
@@ -18,7 +19,6 @@ class AppMutations {
   }
 }
  ''';
-
   static const sendCode = r'''mutation SendEmailVerificationCode {
     sendEmailVerificationCode(input: {email: $email, useCase: $useCase}) {
         data
@@ -99,3 +99,20 @@ class AppMutations {
 }
   ''';
 }
+  // registerAsUser(input:{
+//     name: $name
+//     email: $email
+//     password: $password
+//     gender: $gender
+//     phone: $phone
+//     country: $country
+//   }) {
+//     data{
+//       id
+//       name
+//     }
+//     code
+//     success
+//     message
+//   }
+// }

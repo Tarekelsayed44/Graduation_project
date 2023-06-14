@@ -46,7 +46,7 @@ class _EmailVerificationState extends State<EmailVerification> {
       ),
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.only(left: 10.0, right: 10, top: 90),
+        padding: const EdgeInsets.only(left: 10.0, right: 10, top: 40),
         child: Column(
           children: [
             Text(

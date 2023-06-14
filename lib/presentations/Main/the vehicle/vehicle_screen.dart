@@ -27,6 +27,7 @@ class _VehicleScreenState extends State<VehicleScreen> {
           style: getBoldStyle(color: Colors.black, fontSize: 20),
         ),
       ),
+      backgroundColor: Colors.white,
       body: Container(
           child: Query(
         options: QueryOptions(document: gql(AppQueries.vehicleQuery)),
@@ -105,8 +106,7 @@ class _VehicleScreenState extends State<VehicleScreen> {
                                   Text("Delete vehicle")
                                 ],
                               ),
-                              onPressed: () {
-                              },
+                              onPressed: () {},
                             )
                           ],
                         )

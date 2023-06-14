@@ -16,9 +16,12 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
         elevation: 0,
         title: Text(AppStrings.favourite.tr(),style: getBoldStyle(color: Colors.black,fontSize: 20),),
       ),
+      backgroundColor: Colors.white,
     );
   }
 }

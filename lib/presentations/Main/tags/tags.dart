@@ -19,6 +19,7 @@ class _TagsState extends State<Tags> {
       appBar: AppBar(
         leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
         elevation: 0,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Text(
           AppStrings.tags,

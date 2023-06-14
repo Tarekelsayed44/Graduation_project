@@ -30,6 +30,7 @@ class _booking_detailsState extends State<booking_details> {
           Navigator.pop(context);
         }, icon: Icon(Icons.arrow_back, color: Colors.black),),
         elevation: 0,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Text(AppStrings.bookingDetails.tr(),
           style: getBoldStyle(color: Colors.black),),

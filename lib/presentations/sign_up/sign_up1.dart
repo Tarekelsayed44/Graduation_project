@@ -66,12 +66,13 @@ class _Register_formState extends State<Register_form> {
           ),
           backgroundColor: Colors.white,
         ),
-        body: Container(
-            padding: EdgeInsetsDirectional.only(top: 20, start: 10, end: 10),
-            color: Colors.white,
-            child: Form(
-              key: formKey,
-              child: SingleChildScrollView(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10,right: 10,top: 20),
+            child: SingleChildScrollView(
+              child: Form(
+                key: formKey,
                 child: Column(
                   children: [
                     CircleAvatar(
@@ -97,142 +98,142 @@ class _Register_formState extends State<Register_form> {
                         ),
                       ),
                     ),
-                    defaultFormField(
-                        controller: nameController,
-                        type: TextInputType.name,
-                        label: AppStrings.fullName.tr(),
-                        prefix: Icons.person,
-                        radius: 20,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                      child: defaultFormField(
+                          controller: nameController,
+                          type: TextInputType.name,
+                          label: AppStrings.fullName.tr(),
+                          prefix: Icons.person,
+                          radius: 20,
+                          validate: (value) {
+                            if (value.isEmpty) {
+                              return AppStrings.errorField.tr();
+                            }
+                            return null;
+                          }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                          controller: _date,
+                          decoration: InputDecoration(
+                            label: Text(AppStrings.birthDate.tr()),
+                            prefixIcon: Icon(
+                              Icons.calendar_month,
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return AppStrings.errorField.tr();
+                            }
+                            return null;
+                          },
+                          onTap: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1800),
+                                lastDate: DateTime(2100));
+                            if (pickedDate != null) {
+                              setState(() {
+                                _date.text =
+                                    DateFormat('yyy-MM-dd').format(pickedDate);
+                              });
+                            }
+                          }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                      child: defaultFormField(
+                          controller: emailController,
+                          type: TextInputType.emailAddress,
+                          label: AppStrings.emailHint.tr(),
+                          prefix: Icons.email,
+                          validate: (value) {
+                            if (value.isEmpty) {
+                              return AppStrings.invalidEmail.tr();
+                            }
+                            return null;
+                          }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: defaultFormField(
+                        controller: passwordController,
                         validate: (value) {
                           if (value.isEmpty) {
-                            return AppStrings.errorField.tr();
+                            return AppStrings.passwordError.tr();
                           }
                           return null;
-                        }),
-                    SizedBox(
-                      height: 10,
+                        },
+                        onSubmit: () {
+                          if (formKey.currentState!.validate()) {
+                            return "invalid";
+                          }
+                        },
+                        type: TextInputType.visiblePassword,
+                        label: AppStrings.password.tr(),
+                        isPassword: true,
+                        prefix: Icons.lock,
+                        suffix: isPassword == true
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        suffixPressed: () {
+                          setState(() {
+                            isPassword == true
+                                ? Icons.visibility
+                                : Icons.visibility_off;
+                          });
+                        },
+                      ),
                     ),
-                    TextFormField(
-                        controller: _date,
-                        decoration: InputDecoration(
-                          label: Text(AppStrings.birthDate.tr()),
-                          prefixIcon: Icon(
-                            Icons.calendar_month,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10,right: 10,top: 15,bottom: 5),
+                      child: IntlPhoneField(
+                          controller: phoneController,
+                          initialCountryCode: 'EG',
+                          onChanged: (phone) {
+                            fullPhone = phone.completeNumber;
+                            countryCode = phone.countryISOCode;
+                          },
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                            labelText: AppStrings.phoneNum.tr(),
                           ),
+                          validator: (value) {
+                            if (value!.toString().isEmpty) {
+                              return AppStrings.errorField.tr();
+                            }
+                            return null;
+                          }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10,),
+                      child: DropdownButtonFormField(
+                        items: [AppStrings.male.tr(), AppStrings.female.tr()]
+                            .map((e) => DropdownMenuItem(
+                                  child: Text("$e"),
+                                  value: e,
+                                ))
+                            .toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            selctedGender = selctedGender;
+                            gender = val.toString();
+                          });
+                        },
+                        value: selctedGender,
+                        hint: Text(AppStrings.gender.tr()),
+                        decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20)),
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return AppStrings.errorField.tr();
-                          }
-                          return null;
-                        },
-                        onTap: () async {
-                          DateTime? pickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(1800),
-                              lastDate: DateTime(2100));
-                          if (pickedDate != null) {
-                            setState(() {
-                              _date.text =
-                                  DateFormat('yyy-MM-dd').format(pickedDate);
-                            });
-                          }
-                        }),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    defaultFormField(
-                        controller: emailController,
-                        type: TextInputType.emailAddress,
-                        label: AppStrings.emailHint.tr(),
-                        prefix: Icons.email,
-                        validate: (value) {
-                          if (value.isEmpty) {
-                            return AppStrings.invalidEmail.tr();
-                          }
-                          return null;
-                        }),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    defaultFormField(
-                      controller: passwordController,
-                      validate: (value) {
-                        if (value.isEmpty) {
-                          return AppStrings.passwordError.tr();
-                        }
-                        return null;
-                      },
-                      onSubmit: () {
-                        if (formKey.currentState!.validate()) {
-                          return "invalid";
-                        }
-                      },
-                      type: TextInputType.visiblePassword,
-                      label: AppStrings.password.tr(),
-                      isPassword: true,
-                      prefix: Icons.lock,
-                      suffix: isPassword == true
-                          ? Icons.visibility
-                          : Icons.visibility_off,
-                      suffixPressed: () {
-                        setState(() {
-                          isPassword == true
-                              ? Icons.visibility
-                              : Icons.visibility_off;
-                        });
-                      },
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    IntlPhoneField(
-                        controller: phoneController,
-                        initialCountryCode: 'EG',
-                        onChanged: (phone) {
-                          fullPhone = phone.completeNumber;
-                          countryCode = phone.countryISOCode;
-                        },
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          labelText: AppStrings.phoneNum.tr(),
-                        ),
-                        validator: (value) {
-                          if (value!.toString().isEmpty) {
-                            return AppStrings.errorField.tr();
-                          }
-                          return null;
-                        }),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    DropdownButtonFormField(
-                      items: [AppStrings.male.tr(), AppStrings.female.tr()]
-                          .map((e) => DropdownMenuItem(
-                                child: Text("$e"),
-                                value: e,
-                              ))
-                          .toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          selctedGender = selctedGender;
-                          gender = val.toString();
-                        });
-                      },
-                      value: selctedGender,
-                      hint: Text(AppStrings.gender.tr()),
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
                       ),
-                    ),
-                    SizedBox(
-                      height: 30,
                     ),
                     Mutation(
                         options: MutationOptions(
@@ -249,28 +250,33 @@ class _Register_formState extends State<Register_form> {
                           if (result.hasException) {
                             print(result);
                           }
-                          return defaultButton(
-                              function: () {
-                                runMutation!({
-                                  "input": {
-                                    'name': nameController.text,
-                                    'email': emailController.text,
-                                    'gender': gender,
-                                    'password': passwordController.text,
-                                    'phone': fullPhone,
-                                    'country': countryCode,
-                                  },
-                                });
-                              },
-                              text: AppStrings.containue.tr(),
-                              color: Color(0xff4b4eb0),
-                              radius: 35,
-                              isUpperCase: true);
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                            child: defaultButton(
+                                function: () {
+                                  runMutation!({
+                                    "input": {
+                                      'name': nameController.text,
+                                      'email': emailController.text,
+                                      'gender': gender,
+                                      'password': passwordController.text,
+                                      'phone': fullPhone,
+                                      'country': countryCode,
+                                    },
+                                  });
+                                },
+                                text: AppStrings.containue.tr(),
+                                color: Color(0xff4b4eb0),
+                                radius: 35,
+                                isUpperCase: true),
+                          );
                         })
                   ],
                 ),
               ),
-            )));
+            ),
+          ),
+        ));
   }
 
   Widget bottomSheet() {

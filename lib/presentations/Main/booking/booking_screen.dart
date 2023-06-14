@@ -16,8 +16,11 @@ class _BookingScreenState extends State<BookingScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        automaticallyImplyLeading: false,
+        leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
         title: Text(AppStrings.booking.tr(),style: getBoldStyle(color: Colors.black,fontSize: 20),),
       ),
+      backgroundColor: Colors.white,
     );
   }
 }

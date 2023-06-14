@@ -31,18 +31,12 @@ class _SignUp0State extends State<SignUp0> {
 
           elevation: 0,
           backgroundColor: Colors.white,
-          title: Row(
-            children: [
-
-              Spacer(),
-              Text(
-                AppStrings.login.tr().toUpperCase(),
-                style: getBoldStyle(
-                  color: Colors.black,
-                  fontSize: 27
-                ),
-              ),
-            ],
+          title: Text(
+            AppStrings.login.tr().toUpperCase(),
+            style: getBoldStyle(
+              color: Colors.black,
+              fontSize: 27
+            ),
           ),
         ),
         backgroundColor: Colors.white,
