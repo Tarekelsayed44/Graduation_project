@@ -182,7 +182,7 @@ class _CreatevehiclePageState extends State<CreatevehiclePage> {
                       child: defaultButton(
                         function: () {
                           runMutation!({
-                            "input": {
+                            'input': {
                               'description': describtionController.text,
                               'country': country,
                               'plateDigits': digits,

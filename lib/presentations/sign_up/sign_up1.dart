@@ -68,9 +68,9 @@ class _Register_formState extends State<Register_form> {
         ),
         backgroundColor: Colors.white,
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
               child: Form(
                 key: formKey,
                 child: Column(

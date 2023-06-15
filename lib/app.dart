@@ -5,6 +5,7 @@ import 'package:pick_park/presentations/Main/tags/tags.dart';
 import 'package:pick_park/presentations/Main/the%20vehicle/create_vehicle.dart';
 import 'package:pick_park/presentations/forget_password/forget_pass.dart';
 import 'package:pick_park/presentations/send_email/send_email.dart';
+import 'package:pick_park/presentations/sign_up/sign_up0.dart';
 import 'package:pick_park/presentations/splash/splash1.dart';
 import 'package:pick_park/shared/components/constants.dart';
 import 'presentations/Main/main_view.dart';
@@ -54,7 +55,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       //onGenerateRoute: RouteGenerator.getRoute,
      // initialRoute: Routes.loginRoute,
-        home:Splash1(),
+        home:SignUp0(),
     // home:token != null ? const HomeScreen() : loginScreen(),
       theme: ThemeData(),
      )

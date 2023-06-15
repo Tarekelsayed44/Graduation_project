@@ -28,7 +28,7 @@ class _SignUp0State extends State<SignUp0> {
     return Scaffold(
         appBar: AppBar(
          // leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
-
+          automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: Colors.white,
           title: Text(
@@ -42,7 +42,7 @@ class _SignUp0State extends State<SignUp0> {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 70),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
             child: Column(
               children: [
                 RoundedLoadingButton(
@@ -136,62 +136,68 @@ class _SignUp0State extends State<SignUp0> {
                       ),
                     )),
                 SizedBox(
-                  height: 80,
+                  height: 25,
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                        child: Divider(
-                      thickness: 4,
-                      color: Color(0xffEEEFFF),
-                    )),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0,right: 7),
-                      child: Text(AppStrings.or.tr(),style: getBoldStyle(color: Color(0xff6F6F6F),fontSize: 18),),
-                    ),
-                    Expanded(
-                        child: Divider(
-                      thickness: 4,
-                      color: Color(0xffEEEFFF),
-                    ))
-                  ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: Divider(
+                        thickness: 3,
+                        color: Color(0xffEEEFFF),
+                      )),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0,right: 7),
+                        child: Text(AppStrings.or.tr(),style: getBoldStyle(color: Color(0xff6F6F6F),fontSize: 18),),
+                      ),
+                      Expanded(
+                          child: Divider(
+                        thickness: 3,
+                        color: Color(0xffEEEFFF),
+                      ))
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: 60,
-                ),
-                defaultButton(
-                    function: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => loginScreen()));
-                    },
-                    text: AppStrings.loginPassword.tr().toUpperCase(),
-                    color: Color(0xff4b4eb0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: defaultButton(
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => loginScreen()));
+                      },
+                      text: AppStrings.loginPassword.tr().toUpperCase(),
+                      color: Color(0xff4b4eb0),
 
-                    ),
-                SizedBox(
-                  height: 40,
+                      ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(AppStrings.notMember.tr()),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Register_form()));
-                        },
-                        child: Text(
-                          AppStrings.registerNow.tr(),
-                          style: getRegularStyle(color: Color(0xff4D5DFA,),fontSize: 15)
-                        ))
-                  ],
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical:20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(AppStrings.notMember.tr()),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Register_form()));
+                          },
+                          child: Text(
+                            AppStrings.registerNow.tr(),
+                            style: getRegularStyle(color: Color(0xff4D5DFA,),fontSize: 15)
+                          ))
+                    ],
+                  ),
                 )
               ],
             ),

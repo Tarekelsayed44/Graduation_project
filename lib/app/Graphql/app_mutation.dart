@@ -89,6 +89,77 @@ class AppMutations {
     }
   }
  ''';
+  static const paymobPayment=r'''
+  mutation preparePaymobPayment ($parkingSpaceId: UUID!) {
+    preparePaymobPayment(parkingSpaceId: $parkingSpaceId) {
+      data
+      success
+      code
+      message
+    }
+  }
+ ''';
+  static const changePass= r'''
+ mutation ChangePassword($input: ChangePasswordInput!) {
+  changePassword(input: $input) {
+    data {
+      name
+      id
+    }
+    success
+    code
+    message
+  }
+}
+ ''';
+  static const createTag= r'''
+  mutation CreateTag($input: CreateTagInput!) {
+  createTag(input: $input) {
+    data {
+      userId
+      tagUID
+    }
+    success
+    code
+    message
+  }
+ }
+ ''';
+  static const deleteTag= r'''
+ mutation DeleteTag($tagId: UUID!) {
+  deleteTag(tagId: $tagId) {
+    data
+    success
+    code
+    message
+  }
+}
+ ''';
+  static const updateProfile= r'''
+mutation UpdateUserProfile($input: UpdateUserProfileInput!) {
+  updateUserProfile(input: $input) {
+    data {
+      name
+      id
+    }
+    success
+    code
+    message
+  }
+}
+ ''';
+  static const updateVehicle= r'''
+mutation UpdateVehicle($input: UpdateVehicleInput!) {
+  updateVehicle(input: $input) {
+    data {
+      id
+    }
+    success
+    code
+    message
+  }
+}
+ ''';
 }
   // registerAsUser(input:{
 //     name: $name
