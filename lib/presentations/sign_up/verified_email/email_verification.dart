@@ -165,7 +165,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                       print(result.exception);
                     }
                     if(result.isLoading == false && result.data != null ){
-                      print( result.data!['verifyUserByEmail']['data']['token']);
+                     final String token =  result.data!['verifyUserByEmail']['data']['token'];
                     }
                     return defaultButton(
                         function: () {
