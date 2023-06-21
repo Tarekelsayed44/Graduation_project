@@ -83,7 +83,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           CircleAvatar(
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+
+                              },
                               icon: Icon(
                                 Icons.search,
                                 color: Color(0xff4B4EB0),
@@ -151,4 +153,59 @@ class _HomeScreenState extends State<HomeScreen> {
     print(_kGooglePlex);
     setState(() {});
   }
+}
+class ParkingSpaces extends SearchDelegate{
+
+  List names= [
+    "Mohamed",
+    "Mona",
+    "Magda",
+    "Ashraf",
+    "Elsayed",
+    "Hossam",
+    "Wael"
+  ];
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(onPressed: (){
+        query="";
+      }, icon: Icon(Icons.close))
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(onPressed: (){
+      close(context, null);
+    }, icon: Icon(Icons.arrow_back)) ;
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Text('$query');
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List filterNames = names.where((element) => element.startsWith(query)).toList();
+    // كدا هيجيبلك الكلمات اللي بتبدي بالحرف اللي كتبته لكن لوعاوز تجيب اي كلمه يكون فيها الحرف اللي كتبته يكون كالتالي :
+    //  List filterNames = names.where((element) => element.contains(query)).toList();
+    return ListView.builder(
+        itemCount: query==""? names.length : filterNames.length,
+        itemBuilder: (context,i){
+          return InkWell(
+            onTap: (){
+              query = query==""? names[i] : filterNames[i];
+              showResults(context);
+            },
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: query==""? Text('${names[i]}',style: TextStyle(fontSize: 15),): Text('${filterNames[i]}',style: TextStyle(fontSize: 15),),
+            ),
+          );
+        });
+  }
+
 }

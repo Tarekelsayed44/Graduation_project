@@ -10,8 +10,10 @@ import '../../resources/string_manager.dart';
 import '../../resources/styles_manager.dart';
 
 class EmailVerification extends StatefulWidget {
-  const EmailVerification({Key? key}) : super(key: key);
 
+  late final String data;
+
+  EmailVerification ({required this.data});
   @override
   State<EmailVerification> createState() => _EmailVerificationState();
 }
@@ -22,6 +24,7 @@ class _EmailVerificationState extends State<EmailVerification> {
   var _code3 = TextEditingController();
   var _code4 = TextEditingController();
   var emailController = TextEditingController();
+ late String code = _code1.text + _code2.text +_code3.text +_code4.text ;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,7 @@ class _EmailVerificationState extends State<EmailVerification> {
               style: getRegularStyle(color: Colors.black, fontSize: 18),
             ),
             Text(
-              AppStrings.phone.tr(),
+              '${widget.data}',
               style: getSemiBoldStyle(color: Colors.black, fontSize: 19),
             ),
             SizedBox(
@@ -158,21 +161,16 @@ class _EmailVerificationState extends State<EmailVerification> {
                     if (result!.isLoading) {
                       return Text(AppStrings.loading.tr());
                     }
-
                     if (result.hasException) {
                       print(result.exception);
                     } else {
-                      print(result);
                     }
                     return defaultButton(
                         function: () {
                           runMutation!({
                             "input": {
-                              'code': _code1.text +
-                                  _code2.text +
-                                  _code3.text +
-                                  _code4.text,
-                              'email': emailController.text
+                              'code': code,
+                              'email': (widget.data)
                             },
                           });
                         },

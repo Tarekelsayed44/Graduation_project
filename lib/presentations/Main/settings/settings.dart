@@ -24,124 +24,123 @@ class _settingsState extends State<settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppStrings.account.tr(),
-          style: getBoldStyle(
-            color: Colors.black,
-            fontSize: 25,
+        appBar: AppBar(
+          title: Text(
+            AppStrings.account.tr(),
+            style: getBoldStyle(
+              color: Colors.black,
+              fontSize: 25,
+            ),
           ),
+          elevation: 0,
+          backgroundColor: Colors.white,
+          centerTitle: true,
         ),
-        elevation: 0,
         backgroundColor: Colors.white,
-        centerTitle: true,
-      ),
-      backgroundColor: Colors.white,
-      body:  Query(
-        options: QueryOptions(document: gql(AppQueries.userQuery)),
-    builder: (QueryResult? result,
-    {VoidCallback? refetch, FetchMore? fetchMore}) {
-      if (result!.data == null) {
-        return Center(
-          child: Text("Data not found"),
-        );
-      }
+        body: Query(
+            options: QueryOptions(document: gql(AppQueries.userQuery)),
+            builder: (QueryResult? result,
+                {VoidCallback? refetch, FetchMore? fetchMore}) {
+              if (result!.data == null) {
+                return Center(
+                  child: Text("Data not found"),
+                );
+              }
+              if (result!.isLoading) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              List? user = result.data?['name']?['verifiedEmail'];
+              return ListView(
+                padding: EdgeInsets.all(22),
+                children: [
+                  CircleAvatar(
+                    radius: 70,
+                    child: Image.asset(ImageAssets.profile),
+                  ),
 
-      if (result!.isLoading) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-      List? user = result.data?['name']?['verifiedEmail'];
-      return ListView(
-        padding: EdgeInsets.all(22),
-        children: [
-          CircleAvatar(
-            radius: 70,
-            child: Image.asset(ImageAssets.profile),
-          ),
-
-          Text(
-            result.data?['name'],
-            style: getRegularStyle(color: Colors.black, fontSize: 32),
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            result.data?['verifiedEmail'],
-            style: getRegularStyle(color: Colors.black, fontSize: 13),
-            textAlign: TextAlign.center,
-          ),
-          Divider(
-            thickness: 1,
-            height: 1,
-            color: Colors.grey,
-          ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text(
-              AppStrings.changeAccount.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.credit_card),
-            title: Text(
-              AppStrings.paymentMethods.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text(
-              AppStrings.notifications.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.lock),
-            title: Text(
-              AppStrings.privacy.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.error),
-            title: Text(
-              AppStrings.contactUs.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.visibility),
-            title: Text(
-              AppStrings.darkAppearance.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          // ListTile(
-          //   leading: Icon(Icons.language),
-          //   title: Text(AppStrings.changeLanguage.tr()),
-          //   trailing: Transform(
-          //     alignment: Alignment.center,
-          //     transform: Matrix4.rotationY( isRtl() ? math.pi : 0),
-          //   ),
-          //   onTap: () {
-          //     _changelanguage();
-          //   },
-          // ),
-          ListTile(
-            leading: Icon(
-              Icons.logout,
-              color: Colors.red,
-            ),
-            title: Text(
-              AppStrings.logout.tr(),
-              style: getRegularStyle(color: Colors.red, fontSize: 20),
-            ),
-          )
-        ],
-      );
-    }));
+                  Text(
+                    result.data?['name'],
+                    style: getRegularStyle(color: Colors.black, fontSize: 32),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    result.data?['verifiedEmail'],
+                    style: getRegularStyle(color: Colors.black, fontSize: 13),
+                    textAlign: TextAlign.center,
+                  ),
+                  Divider(
+                    thickness: 1,
+                    height: 1,
+                    color: Colors.grey,
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.person),
+                    title: Text(
+                      AppStrings.changeAccount.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.credit_card),
+                    title: Text(
+                      AppStrings.paymentMethods.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.notifications),
+                    title: Text(
+                      AppStrings.notifications.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.lock),
+                    title: Text(
+                      AppStrings.privacy.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.error),
+                    title: Text(
+                      AppStrings.contactUs.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.visibility),
+                    title: Text(
+                      AppStrings.darkAppearance.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  // ListTile(
+                  //   leading: Icon(Icons.language),
+                  //   title: Text(AppStrings.changeLanguage.tr()),
+                  //   trailing: Transform(
+                  //     alignment: Alignment.center,
+                  //     transform: Matrix4.rotationY( isRtl() ? math.pi : 0),
+                  //   ),
+                  //   onTap: () {
+                  //     _changelanguage();
+                  //   },
+                  // ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.logout,
+                      color: Colors.red,
+                    ),
+                    title: Text(
+                      AppStrings.logout.tr(),
+                      style: getRegularStyle(color: Colors.red, fontSize: 20),
+                    ),
+                  )
+                ],
+              );
+            }));
   }
 
 // _changelanguage() {

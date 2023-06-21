@@ -50,6 +50,8 @@ dependencies:
   table_calendar:
   geolocator:
   country_list_pick: ^1.0.1+6
+  provider: ^6.0.5
+
 
 
 dev_dependencies:

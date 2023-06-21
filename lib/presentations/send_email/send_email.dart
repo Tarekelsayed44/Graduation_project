@@ -116,6 +116,7 @@ import '../../shared/components/component.dart';
 import '../reset_password/resetPassword.dart';
 import '../resources/string_manager.dart';
 import '../resources/styles_manager.dart';
+import '../sign_up/verified_email/email_verification.dart';
 
 class SendEmail extends StatefulWidget {
   const SendEmail({Key? key}) : super(key: key);
@@ -178,10 +179,7 @@ class _SendEmailState extends State<SendEmail> {
                   options: MutationOptions(
                       document: gql(AppMutations.sendCode),
                       onCompleted: (dynamic resultData) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => verificationOtp()));
+                        _navigateToNextPage(context);
                       }
                       ),
                   builder: (RunMutation? runMutation, QueryResult? result) {
@@ -215,4 +213,13 @@ class _SendEmailState extends State<SendEmail> {
       ),
     );
   }
+  void _navigateToNextPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>EmailVerification (data: emailController.text),
+      ),
+    );
+  }
+
 }

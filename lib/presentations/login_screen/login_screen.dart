@@ -166,6 +166,10 @@ class _loginScreenState extends State<loginScreen> {
                             if (result.hasException) {
                               print(result.exception);
                             }
+                            else{
+                              final String token = result.data!['token'];
+                              print(token);
+                            }
                             return defaultButton(
                               function: () {
                                 if (formKey.currentState!.validate() == true) {
