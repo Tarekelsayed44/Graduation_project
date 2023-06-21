@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import '../../app/Graphql/app_mutation.dart';
+import '../../app/app_pref.dart';
 import '../../shared/components/component.dart';
 import '../Main/home/home_screen.dart';
 import '../Main/main_view.dart';
@@ -27,9 +28,9 @@ class _loginScreenState extends State<loginScreen> {
   String email = "";
   String password = "";
   String token = "";
-
   @override
   Widget build(BuildContext context) {
+    // final tokenCache = context.watch<TokenCache>();
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -136,7 +137,7 @@ class _loginScreenState extends State<loginScreen> {
                           Text(
                             AppStrings.rememberMe.tr(),
                             style:
-                                getBoldStyle(color: Colors.black, fontSize: 15),
+                            getBoldStyle(color: Colors.black, fontSize: 15),
                           ),
                         ],
                       ),
@@ -153,7 +154,7 @@ class _loginScreenState extends State<loginScreen> {
                               update: (GraphQLDataProxy cache, QueryResult) {
                                 return cache;
                               },
-                              onCompleted: (dynamic resultData) {
+                              onCompleted: (dynamic resultData)  {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -167,11 +168,8 @@ class _loginScreenState extends State<loginScreen> {
                             if (result.hasException) {
                               print(result.exception);
                             }
-                            if(result.isLoading == false && result.data != null ){
-                              print( result.data!['emailAndPasswordLogin']['data']['token']);
-                            }
                             return defaultButton(
-                              function: () {
+                              function: ()  async {
                                 if (formKey.currentState!.validate() == true) {
                                   runMutation!({
                                     "input": {
@@ -180,6 +178,8 @@ class _loginScreenState extends State<loginScreen> {
                                     }
                                   });
                                 }
+                                token= result.data!['emailAndPasswordLogin']['data']['token'];
+                                await TokenCache().setToken(token);
                               },
                               text: AppStrings.login.tr().toUpperCase(),
                               color: Color(0xff4b4eb0),
@@ -192,9 +192,9 @@ class _loginScreenState extends State<loginScreen> {
                     children: [
                       Expanded(
                           child: Divider(
-                        thickness: 4,
-                        color: Color(0xffEEEFFF),
-                      )),
+                            thickness: 4,
+                            color: Color(0xffEEEFFF),
+                          )),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 7),
                         child: Text(
@@ -205,9 +205,9 @@ class _loginScreenState extends State<loginScreen> {
                       ),
                       Expanded(
                           child: Divider(
-                        thickness: 4,
-                        color: Color(0xffEEEFFF),
-                      ))
+                            thickness: 4,
+                            color: Color(0xffEEEFFF),
+                          ))
                     ],
                   ),
                   SizedBox(
@@ -238,5 +238,5 @@ class _loginScreenState extends State<loginScreen> {
             ),
           ),
         ));
-    }
+  }
 }

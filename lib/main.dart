@@ -11,10 +11,10 @@ import 'shared/components/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- await initHiveForFlutter();
- // Bloc.observer = MyBlocObserver();
+  await initHiveForFlutter();
+  // Bloc.observer = MyBlocObserver();
   await CasheNetwork.Cacheinitialization();
-  token = CasheNetwork.getCacheData(key: 'token');
+  // token = CasheNetwork.getCacheData(key: 'token');
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
       child: Phoenix(child: MyApp()),

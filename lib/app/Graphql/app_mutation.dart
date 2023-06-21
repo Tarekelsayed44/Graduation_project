@@ -6,6 +6,7 @@ class AppMutations {
     data{
       id
       name
+      token
     }
     code
     success

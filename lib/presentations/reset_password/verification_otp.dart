@@ -173,7 +173,7 @@ class _verificationOtpState extends State<verificationOtp> {
                                     _code2.text +
                                     _code3.text +
                                     _code4.text,
-                                'email': emailController.text
+                                'email':'tarekelsayed4421@gmail.com'
                               },
                             });
                           },

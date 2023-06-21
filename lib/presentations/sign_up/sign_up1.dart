@@ -17,6 +17,7 @@ import '../../presentations/resources/styles_manager.dart';
 import '../Main/home/home_screen.dart';
 import '../forget_password/forget_pass.dart';
 import '../login_screen/login_screen.dart';
+import '../reset_password/verification_otp.dart';
 import '../resources/route_manager.dart';
 import 'verified_email/email_verification.dart';
 
@@ -48,7 +49,14 @@ class _Register_formState extends State<Register_form> {
   PhoneNumber? phone;
   String fullPhone = '';
   String countryCode = '';
-
+  /*------------------------------------------------------------------------------*/
+  var sendCodeMutation=Mutation( options: MutationOptions(
+      document: gql(AppMutations.sendCode),
+  ),
+      builder: (RunMutation? runMutation, QueryResult? result) {
+        return Text("seccess");
+      });
+  /*--------------------------------*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -227,9 +235,15 @@ class _Register_formState extends State<Register_form> {
                                 ))
                             .toList(),
                         onChanged: (val) {
+                          if(val == 'ذكر'){
+                            val = 'MALE';
+                          }
+                          if(val =='أنثي'){
+                            val = 'FEMALE';
+                          }
                           setState(() {
                             selctedGender = selctedGender;
-                            gender = val.toString();
+                            gender =  val.toString();
                           });
                         },
                         value: selctedGender,
@@ -254,9 +268,6 @@ class _Register_formState extends State<Register_form> {
                           if (result!.isLoading) {
                             return Text(AppStrings.loading.tr());
                           }
-                          if (result.hasException) {
-                            print(result);
-                          }
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 15),
@@ -271,7 +282,8 @@ class _Register_formState extends State<Register_form> {
                                       'phone': fullPhone,
                                       'country': countryCode,
                                     }
-                                  });
+                                  },
+                                  );
                                 },
                                 text: AppStrings.containue.tr(),
                                 color: Color(0xff4b4eb0),

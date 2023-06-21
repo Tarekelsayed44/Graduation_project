@@ -5,8 +5,6 @@ import 'package:pick_park/shared/styles/colors.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../resources/string_manager.dart';
 import '../resources/styles_manager.dart';
-
-
 class booking_details extends StatefulWidget {
   const booking_details({Key? key}) : super(key: key);
 
