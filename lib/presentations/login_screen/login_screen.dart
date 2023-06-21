@@ -26,6 +26,7 @@ class _loginScreenState extends State<loginScreen> {
   bool checkBoxValue = false;
   String email = "";
   String password = "";
+  String token = "";
 
   @override
   Widget build(BuildContext context) {
@@ -159,16 +160,15 @@ class _loginScreenState extends State<loginScreen> {
                                         builder: (context) => MainView()));
                               }),
                           builder:
-                              (RunMutation? runMutation, QueryResult? result) {
+                              (RunMutation? runMutation, QueryResult? result)  {
                             if (result!.isLoading) {
                               return Text(AppStrings.loading.tr());
                             }
                             if (result.hasException) {
                               print(result.exception);
                             }
-                            else{
-                              final String token = result.data!['token'];
-                              print(token);
+                            if(result.isLoading == false && result.data != null ){
+                              print( result.data!['emailAndPasswordLogin']['data']['token']);
                             }
                             return defaultButton(
                               function: () {
@@ -238,5 +238,5 @@ class _loginScreenState extends State<loginScreen> {
             ),
           ),
         ));
-  }
+    }
 }

@@ -32,6 +32,7 @@ class _settingsState extends State<settings> {
               fontSize: 25,
             ),
           ),
+          automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: Colors.white,
           centerTitle: true,
