@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:pick_park/app/app_pref.dart';
 
 import '../../../app/Graphql/app_mutation.dart';
 import '../../../shared/components/component.dart';
@@ -24,6 +25,7 @@ class _EmailVerificationState extends State<EmailVerification> {
   var _code3 = TextEditingController();
   var _code4 = TextEditingController();
   var emailController = TextEditingController();
+  String token = "";
  late String code = _code1.text + _code2.text +_code3.text +_code4.text ;
   @override
   Widget build(BuildContext context) {
@@ -164,16 +166,18 @@ class _EmailVerificationState extends State<EmailVerification> {
                       print(result.exception);
                     }
                     if(result.isLoading == false && result.data != null ){
-                     final String token =  result.data!['verifyUserByEmail']['data']['token'];
+
                     }
                     return defaultButton(
-                        function: () {
+                        function: () async {
                           runMutation!({
                             "input": {
                               'code': code,
                               'email': (widget.data)
                             },
                           });
+                          token = result.data!['verifyUserByEmail']['data']['token'];
+                          await TokenCache().setToken(token);
                         },
                         text: AppStrings.containue.tr(),
                         isUpperCase: true,

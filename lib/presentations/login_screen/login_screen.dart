@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:pick_park/app/app_pref.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import '../../app/Graphql/app_mutation.dart';
-import '../../app/app_pref.dart';
 import '../../shared/components/component.dart';
 import '../Main/home/home_screen.dart';
 import '../Main/main_view.dart';
@@ -28,9 +28,9 @@ class _loginScreenState extends State<loginScreen> {
   String email = "";
   String password = "";
   String token = "";
+
   @override
   Widget build(BuildContext context) {
-    // final tokenCache = context.watch<TokenCache>();
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -54,189 +54,190 @@ class _loginScreenState extends State<loginScreen> {
         ),
         backgroundColor: Colors.white,
         body: Container(
-          margin: EdgeInsets.only(top: 50),
-          padding: EdgeInsetsDirectional.only(top: 40, start: 10, end: 10),
-          color: Colors.white,
-          child: SingleChildScrollView(
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  defaultFormField(
-                      controller: emailController,
-                      type: TextInputType.emailAddress,
-                      label: AppStrings.emailHint.tr(),
-                      prefix: Icons.email,
+            margin: EdgeInsets.only(top: 50),
+            padding: EdgeInsetsDirectional.only(top: 40, start: 10, end: 10),
+            color: Colors.white,
+            child: SingleChildScrollView(
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    defaultFormField(
+                        controller: emailController,
+                        type: TextInputType.emailAddress,
+                        label: AppStrings.emailHint.tr(),
+                        prefix: Icons.email,
+                        validate: (value) {
+                          if (value.isEmpty) {
+                            return AppStrings.invalidEmail.tr();
+                          }
+                          return null;
+                        }),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    defaultFormField(
+                      controller: passwordController,
                       validate: (value) {
                         if (value.isEmpty) {
-                          return AppStrings.invalidEmail.tr();
+                          return AppStrings.passwordError.tr();
                         }
                         return null;
-                      }),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  defaultFormField(
-                    controller: passwordController,
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return AppStrings.passwordError.tr();
-                      }
-                      return null;
-                    },
-                    onSubmit: () {
-                      if (formKey.currentState!.validate()) {
-                        return "invalid";
-                      }
-                    },
-                    type: TextInputType.visiblePassword,
-                    label: AppStrings.password.tr(),
-                    prefix: Icons.lock,
-                    suffix: isPassword == true
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                    suffixPressed: () {
-                      setState(() {
-                        isPassword == true
-                            ? Icons.visibility
-                            : Icons.visibility_off;
-                      });
-                    },
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ForgetPass()));
-                        },
-                        child: Text(
-                          AppStrings.forgetPassword.tr(),
-                          style: getRegularStyle(
-                              color: Color(0xff4b4eb0), fontSize: 13),
-                        ),
-                      ),
-                      Spacer(),
-                      Row(
-                        children: [
-                          Checkbox(
-                            value: checkBoxValue,
-                            onChanged: (newValue) {
-                              setState(() {
-                                checkBoxValue = newValue!;
-                              });
-                            },
-                            shape: CircleBorder(
-                                side: BorderSide(style: BorderStyle.solid)),
+                      },
+                      onSubmit: () {
+                        if (formKey.currentState!.validate()) {
+                          return "invalid";
+                        }
+                      },
+                      type: TextInputType.visiblePassword,
+                      label: AppStrings.password.tr(),
+                      prefix: Icons.lock,
+                      suffix: isPassword == true
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      suffixPressed: () {
+                        setState(() {
+                          isPassword == true
+                              ? Icons.visibility
+                              : Icons.visibility_off;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ForgetPass()));
+                          },
+                          child: Text(
+                            AppStrings.forgetPassword.tr(),
+                            style: getRegularStyle(
+                                color: Color(0xff4b4eb0), fontSize: 13),
                           ),
-                          Text(
-                            AppStrings.rememberMe.tr(),
-                            style:
-                            getBoldStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 60,
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Mutation(
-                          options: MutationOptions(
-                              document: gql(AppMutations.emailAndPasswordLogin),
-                              update: (GraphQLDataProxy cache, QueryResult) {
-                                return cache;
-                              },
-                              onCompleted: (dynamic resultData)  {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MainView()));
-                              }),
-                          builder:
-                              (RunMutation? runMutation, QueryResult? result)  {
-                            if (result!.isLoading) {
-                              return Text(AppStrings.loading.tr());
-                            }
-                            if (result.hasException) {
-                              print(result.exception);
-                            }
-                            return defaultButton(
-                              function: ()  async {
-                                if (formKey.currentState!.validate() == true) {
-                                  runMutation!({
-                                    "input": {
-                                      'email': emailController.text,
-                                      'password': passwordController.text,
-                                    }
-                                  });
-                                }
-                                token= result.data!['emailAndPasswordLogin']['data']['token'];
-                                await TokenCache().setToken(token);
-                              },
-                              text: AppStrings.login.tr().toUpperCase(),
-                              color: Color(0xff4b4eb0),
-                            );
-                          })),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                          child: Divider(
-                            thickness: 4,
-                            color: Color(0xffEEEFFF),
-                          )),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 7),
-                        child: Text(
-                          AppStrings.or.tr(),
-                          style: getRegularStyle(
-                              color: Color(0xff6F6F6F), fontSize: 20),
                         ),
-                      ),
-                      Expanded(
-                          child: Divider(
-                            thickness: 4,
-                            color: Color(0xffEEEFFF),
-                          ))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Image(
-                        image: AssetImage(ImageAssets.googleIcon),
-                        height: 29,
-                        width: 29,
-                      ),
-                      Image(
-                        image: AssetImage(ImageAssets.facebookIcon),
-                        height: 29,
-                        width: 29,
-                      ),
-                      Image(
-                        image: AssetImage(ImageAssets.appleIcon),
-                        height: 29,
-                        width: 29,
-                      ),
-                    ],
-                  )
-                ],
+                        Spacer(),
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: checkBoxValue,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  checkBoxValue = newValue!;
+                                });
+                              },
+                              shape: CircleBorder(
+                                  side: BorderSide(style: BorderStyle.solid)),
+                            ),
+                            Text(
+                              AppStrings.rememberMe.tr(),
+                              style:
+                              getBoldStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Mutation(
+                            options: MutationOptions(
+                                document: gql(AppMutations.emailAndPasswordLogin),
+                                update: (GraphQLDataProxy cache, QueryResult) {
+                                  return cache;
+                                },
+                                onCompleted: (dynamic resultData) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MainView()));
+                                }),
+                            builder:
+                                (RunMutation? runMutation, QueryResult? result)  {
+                              if (result!.isLoading) {
+                                return Text(AppStrings.loading.tr());
+                              }
+                              if (result.hasException) {
+                                print(result.exception);
+                              }
+                           //   if(result.isLoading == false && result.data != null ){}
+                              return defaultButton(
+                                function: ()async {
+                                  if (formKey.currentState!.validate() == true) {
+                                    runMutation!({
+                                      "input": {
+                                        'email': emailController.text,
+                                        'password': passwordController.text,
+                                      }
+                                    });
+                                    token = result.data!['emailAndPasswordLogin']['data']['token'];
+                                    await TokenCache().setToken(token);
+                                  }
+                                },
+                                text: AppStrings.login.tr().toUpperCase(),
+                                color: Color(0xff4b4eb0),
+                              );
+                            })),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                            child: Divider(
+                              thickness: 4,
+                              color: Color(0xffEEEFFF),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 7),
+                          child: Text(
+                            AppStrings.or.tr(),
+                            style: getRegularStyle(
+                                color: Color(0xff6F6F6F), fontSize: 20),
+                          ),
+                        ),
+                        Expanded(
+                            child: Divider(
+                              thickness: 4,
+                              color: Color(0xffEEEFFF),
+                            ))
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image(
+                          image: AssetImage(ImageAssets.googleIcon),
+                          height: 29,
+                          width: 29,
+                        ),
+                        Image(
+                          image: AssetImage(ImageAssets.facebookIcon),
+                          height: 29,
+                          width: 29,
+                        ),
+                        Image(
+                          image: AssetImage(ImageAssets.appleIcon),
+                          height: 29,
+                          width: 29,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
         ));
   }
 }

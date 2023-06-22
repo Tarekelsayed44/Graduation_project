@@ -51,7 +51,7 @@ class _VehicleScreenState extends State<VehicleScreen> {
                       );
                     }
 
-                    List vehicle = result.data!['MyVehicles'];
+                    List vehicle = result.data!['myVehicles']['data']['MyVehicles'];
 
                     return ListView.builder(
                       itemCount: vehicle.length,

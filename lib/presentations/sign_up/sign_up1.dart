@@ -251,10 +251,7 @@ class _Register_formState extends State<Register_form> {
                         options: MutationOptions(
                             document: gql(AppMutations.registerAsUser),
                             onCompleted: (dynamic resultData) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SendEmail()));
+                              _navigateToNextPage(context);
                             }),
                         builder:
                             (RunMutation? runMutation, QueryResult? result) {
@@ -265,18 +262,20 @@ class _Register_formState extends State<Register_form> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 15),
                             child: defaultButton(
-                                function: () {
-                                  runMutation!({
-                                    'input' : {
-                                      'name': nameController.text,
-                                      'email': emailController.text,
-                                      'gender': gender,
-                                      'password': passwordController.text,
-                                      'phone': fullPhone,
-                                      'country': countryCode,
-                                    }
-                                  },
+                                function: ()  {
+                                  runMutation!(
+                                    {
+                                      'input': {
+                                        'name': nameController.text,
+                                        'email': emailController.text,
+                                        'gender': gender,
+                                        'password': passwordController.text,
+                                        'phone': fullPhone,
+                                        'country': countryCode,
+                                      }
+                                    },
                                   );
+
                                 },
                                 text: AppStrings.containue.tr(),
                                 color: Color(0xff4b4eb0),
@@ -340,5 +339,13 @@ class _Register_formState extends State<Register_form> {
     setState(() {
       _imageFile = pickedFile!;
     });
+  }
+  void _navigateToNextPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>EmailVerification (data: emailController.text),
+      ),
+    );
   }
 }

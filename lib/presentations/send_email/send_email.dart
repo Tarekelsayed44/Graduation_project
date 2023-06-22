@@ -119,7 +119,9 @@ import '../resources/styles_manager.dart';
 import '../sign_up/verified_email/email_verification.dart';
 
 class SendEmail extends StatefulWidget {
-  const SendEmail({Key? key}) : super(key: key);
+  late final String data;
+
+  SendEmail({required this.data});
 
   @override
   State<SendEmail> createState() => _SendEmailState();
@@ -154,25 +156,35 @@ class _SendEmailState extends State<SendEmail> {
       ),
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
         child: Form(
           key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Text(
+                AppStrings.codeSent.tr(),
+                style: getRegularStyle(color: Colors.black, fontSize: 18),
+              ),
+              Text(
+                widget.data,
+                style: getSemiBoldStyle(color: Colors.black, fontSize: 19),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: defaultFormField(
-                    controller: emailController,
-                    type: TextInputType.emailAddress,
-                    label: AppStrings.emailHint.tr(),
-                    prefix: Icons.email,
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return AppStrings.invalidEmail.tr();
-                      }
-                      return null;
-                    }),
+                padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
+                child: defaultButton(
+                  function: () {
+                    Navigator.pop(context);
+                  },
+                  text: widget.data,
+                  height: 58,
+                  fontWeight: FontWeight.w400,
+                  textColor: Color(0xff8993fa),
+                  color: Color(0xffedefff),
+                ),
               ),
               Spacer(),
               Mutation(
@@ -180,8 +192,7 @@ class _SendEmailState extends State<SendEmail> {
                       document: gql(AppMutations.sendCode),
                       onCompleted: (dynamic resultData) {
                         _navigateToNextPage(context);
-                      }
-                      ),
+                      }),
                   builder: (RunMutation? runMutation, QueryResult? result) {
                     if (result!.isLoading) {
                       return Text(AppStrings.loading.tr());
@@ -213,13 +224,13 @@ class _SendEmailState extends State<SendEmail> {
       ),
     );
   }
+
   void _navigateToNextPage(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>EmailVerification (data: emailController.text),
+        builder: (context) => EmailVerification(data: emailController.text),
       ),
     );
   }
-
 }
