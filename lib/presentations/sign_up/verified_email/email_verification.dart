@@ -25,7 +25,6 @@ class _EmailVerificationState extends State<EmailVerification> {
   var _code4 = TextEditingController();
   var emailController = TextEditingController();
  late String code = _code1.text + _code2.text +_code3.text +_code4.text ;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

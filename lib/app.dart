@@ -46,6 +46,7 @@ class _MyAppState extends State<MyApp> {
       'Authorization': 'Bearer $token'
     },
     );
+
     ValueNotifier<GraphQLClient> gclient = ValueNotifier(
       GraphQLClient(
         link: httpLink,

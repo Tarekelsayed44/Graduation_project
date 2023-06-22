@@ -50,13 +50,6 @@ class _Register_formState extends State<Register_form> {
   String fullPhone = '';
   String countryCode = '';
   /*------------------------------------------------------------------------------*/
-  var sendCodeMutation=Mutation( options: MutationOptions(
-      document: gql(AppMutations.sendCode),
-  ),
-      builder: (RunMutation? runMutation, QueryResult? result) {
-        return Text("seccess");
-      });
-  /*--------------------------------*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(

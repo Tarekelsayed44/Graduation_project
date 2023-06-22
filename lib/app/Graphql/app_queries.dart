@@ -1,5 +1,5 @@
 class AppQueries {
-static const vehicleQuery = r''' query MyVehicles {
+static const vehicleQuery = r''' query Query {
 myVehicles {
 success
 code
@@ -37,20 +37,6 @@ updatedAt
 }
 }
 }
-''';
-static const userQuery = r''' query {
-  user (userId: $id) {
-    data {
-      id
-      name
-      verifiedEmail
-    }
-    code
-    message
-  }
-}
-
-
 ''';
 static const myTag = r'''query MyTags {
     myTags {

@@ -41,7 +41,7 @@ class _settingsState extends State<settings> {
       ),
       backgroundColor: Colors.white,
       body:  Query(
-        options: QueryOptions(document: gql(AppQueries.userQuery),
+        options: QueryOptions(document: gql(AppQueries.me),
           // variables: {
           //  // 'token': token,
           // }
@@ -58,7 +58,7 @@ class _settingsState extends State<settings> {
           child: CircularProgressIndicator(),
         );
       }
-      List? user = result.data?['name']?['verifiedEmail'];
+      List? user = result.data?['me']['name']?['me']['verifiedEmail'];
       return ListView(
         padding: EdgeInsets.all(22),
         children: [
@@ -68,12 +68,12 @@ class _settingsState extends State<settings> {
           ),
 
           Text(
-            result.data?['name'],
+            result.data!['me']['data']['name'],
             style: getRegularStyle(color: Colors.black, fontSize: 32),
             textAlign: TextAlign.center,
           ),
           Text(
-            result.data?['verifiedEmail'],
+            result.data?['me']['data']['verifiedEmail'],
             style: getRegularStyle(color: Colors.black, fontSize: 13),
             textAlign: TextAlign.center,
           ),
