@@ -52,6 +52,7 @@ dependencies:
   country_list_pick: ^1.0.1+6
   provider: ^6.0.5
   firebase_messaging: ^14.6.3
+  sqflite: ^2.2.2
 
 
 dev_dependencies:

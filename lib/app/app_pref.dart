@@ -91,10 +91,11 @@ class TokenCache with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> loadToken() async {
+  Future<String> loadToken() async {
     final prefs = await SharedPreferences.getInstance();
     _token = prefs.getString('token');
     notifyListeners();
+    return _token!;
   }
 
   Future<void> clearToken() async {

@@ -5,6 +5,8 @@ import 'package:pick_park/app/Graphql/app_queries.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
 
+import '../../../app/app_pref.dart';
+
 class Tags extends StatefulWidget {
   const Tags({Key? key}) : super(key: key);
 
@@ -15,6 +17,7 @@ class Tags extends StatefulWidget {
 class _TagsState extends State<Tags> {
   @override
   Widget build(BuildContext context) {
+    final token = TokenCache().token;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
@@ -35,6 +38,9 @@ class _TagsState extends State<Tags> {
         options: QueryOptions(
           document: gql(AppQueries.myTag),
           pollInterval: const Duration(seconds: 10),
+            variables: {
+              'token': token,
+            }
         ),
         builder: (QueryResult result, { VoidCallback? refetch, FetchMore? fetchMore }) {
           if (result.hasException) {

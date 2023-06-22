@@ -168,9 +168,11 @@ class _loginScreenState extends State<loginScreen> {
                               if (result.hasException) {
                                 print(result.exception);
                               }
-                           //   if(result.isLoading == false && result.data != null ){}
+                              if(result.isLoading == false && result.data != null ){
+                                print(result.data!['emailAndPasswordLogin']['data']['token']);
+                              }
                               return defaultButton(
-                                function: ()async {
+                                function: () async {
                                   if (formKey.currentState!.validate() == true) {
                                     runMutation!({
                                       "input": {
@@ -179,7 +181,10 @@ class _loginScreenState extends State<loginScreen> {
                                       }
                                     });
                                     token = result.data!['emailAndPasswordLogin']['data']['token'];
+                                    // print(token);
                                     await TokenCache().setToken(token);
+                                     final t = await TokenCache().token;
+                                     print(t);
                                   }
                                 },
                                 text: AppStrings.login.tr().toUpperCase(),

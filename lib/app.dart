@@ -41,9 +41,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final token = TokenCache().token;
-    final HttpLink httpLink = HttpLink('https://pickpark-api.onrender.com/graphql',
+    final HttpLink httpLink = HttpLink(
+        //'https://06ac-41-37-115-76.ngrok-free.app/graphql',
+      'https://pickpark-api.onrender.com/graphql',
    defaultHeaders:  {
-      'Authorization': 'Bearer $token'
+      'Authorization': (token) != null? 'Bearer $token': ''
     },
     );
 

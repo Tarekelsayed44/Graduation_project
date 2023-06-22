@@ -21,11 +21,11 @@ class settings extends StatefulWidget {
 }
 
 class _settingsState extends State<settings> {
-  // final AppPreferences _appPreferences = instance<AppPreferences>();
+   //final AppPreferences _appPreferences = instance<AppPreferences>();
 
   @override
   Widget build(BuildContext context) {
-    // final token = context.watch<TokenCache>().token;
+     final token = TokenCache().token;
      return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -42,9 +42,9 @@ class _settingsState extends State<settings> {
       backgroundColor: Colors.white,
       body:  Query(
         options: QueryOptions(document: gql(AppQueries.me),
-          // variables: {
-          //  // 'token': token,
-          // }
+          variables: {
+            'token': token,
+          }
     ),
     builder: (QueryResult? result,
     {VoidCallback? refetch, FetchMore? fetchMore}) {
