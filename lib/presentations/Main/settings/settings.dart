@@ -25,7 +25,8 @@ class _settingsState extends State<settings> {
 
   @override
   Widget build(BuildContext context) {
-     final token = TokenCache().token;
+    TokenCache tokenCache = TokenCache();
+    final token = tokenCache.token;
      return Scaffold(
       appBar: AppBar(
         title: Text(

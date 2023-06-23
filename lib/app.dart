@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:pick_park/presentations/Main/tags/tags.dart';
 import 'package:pick_park/presentations/Main/the%20vehicle/create_vehicle.dart';
 import 'package:pick_park/presentations/forget_password/forget_pass.dart';
@@ -11,6 +12,7 @@ import 'package:pick_park/presentations/splash/splash1.dart';
 import 'package:pick_park/shared/components/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app/app_pref.dart';
+import 'app/store/store.dart';
 import 'presentations/Main/main_view.dart';
 import 'presentations/Main/settings/settings.dart';
 import 'presentations/Main/the vehicle/vehicle_screen.dart';
@@ -40,18 +42,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final token = TokenCache().token;
-    final HttpLink httpLink = HttpLink(
-        //'https://06ac-41-37-115-76.ngrok-free.app/graphql',
-      'https://pickpark-api.onrender.com/graphql',
-   defaultHeaders:  {
-      'Authorization': (token) != null? 'Bearer $token': ''
-    },
-    );
+        TokenCache tokenCache = TokenCache();
+        final token =  tokenCache.token;
+        final HttpLink httpLink = HttpLink('https://pickpark-api.onrender.com/graphql');
+        final AuthLink authLink = AuthLink(getToken: () async => 'Bearer '+token!);
+        final Link link = authLink.concat(httpLink);
 
     ValueNotifier<GraphQLClient> gclient = ValueNotifier(
       GraphQLClient(
-        link: httpLink,
+        link: link,
         cache: GraphQLCache(store: HiveStore()),
       ),
     );

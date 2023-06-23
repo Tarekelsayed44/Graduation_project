@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:pick_park/app/app_pref.dart';
+import 'package:pick_park/app/store/store.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import '../../app/Graphql/app_mutation.dart';
 import '../../shared/components/component.dart';
@@ -28,7 +29,7 @@ class _loginScreenState extends State<loginScreen> {
   String email = "";
   String password = "";
   String token = "";
-
+  TokenCache tokenCache = TokenCache();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,7 +152,7 @@ class _loginScreenState extends State<loginScreen> {
                         child: Mutation(
                             options: MutationOptions(
                                 document: gql(AppMutations.emailAndPasswordLogin),
-                                update: (GraphQLDataProxy cache, QueryResult) {
+                                update: (GraphQLDataProxy cache, QueryResult ) {
                                   return cache;
                                 },
                                 onCompleted: (dynamic resultData) {
@@ -169,7 +170,10 @@ class _loginScreenState extends State<loginScreen> {
                                 print(result.exception);
                               }
                               if(result.isLoading == false && result.data != null ){
-                                print(result.data!['emailAndPasswordLogin']['data']['token']);
+                                token = result.data!['emailAndPasswordLogin']['data']['token'];
+                                 tokenCache.setToken(token);
+                                final t =  tokenCache.token;
+                                print(t);
                               }
                               return defaultButton(
                                 function: () async {
@@ -180,11 +184,8 @@ class _loginScreenState extends State<loginScreen> {
                                         'password': passwordController.text,
                                       }
                                     });
-                                    token = result.data!['emailAndPasswordLogin']['data']['token'];
-                                    // print(token);
-                                    await TokenCache().setToken(token);
-                                     final t = await TokenCache().token;
-                                     print(t);
+                                    //token = result.data!['emailAndPasswordLogin']['data']['token'];
+                                    await tokenCache.setToken(token);
                                   }
                                 },
                                 text: AppStrings.login.tr().toUpperCase(),

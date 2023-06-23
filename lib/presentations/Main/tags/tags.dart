@@ -17,7 +17,9 @@ class Tags extends StatefulWidget {
 class _TagsState extends State<Tags> {
   @override
   Widget build(BuildContext context) {
-    final token = TokenCache().token;
+    TokenCache tokenCache = TokenCache();
+    tokenCache.token;
+    final token =  tokenCache.token;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
@@ -38,9 +40,9 @@ class _TagsState extends State<Tags> {
         options: QueryOptions(
           document: gql(AppQueries.myTag),
           pollInterval: const Duration(seconds: 10),
-            variables: {
-              'token': token,
-            }
+            // variables: {
+            //   'token': token,
+            // }
         ),
         builder: (QueryResult result, { VoidCallback? refetch, FetchMore? fetchMore }) {
           if (result.hasException) {
