@@ -16,6 +16,7 @@ import 'app/store/store.dart';
 import 'presentations/Main/main_view.dart';
 import 'presentations/Main/settings/settings.dart';
 import 'presentations/Main/the vehicle/vehicle_screen.dart';
+import 'presentations/Reservation/time_screen.dart';
 import 'presentations/Search/search.dart';
 import 'presentations/booking_details/booking_details.dart';
 import 'presentations/login_screen/login_screen.dart';
@@ -33,44 +34,50 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Future<void> initAppServices() async {
+    TokenCache tokenCache = TokenCache();
+    await tokenCache.loadToken();
+    await tokenCache.token;
+  }
 
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
   }
-
   @override
   Widget build(BuildContext context) {
-        TokenCache tokenCache = TokenCache();
-        final token =  tokenCache.token;
-        final HttpLink httpLink = HttpLink('https://pickpark-api.onrender.com/graphql');
-        final AuthLink authLink = AuthLink(getToken: () async => 'Bearer '+token!);
-        final Link link = authLink.concat(httpLink);
+     initAppServices();
+     TokenCache tokenCache = TokenCache();
+     final token =  tokenCache.token;
+        final Link httpLink = HttpLink(
+          'https://pickpark-api.onrender.com/graphql',
+          defaultHeaders:  {
+            'Authorization': (token) != null? 'Bearer $token': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5ZjQzNDFlZi01NjBmLTRkY2YtYmZlNC00NWQ0ZDYwYmI0NjMiLCJpYXQiOjE2ODc2NDgxNDJ9.cLXAGVligZDhfScgsCOF6NM3xo-FYX1xnGEp-RTt5WE'
+          },
+        ).concat(AuthLink(getToken: () async => 'Bearer $token'));
+          //print(token);
+        ValueNotifier<GraphQLClient> gclient = ValueNotifier(
+          GraphQLClient(
+            link: httpLink,
+            cache: GraphQLCache(store: HiveStore()),
+          ),
+        );
 
-    ValueNotifier<GraphQLClient> gclient = ValueNotifier(
-      GraphQLClient(
-        link: link,
-        cache: GraphQLCache(store: HiveStore()),
-      ),
-    );
-    Future<void> initAppServices() async {
-      await TokenCache().loadToken();
-    }
-    return GraphQLProvider(
-        client: gclient,
-     child: MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      debugShowCheckedModeBanner: false,
-      //onGenerateRoute: RouteGenerator.getRoute,
-     // initialRoute: Routes.loginRoute,
-        home:Splash1(),
-    // home:token != null ? const HomeScreen() : loginScreen(),
-      theme: ThemeData(),
-     )
-      );
+        return GraphQLProvider(
+            client: gclient,
+            child: MaterialApp(
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              debugShowCheckedModeBanner: false,
+              //onGenerateRoute: RouteGenerator.getRoute,
+              // initialRoute: Routes.loginRoute,
+              home:loginScreen(),
+              // home:token != null ? const HomeScreen() : loginScreen(),
+              theme: ThemeData(),
+            )
+        );
 
   }
 }

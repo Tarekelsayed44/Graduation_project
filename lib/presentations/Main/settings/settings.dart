@@ -59,6 +59,9 @@ class _settingsState extends State<settings> {
           child: CircularProgressIndicator(),
         );
       }
+      if(result.hasException){
+        print(result.exception);
+      }
       List? user = result.data?['me']['name']?['me']['verifiedEmail'];
       return ListView(
         padding: EdgeInsets.all(22),

@@ -50,8 +50,11 @@ class _VehicleScreenState extends State<VehicleScreen> {
                         child: CircularProgressIndicator(),
                       );
                     }
+                    if(result.hasException){
+                      Text('$result.exception');
+                    }
 
-                    List vehicle = result.data!['myVehicles']['data']['MyVehicles'];
+                    List vehicle = result.data!['myVehicles']['data'];
 
                     return ListView.builder(
                       itemCount: vehicle.length,
@@ -72,7 +75,7 @@ class _VehicleScreenState extends State<VehicleScreen> {
                                 children: [
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                     children: [
                                       Chip(
                                         avatar: Icon(Icons.timer),
@@ -134,7 +137,7 @@ class _VehicleScreenState extends State<VehicleScreen> {
               Spacer(),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: defaultButton(
                     function: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>CreatevehiclePage()));
@@ -147,14 +150,14 @@ class _VehicleScreenState extends State<VehicleScreen> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 child: defaultButton(
-                    function: () {
-                    },
-                    text: AppStrings.containue.tr(),
-                    color: Color(0xff4B4EB0),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                  function: () {
+                  },
+                  text: AppStrings.containue.tr(),
+                  color: Color(0xff4B4EB0),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
               ),
             ],

@@ -1,5 +1,5 @@
 class AppQueries {
-static const vehicleQuery = r''' query Query {
+static const vehicleQuery = r''' query MyVehicles {
 myVehicles {
 success
 code
@@ -82,7 +82,7 @@ query Me {
 }
 ''';
 static const searchquery= r'''
-query Query($filter: ParkingSpacesFilter, $paginate: PaginateInput) {
+query ParkingSpaces($filter: ParkingSpacesFilter, $paginate: PaginateInput) {
   parkingSpaces(filter: $filter, paginate: $paginate) {
     code
     data {

@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pick_park/presentations/Search/search.dart';
 import 'package:pick_park/presentations/resources/styles_manager.dart';
 import 'package:pick_park/shared/components/component.dart';
 
@@ -84,7 +85,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           CircleAvatar(
                             child: IconButton(
                               onPressed: () {
-
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MyHomePage()));
                               },
                               icon: Icon(
                                 Icons.search,
