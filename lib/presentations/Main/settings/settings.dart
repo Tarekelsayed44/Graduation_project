@@ -21,137 +21,136 @@ class settings extends StatefulWidget {
 }
 
 class _settingsState extends State<settings> {
-   //final AppPreferences _appPreferences = instance<AppPreferences>();
+  //final AppPreferences _appPreferences = instance<AppPreferences>();
 
   @override
   Widget build(BuildContext context) {
     TokenCache tokenCache = TokenCache();
     final token = tokenCache.token;
-     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppStrings.account.tr(),
-          style: getBoldStyle(
-            color: Colors.black,
-            fontSize: 25,
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            AppStrings.account.tr(),
+            style: getBoldStyle(
+              color: Colors.black,
+              fontSize: 25,
+            ),
           ),
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
         ),
-        elevation: 0,
         backgroundColor: Colors.white,
-        centerTitle: true,
-      ),
-      backgroundColor: Colors.white,
-      body:  Query(
-        options: QueryOptions(document: gql(AppQueries.me),
-          variables: {
-            'token': token,
-          }
-    ),
-    builder: (QueryResult? result,
-    {VoidCallback? refetch, FetchMore? fetchMore}) {
-      if (result!.data == null) {
-        return Center(
-          child: Text("Data not found"),
-        );
-      }
-      if (result!.isLoading) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-      if(result.hasException){
-        print(result.exception);
-      }
-      List? user = result.data?['me']['name']?['me']['verifiedEmail'];
-      return ListView(
-        padding: EdgeInsets.all(22),
-        children: [
-          CircleAvatar(
-            radius: 70,
-            child: Image.asset(ImageAssets.profile),
-          ),
+        body: Query(
+            options: QueryOptions(document: gql(AppQueries.me), variables: {
+              'token': token,
+            }),
+            builder: (QueryResult? result,
+                {VoidCallback? refetch, FetchMore? fetchMore}) {
+              if (result!.data == null) {
+                return Center(
+                  child: Text("Data not found"),
+                );
+              }
+              if (result.isLoading) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (result.hasException) {
+                print(result.exception);
+              }
+              List? user = result.data?['me']['name']?['me']['verifiedEmail'];
+              return ListView(
+                padding: EdgeInsets.all(22),
+                children: [
+                  CircleAvatar(
+                    radius: 70,
+                    child: Image.asset(ImageAssets.me),
+                    backgroundColor: Colors.white,
 
-          Text(
-            result.data!['me']['data']['name'],
-            style: getRegularStyle(color: Colors.black, fontSize: 32),
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            result.data?['me']['data']['verifiedEmail'],
-            style: getRegularStyle(color: Colors.black, fontSize: 13),
-            textAlign: TextAlign.center,
-          ),
-          Divider(
-            thickness: 1,
-            height: 1,
-            color: Colors.grey,
-          ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text(
-              AppStrings.changeAccount.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.credit_card),
-            title: Text(
-              AppStrings.paymentMethods.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text(
-              AppStrings.notifications.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.lock),
-            title: Text(
-              AppStrings.privacy.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.error),
-            title: Text(
-              AppStrings.contactUs.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.visibility),
-            title: Text(
-              AppStrings.darkAppearance.tr(),
-              style: getRegularStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          // ListTile(
-          //   leading: Icon(Icons.language),
-          //   title: Text(AppStrings.changeLanguage.tr()),
-          //   trailing: Transform(
-          //     alignment: Alignment.center,
-          //     transform: Matrix4.rotationY( isRtl() ? math.pi : 0),
-          //   ),
-          //   onTap: () {
-          //     _changelanguage();
-          //   },
-          // ),
-          ListTile(
-            leading: Icon(
-              Icons.logout,
-              color: Colors.red,
-            ),
-            title: Text(
-              AppStrings.logout.tr(),
-              style: getRegularStyle(color: Colors.red, fontSize: 20),
-            ),
-          )
-        ],
-      );
-    }));
+                  ),
+                  Text(
+                    result.data!['me']['data']['name'],
+                    style: getRegularStyle(color: Colors.black, fontSize: 32),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    result.data?['me']['data']['verifiedEmail'],
+                    style: getRegularStyle(color: Colors.black, fontSize: 13),
+                    textAlign: TextAlign.center,
+                  ),
+                  Divider(
+                    thickness: 1,
+                    height: 1,
+                    color: Colors.grey,
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.person),
+                    title: Text(
+                      AppStrings.changeAccount.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.credit_card),
+                    title: Text(
+                      AppStrings.paymentMethods.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.notifications),
+                    title: Text(
+                      AppStrings.notifications.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.lock),
+                    title: Text(
+                      AppStrings.privacy.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.error),
+                    title: Text(
+                      AppStrings.contactUs.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.visibility),
+                    title: Text(
+                      AppStrings.darkAppearance.tr(),
+                      style: getRegularStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ),
+                  // ListTile(
+                  //   leading: Icon(Icons.language),
+                  //   title: Text(AppStrings.changeLanguage.tr()),
+                  //   trailing: Transform(
+                  //     alignment: Alignment.center,
+                  //     transform: Matrix4.rotationY( isRtl() ? math.pi : 0),
+                  //   ),
+                  //   onTap: () {
+                  //     _changelanguage();
+                  //   },
+                  // ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.logout,
+                      color: Colors.red,
+                    ),
+                    title: Text(
+                      AppStrings.logout.tr(),
+                      style: getRegularStyle(color: Colors.red, fontSize: 20),
+                    ),
+                  )
+                ],
+              );
+            }));
   }
 
 // _changelanguage() {

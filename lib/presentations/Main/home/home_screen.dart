@@ -8,45 +8,53 @@ import 'package:pick_park/presentations/resources/styles_manager.dart';
 import 'package:pick_park/shared/components/component.dart';
 
 import '../../resources/string_manager.dart';
-// ignore: const_initialized_with_non_constant_value
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
 class _HomeScreenState extends State<HomeScreen> {
   var lat;
   var long;
   late CameraPosition _kGooglePlex;
-
   Completer<GoogleMapController> _controller = Completer();
-
-  List<Marker> _marker = [];
-  List<Marker> list = [
-    Marker(
-      markerId: MarkerId('1'),
-      position: LatLng(37.42796133580664, -122.085749655962),
-      infoWindow: InfoWindow(),
-      icon: BitmapDescriptor.defaultMarker,
-      // icon: BitmapDescriptor.fromAssetImage(configuration, assetName),
-    )
-  ];
-
   @override
   void initState() {
     super.initState();
     getService();
     getLatLng();
 
-    _marker.addAll(list);
   }
-
   @override
   Widget build(BuildContext context) {
-    int selectedIndex = 0;
+    List<Marker> _marker = [];
+    List<Marker> list = [
+      Marker(
+        markerId: MarkerId('1'),
+        position: LatLng(31.046444, 31.361372),
+        infoWindow: InfoWindow(),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),onTap: (){
+        showProfileSheet(context: context);
+      },
+      ),
+      Marker(
+        markerId: MarkerId('2'),
+        position: LatLng(31.046577, 31.369340),
+        infoWindow: InfoWindow(),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),onTap: (){
+        showProfileSheet(context: context);
+      },
+      ),
+      Marker(
+        markerId: MarkerId('3'),
+        position: LatLng(31.037384, 31.361147),
+        infoWindow: InfoWindow(),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),onTap: (){
+        showProfileSheet(context: context);
+      },
+      ),
+    ];
+    _marker.addAll(list);
     return Scaffold(
       body: SafeArea(
         child: Expanded(
@@ -108,7 +116,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.location_disabled_outlined),
-
         onPressed: () async {
           GoogleMapController controller = await _controller.future;
           controller.animateCamera(CameraUpdate.newCameraPosition(
@@ -117,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {});
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
@@ -158,58 +165,4 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {});
   }
 }
-class ParkingSpaces extends SearchDelegate{
 
-  List names= [
-    "Mohamed",
-    "Mona",
-    "Magda",
-    "Ashraf",
-    "Elsayed",
-    "Hossam",
-    "Wael"
-  ];
-
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(onPressed: (){
-        query="";
-      }, icon: Icon(Icons.close))
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(onPressed: (){
-      close(context, null);
-    }, icon: Icon(Icons.arrow_back)) ;
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return Text('$query');
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List filterNames = names.where((element) => element.startsWith(query)).toList();
-    // كدا هيجيبلك الكلمات اللي بتبدي بالحرف اللي كتبته لكن لوعاوز تجيب اي كلمه يكون فيها الحرف اللي كتبته يكون كالتالي :
-    //  List filterNames = names.where((element) => element.contains(query)).toList();
-    return ListView.builder(
-        itemCount: query==""? names.length : filterNames.length,
-        itemBuilder: (context,i){
-          return InkWell(
-            onTap: (){
-              query = query==""? names[i] : filterNames[i];
-              showResults(context);
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: query==""? Text('${names[i]}',style: TextStyle(fontSize: 15),): Text('${filterNames[i]}',style: TextStyle(fontSize: 15),),
-            ),
-          );
-        });
-  }
-
-}

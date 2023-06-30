@@ -18,7 +18,7 @@ class _IntroScreenState extends State<IntroScreen> {
   void initState() {
     super.initState();
     Future.delayed(
-        Duration(seconds: 2),
+        Duration(seconds: 3),
             () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => OnBoording())));
   }
@@ -41,7 +41,7 @@ class _IntroScreenState extends State<IntroScreen> {
               children: [
                 Text(
                   AppStrings.splashText1.tr(),
-                  style: getBoldStyle(color: Color(0xff020202),fontSize: 40),textAlign:TextAlign.start,
+                  style: getBoldStyle(color: Colors.white,fontSize: 40),textAlign:TextAlign.start,
 
                 ),
                 SizedBox(
@@ -49,14 +49,14 @@ class _IntroScreenState extends State<IntroScreen> {
                 ),
                 Text(
                   AppStrings.splashText2,
-                  style:getBoldStyle(color: Color(0xff020202),fontSize: 50),textAlign: TextAlign.end,
+                  style:getBoldStyle(color: Colors.white,fontSize: 50),textAlign: TextAlign.end,
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Text(
                   AppStrings.splashText3.tr(),
-                  style:getBoldStyle(color: Color(0xffF8F8F8),fontSize: 22),textAlign: TextAlign.center,
+                  style:getBoldStyle(color: Colors.white,fontSize: 22),textAlign: TextAlign.center,
                 ),
                 SizedBox(
                   height: 30,

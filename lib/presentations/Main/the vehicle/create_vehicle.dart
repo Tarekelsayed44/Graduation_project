@@ -5,6 +5,7 @@ import 'package:pick_park/presentations/Main/the%20vehicle/vehicle_screen.dart';
 import 'package:pick_park/shared/components/component.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 import '../../../app/Graphql/app_mutation.dart';
+import '../../booking_details/booking_details.dart';
 import '../../resources/string_manager.dart';
 import '../../resources/styles_manager.dart';
 
@@ -109,9 +110,9 @@ class _CreatevehiclePageState extends State<CreatevehiclePage> {
                       showEnglishName: false,
                       labelColor: Colors.blueAccent,
                     ),
-                    initialSelection: '+971',
+                   // initialSelection: '+20   ',
                     // or
-                    // initialSelection: 'US'
+                    initialSelection: 'Eg',
                     onChanged: (CountryCode? code) {
                       // print(code.name);
                       // print(code.code);
@@ -168,7 +169,7 @@ class _CreatevehiclePageState extends State<CreatevehiclePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => VehicleScreen()));
+                                builder: (context) => booking_details()));
                       }),
                   builder: (RunMutation? runMutation, QueryResult? result) {
                     if (result!.isLoading) {

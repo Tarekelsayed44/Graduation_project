@@ -43,26 +43,29 @@ class _TagsState extends State<Tags> {
             // variables: {
             //   'token': token,
             // }
-          ),
-          builder: (QueryResult result, { VoidCallback? refetch, FetchMore? fetchMore }) {
-            if (result.hasException) {
-              print(result.exception.toString());
-            }
-            if (result.isLoading) {
-              return const Text('Loading');
-            }
-            List? myTags = result.data?['id']?['tagUID']?['createdAt'];
-            if (myTags == null) {
-              return const Text('No repositories');
-            }
-            return ListView.builder(
+        ),
+        builder: (QueryResult result, { VoidCallback? refetch, FetchMore? fetchMore }) {
+          if (result.hasException) {
+             print(result.exception.toString());
+          }
+          if (result.isLoading) {
+            return const Text('Loading');
+          }
+          List? myTags = result.data?['id']?['tagUID']?['createdAt'];
+          if (myTags == null) {
+            return const Text('No repositories');
+          }
+          return Padding(
+            padding: const EdgeInsets.only(left: 10,right: 10,top: 15),
+            child: ListView.builder(
                 itemCount: myTags.length,
                 itemBuilder: (context, index) {
                   final repository = myTags[index];
                   return Text(repository['name']);
-                });
-          },
-        )
-    );
+                }),
+          );
+        },
+      )
+      );
   }
 }

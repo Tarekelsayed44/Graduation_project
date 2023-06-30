@@ -103,6 +103,15 @@ class AppStrings {
   static const String plateLetter = "plate_letter";
   static const String create = "create";
   static const String tags = "tags";
+  static const String address = "address";
+  static const String cancel = "cancel";
+  static const String parkingDetail = "parking_detail";
+  static const String detailText = "detail_text";
+  static const String toBooking = "booking";
+  static const String firstTime = "first_time";
+  static const String lastTime = "last_time";
+  static const String price = "price";
+  static const String ensurebook = "ensure_booking";
   // error handler
   static const String badRequestError = "bad_request_error";
 }

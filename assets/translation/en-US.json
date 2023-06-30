@@ -108,5 +108,14 @@
   "plate_number" : "Plate Digits",
   "plate_letter" : "Plate Letters",
   "create" : "Create",
-  "tags" : "Tags"
+  "tags" : "Tags",
+  "address" : "Searching for a parking for your car in ElHawar sports club",
+  "cancel" : "Cancel",
+  "parking_detail": "Parking Details",
+  "detail_text": "Parking space in El Hawar  sports club",
+  "booking": "Book a Parking",
+  "first_time":"Begin Time",
+  "last_time": "End Time",
+  "price": "Price",
+  "ensure_booking" : "Ensure Booking"
 }

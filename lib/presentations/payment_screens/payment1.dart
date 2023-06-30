@@ -177,7 +177,7 @@ class _Payment1State extends State<Payment1> {
                   padding: const EdgeInsets.symmetric(horizontal:5),
                   child: defaultButton(
                     function: () {
-                      //Navigator.push(context, MaterialPageRoute(builder:  (context) => AddPaymentCard()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AddPaymentCard()));
                     },
                     text: AppStrings.addCard.tr(),
                     color: Colors.white,

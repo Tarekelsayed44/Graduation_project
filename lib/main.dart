@@ -5,7 +5,6 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'app.dart';
 import 'app/app_pref.dart';
-import 'app/bloc_observer.dart';
 import 'presentations/resources/language_manager.dart';
 import 'shared/components/constants.dart';
 

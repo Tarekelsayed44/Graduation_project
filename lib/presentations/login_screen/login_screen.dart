@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:pick_park/app/app_pref.dart';
-import 'package:pick_park/app/store/store.dart';
 import 'package:pick_park/presentations/resources/string_manager.dart';
 import '../../app/Graphql/app_mutation.dart';
 import '../../shared/components/component.dart';
@@ -29,7 +28,8 @@ class _loginScreenState extends State<loginScreen> {
   String email = "";
   String password = "";
   String token = "";
-  TokenCache tokenCache = TokenCache();
+  TokenCache tokenCache =TokenCache();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,6 +92,7 @@ class _loginScreenState extends State<loginScreen> {
                       },
                       type: TextInputType.visiblePassword,
                       label: AppStrings.password.tr(),
+                      isPassword: true,
                       prefix: Icons.lock,
                       suffix: isPassword == true
                           ? Icons.visibility
@@ -152,7 +153,7 @@ class _loginScreenState extends State<loginScreen> {
                         child: Mutation(
                             options: MutationOptions(
                                 document: gql(AppMutations.emailAndPasswordLogin),
-                                update: (GraphQLDataProxy cache, QueryResult ) {
+                                update: (GraphQLDataProxy cache, QueryResult) {
                                   return cache;
                                 },
                                 onCompleted: (dynamic resultData) {
@@ -184,7 +185,6 @@ class _loginScreenState extends State<loginScreen> {
                                         'password': passwordController.text,
                                       }
                                     });
-                                    //token = result.data!['emailAndPasswordLogin']['data']['token'];
                                     await tokenCache.setToken(token);
                                   }
                                 },

@@ -15,6 +15,9 @@ class ImageAssets {
   static const String forgetPass = "$imagePath/forgetpass.png";
   static const String massage = "$imagePath/massagelogo.png";
   static const String email = "$imagePath/email.png";
+  static const String car = "$imagePath/car.png";
+  static const String carya = "$imagePath/caraya.png";
+  static const String me = "$imagePath/me.png";
 
 }
 
