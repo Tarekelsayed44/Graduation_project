@@ -11,7 +11,6 @@ import 'package:pick_park/presentations/send_email/send_email.dart';
 import 'package:pick_park/shared/components/component.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../app/Graphql/app_mutation.dart';
-import '../../models/user_model.dart';
 import '../../presentations/resources/string_manager.dart';
 import '../../presentations/resources/styles_manager.dart';
 import '../Main/home/home_screen.dart';

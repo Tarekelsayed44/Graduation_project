@@ -18,10 +18,7 @@ class VehicleScreen extends StatefulWidget {
 }
 
 class _VehicleScreenState extends State<VehicleScreen> {
-
-  bool checkBoxValue = false;
-  bool checkBoxValue1 = false;
-  bool checkBoxValue2 = false;
+  String selectedVehicle = '';
 
 
   @override
@@ -42,160 +39,82 @@ class _VehicleScreenState extends State<VehicleScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 75,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Color(0xffE6E6E6)),
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Row(
-                    children: [
-                      Checkbox(
-                        checkColor: Color(0xff4B4EB0),
-                        value: checkBoxValue,
-                        onChanged: (newValue) {
-                          setState(() {
-                            checkBoxValue = newValue!;
-                          });
-                        },
-                        shape: CircleBorder(
-                            side: BorderSide(style: BorderStyle.solid)),
-                      ),
-                      Spacer(),
-                      Column(
-                        children: [
-                          Text('Toyota Corolla',style: getRegularStyle(color: Color(0xff4B4EB0),fontSize: 18),),
-                          Text('HG 4676 FH',style: getRegularStyle(color: Colors.black,fontSize: 12),)
-                        ],
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Image.asset(ImageAssets.carya),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                width: double.infinity,
-                height: 75,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Color(0xffE6E6E6)),
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Row(
-                    children: [
-                      Checkbox(
-                        checkColor: Color(0xff4B4EB0),
-                        value: checkBoxValue1,
-                        onChanged: (newValue) {
-                          setState(() {
-                            checkBoxValue = newValue!;
-                          });
-                        },
-                        shape: CircleBorder(
-                            side: BorderSide(style: BorderStyle.solid)),
-                      ),
-                      Spacer(),
-                      Column(
-                        children: [
-                          Text('Ford Series',style: getRegularStyle(color: Color(0xff4B4EB0),fontSize: 18),),
-                          Text('AF 4793 JU',style: getRegularStyle(color: Colors.black,fontSize: 12),)
-                        ],
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Image.asset(ImageAssets.carya),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                width: double.infinity,
-                height: 75,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Color(0xffE6E6E6)),
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Row(
-                    children: [
-                      Checkbox(
-                        checkColor: Color(0xff4B4EB0),
-                        value: checkBoxValue2,
-                        onChanged: (newValue) {
-                          setState(() {
-                            checkBoxValue = newValue!;
-                          });
-                        },
-                        shape: CircleBorder(
-                            side: BorderSide(style: BorderStyle.solid)),
-                      ),
-                      Spacer(),
-                      Column(
-                        children: [
-                          Text('Honda Civic',style: getRegularStyle(color: Color(0xff4B4EB0),fontSize: 18),),
-                          Text('HU 3691 KO',style: getRegularStyle(color: Colors.black,fontSize: 12),)
-                        ],
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                     Image(image: AssetImage(ImageAssets.carya),)
-                    ],
-                  ),
-                ),
-              ),
-              Spacer(),
-              Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: defaultButton(
-                    function: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CreatevehiclePage()));
-                    },
-                    text: AppStrings.createVehicle.tr(),
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    textColor: Color(0xff4B4EB0)),
-              ),
-              Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                child: defaultButton(
-                  function: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>AddPaymentCard()));
-                  },
-                  text: AppStrings.containue.tr(),
-                  color: Color(0xff4B4EB0),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+    child: Query(
+    options: QueryOptions(
+    document: gql(AppQueries.vehicleQuery),
+    ),
+    builder: (QueryResult result, {VoidCallback? refetch, FetchMore? fetchMore}) {
+    if (result.hasException) {
+    return Text('Error loading data');
+    }
 
-                ),
-              ),
-            ],
-          ),
-        ),
+    if (result.isLoading) {
+    return CircularProgressIndicator();
+    }
+
+    final List<dynamic> vehicles = result.data?['myVehicles']['data'] ?? [];
+
+    return ListView.builder(
+    itemCount: vehicles.length,
+    itemBuilder: (BuildContext context, int index) {
+      final vehicle = vehicles[index];
+      final vehicleName = vehicle['description'];
+
+    return Container(
+    width: double.infinity,
+    height: 75,
+    decoration: BoxDecoration(
+    border: Border.all(width: 2, color: Color(0xffE6E6E6)),
+    borderRadius: BorderRadius.circular(30),
+    color: Colors.white,
+    ),
+    child: Padding(
+    padding: const EdgeInsets.all(5),
+    child: Row(
+    children: [
+      Radio(
+        value: vehicleName,
+        groupValue: selectedVehicle,
+        onChanged: (value) {
+          setState(() {
+            selectedVehicle = value.toString();
+          });
+        },
+        activeColor: Color(0xff4B4EB0),
       ),
+    Spacer(),
+    Column(
+    children: [
+    Text(
+    vehicle['description'],
+    style: TextStyle(
+    color: Color(0xff4B4EB0),
+    fontSize: 18,
+    ),
+    ),
+    Text(
+    '${vehicle['plateLetters']} ${vehicle['plateDigits']}',
+    style: TextStyle(
+    color: Colors.black,
+    fontSize: 12,
+    ),
+    ),
+    ],
+    ),
+    SizedBox(
+    width: 20,
+    ),
+    Image.asset(ImageAssets.carya),
+    ],
+    ),
+    ),
+    );
+    }
+    );
+    }
+    )
+    )
+    )
     );
   }
 }

@@ -82,7 +82,6 @@ class AppPreferences {
 //-------------------------------------------------------------------------------------------------------------------
 class TokenCache with ChangeNotifier {
   String? _token;
-
   String? get token => _token;
 
   Future<void> setToken(String token) async {

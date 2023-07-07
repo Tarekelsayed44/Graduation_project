@@ -31,10 +31,11 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 class _MyAppState extends State<MyApp> {
+  String token = "";
   Future<void> initAppServices() async {
     TokenCache tokenCache = TokenCache();
     await tokenCache.loadToken();
-    await tokenCache.token;
+     token = await  tokenCache.token!;
   }
   @override
   void didChangeDependencies() {
@@ -43,12 +44,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
      initAppServices();
-     TokenCache tokenCache = TokenCache();
-     final token =  tokenCache.token;
         final Link httpLink = HttpLink(
           'https://pickpark-api.onrender.com/graphql',
           defaultHeaders:  {
-            'Authorization': (token) != null? 'Bearer $token': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxN2Q1M2IxMS04MTk3LTRkMGItYTUwMS0yNDA5NGI2NzVjZDYiLCJpYXQiOjE2ODc2OTA2NDV9.bFRR0pavMVeTg8fhlcr0uFGJX6Xa32TtsMLdigWbM4c'
+            'Authorization': (token) != null? 'Bearer $token': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ODdhNTVkMS03MjUyLTQ1YzEtYWNjYi0xY2EwNjBhZjgzN2YiLCJpYXQiOjE2ODY4NzE4NTl9.bYqQg4YDXpYQ0dnL626S0s9t-j6TW7HR4QyuXek3LKk'
           },
         ).concat(AuthLink(getToken: () async => 'Bearer $token'));
         ValueNotifier<GraphQLClient> gclient = ValueNotifier(
