@@ -1,6 +1,8 @@
+
 import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:pick_park/app/app_pref.dart';
 import 'package:pick_park/presentations/payment_screens/payment1.dart';
 import 'package:pick_park/shared/components/component.dart';
 import 'package:pick_park/shared/styles/colors.dart';
@@ -17,6 +19,12 @@ class booking_details extends StatefulWidget {
 }
 
 class _booking_detailsState extends State<booking_details> {
+   double ?price;
+  Future<void> initAppServices() async {
+   PriceCache priceCache = PriceCache();
+   await priceCache.loadPrice();
+   price = await  priceCache.price!;
+  }
   // late Map<DateTime, List<Event>> selectedEvents;
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
@@ -219,7 +227,7 @@ class _booking_detailsState extends State<booking_details> {
                   ),
                   Spacer(),
                   Text(
-                    "25.00",
+                    "$price",
                     style:
                         getRegularStyle(color: Color(0xff4B4EB0), fontSize: 15),
                   )

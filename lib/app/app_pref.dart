@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../presentations/resources/language_manager.dart';
@@ -23,9 +24,8 @@ const String PREFS_KEY_LANG = "PREFS_KEY_LANG";
 //     "PREFS_KEY_ONBOARDING_SCREEN_VIEWED";
 // const String PREFS_KEY_IS_USER_LOGGED_IN = "PREFS_KEY_IS_USER_LOGGED_IN";
 class AppPreferences {
-  final SharedPreferences _sharedPreferences;
-  AppPreferences(this._sharedPreferences);
   Future<String> getAppLanguage() async {
+    final _sharedPreferences = await SharedPreferences.getInstance();
     String? language = _sharedPreferences.getString(PREFS_KEY_LANG);
     if (language != null && language.isNotEmpty) {
       return language;
@@ -36,6 +36,7 @@ class AppPreferences {
   }
 
   Future<void> changeAppLanguage() async {
+    final _sharedPreferences = await SharedPreferences.getInstance();
     String currentLang = await getAppLanguage();
 
     if (currentLang == LanguageType.ARABIC.getValue()) {
@@ -93,7 +94,7 @@ class TokenCache with ChangeNotifier {
 
   Future<void> loadToken() async {
     final prefs = await SharedPreferences.getInstance();
-    _token = prefs.getString('token');
+    _token =  prefs.getString('token');
     notifyListeners();
   }
 
@@ -101,6 +102,24 @@ class TokenCache with ChangeNotifier {
     _token = null;
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
+    notifyListeners();
+  }
+}
+class PriceCache with ChangeNotifier {
+  double? _price;
+
+  double? get price => _price;
+
+  Future<void> setPrice(double price) async {
+    _price = price;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble('price',price);
+    notifyListeners();
+  }
+
+  Future<void> loadPrice() async {
+    final prefs = await SharedPreferences.getInstance();
+    _price = prefs.getDouble("price");
     notifyListeners();
   }
 }

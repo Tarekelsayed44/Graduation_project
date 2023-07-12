@@ -1,8 +1,11 @@
+import 'dart:js_util';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:pick_park/presentations/login_screen/login_screen.dart';
 import 'package:pick_park/presentations/resources/assets_manager.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
@@ -20,9 +23,8 @@ class settings extends StatefulWidget {
   State<settings> createState() => _settingsState();
 }
 
-class _settingsState extends State<settings> {
-  //final AppPreferences _appPreferences = instance<AppPreferences>();
-
+class _settingsState extends State<settings>{
+   //AppPreferences _appPreferences = AppPreferences();
   @override
   Widget build(BuildContext context) {
     TokenCache tokenCache = TokenCache();
@@ -42,9 +44,7 @@ class _settingsState extends State<settings> {
         ),
         backgroundColor: Colors.white,
         body: Query(
-            options: QueryOptions(document: gql(AppQueries.me), variables: {
-              'token': token,
-            }),
+            options: QueryOptions(document: gql(AppQueries.me)),
             builder: (QueryResult? result,
                 {VoidCallback? refetch, FetchMore? fetchMore}) {
               if (result!.data == null) {
@@ -139,6 +139,13 @@ class _settingsState extends State<settings> {
                   //   },
                   // ),
                   ListTile(
+                    onTap:() async {
+                     await tokenCache.clearToken();
+                     Navigator.push(
+                         context,
+                         MaterialPageRoute(
+                             builder: (context) => loginScreen()));
+                    } ,
                     leading: Icon(
                       Icons.logout,
                       color: Colors.red,
@@ -160,4 +167,4 @@ class _settingsState extends State<settings> {
 // bool isRtl() {
 //   return context.locale == ARABIC_LOCAL;
 // }
-}
+ }

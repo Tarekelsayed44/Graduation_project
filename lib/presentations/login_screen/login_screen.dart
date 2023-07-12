@@ -156,11 +156,18 @@ class _loginScreenState extends State<loginScreen> {
                                 update: (GraphQLDataProxy cache, QueryResult) {
                                   return cache;
                                 },
-                                onCompleted: (dynamic resultData) {
+                                onCompleted: (dynamic token) async{
+                                  await tokenCache.loadToken();
+                                  await tokenCache.token;
+                                  if(token!=null){
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => MainView()));
+                                }
+                                  else{
+                                    print("email or password not true");
+                                  }
                                 }),
                             builder:
                                 (RunMutation? runMutation, QueryResult? result)  {
@@ -172,12 +179,12 @@ class _loginScreenState extends State<loginScreen> {
                               }
                               if(result.isLoading == false && result.data != null ){
                                 token = result.data!['emailAndPasswordLogin']['data']['token'];
-                                 tokenCache.setToken(token);
+                                tokenCache.setToken(token);
                                 final t =  tokenCache.token;
                                 print(t);
                               }
                               return defaultButton(
-                                function: () async {
+                                function: ()  {
                                   if (formKey.currentState!.validate() == true) {
                                     runMutation!({
                                       "input": {
@@ -185,7 +192,7 @@ class _loginScreenState extends State<loginScreen> {
                                         'password': passwordController.text,
                                       }
                                     });
-                                    await tokenCache.setToken(token);
+
                                   }
                                 },
                                 text: AppStrings.login.tr().toUpperCase(),

@@ -39,28 +39,15 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Query(
               options: QueryOptions(
                 document: gql(AppQueries.searchquery),
-                variables: <String, dynamic>{
-                  'filter': {
-                    'keyword': _filterController.text,
-                  //  'lat': _filterController.text,
-                    // 'minPrice': _filterController.text,
-                    // 'maxPrice': _filterController.text,
-                    // 'long': _filterController.text,
-                    // 'isBlocked': _filterController.text,
-                    // 'isActive': _filterController.text
-                  },
-                  'paginate': null, // Provide your pagination values if needed
-                },
               ),
-
               builder: (QueryResult? result,
                   {VoidCallback? refetch, FetchMore? fetchMore}) {
                 if(result!.isLoading){
                   return CircularProgressIndicator();
                 }
-                // if(result.hasException){
-                //   print(result.exception);
-                // }
+                if(result.hasException){
+                  print(result.exception);
+                }
                 if(result.data==null){
                   Text('Data not found');
                 }
