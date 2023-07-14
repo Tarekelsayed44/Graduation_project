@@ -1,155 +1,321 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_credit_card/credit_card_brand.dart';
-import 'package:flutter_credit_card/flutter_credit_card.dart';
-import 'package:pick_park/presentations/final_detail/finalDetail.dart';
-import 'package:pick_park/presentations/resources/string_manager.dart';
+import 'package:flutter/services.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:paymob_flutter_lib/models/order.dart';
+import 'package:paymob_flutter_lib/models/payment.dart';
+import 'package:paymob_flutter_lib/models/payment_key_request.dart';
+import 'package:paymob_flutter_lib/models/payment_result.dart';
+import 'package:paymob_flutter_lib/paymob_flutter_lib.dart';
 
-import '../../presentations/resources/styles_manager.dart';
-
-class AddPaymentCard extends StatefulWidget {
-  const AddPaymentCard({Key? key}) : super(key: key);
-
+class PaymentScreen extends StatefulWidget {
   @override
-  State<AddPaymentCard> createState() => _AddPaymentCardState();
+  _PaymentScreenState createState() => _PaymentScreenState();
 }
 
-class _AddPaymentCardState extends State<AddPaymentCard> {
-  String cardNumber = '';
-  String expiryDate = '';
-  String cardHolderName = '';
-  String cvvCode = '';
-  bool isCvvFocused = false;
-  bool useGlassMorphism = false;
-  OutlineInputBorder border = OutlineInputBorder(
-      borderSide: BorderSide(
-          color: Colors.grey.withOpacity(0.7),
-          width: 2.0));
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+class _PaymentScreenState extends State<PaymentScreen> {
+  late GraphQLClient graphQLClient;
+  String apiKey = '';
+
   @override
+  void initState() {
+    super.initState();
+    initializeGraphQLClient();
+  }
 
-  Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        leading: IconButton( onPressed: () { Navigator.pop(context) ;}, icon: Icon(Icons.arrow_back,color: Colors.black),),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          AppStrings.newCard.tr(),
-          style: getSemiBoldStyle(
-            color: Colors.black,
-            fontSize: 25,
-          ),
-        ),
-        automaticallyImplyLeading: false,
+  Future<void> initializeGraphQLClient() async {
+    final MutationOptions options = MutationOptions(
+      document: gql(r'''
+        mutation PreparePaymobPayment($reservationId: UUID!) {
+          preparePaymobPayment(reservationId: $reservationId) {
+            data
+            success
+            code
+            message
+          }
+        }
+      '''),
+      variables: {
+        'reservationId': 'YOUR_RESERVATION_ID',
+      },
+    );
 
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 10,right: 10,top: 15),
-        child: Column(
-          children: <Widget>[
-            CreditCardWidget(
-              cardNumber: cardNumber,
-              expiryDate: expiryDate,
-              cardHolderName: cardHolderName,
-              cvvCode: cvvCode,
-              bankName: '',
-              showBackView: isCvvFocused,
-              obscureCardNumber: true,
-              obscureCardCvv: true,
-              isHolderNameVisible: true,
-              isSwipeGestureEnabled: true,
-              onCreditCardWidgetChange:
-                  (CreditCardBrand creditCardBrand) {},
+    final QueryResult result = await graphQLClient.mutate(options);
 
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    CreditCardForm(
-                      formKey: formKey,
-                      obscureCvv: true,
-                      obscureNumber: true,
-                      cardNumber: cardNumber,
-                      cvvCode: cvvCode,
-                      isHolderNameVisible: true,
-                      isCardNumberVisible: true,
-                      isExpiryDateVisible: true,
-                      cardHolderName: cardHolderName,
-                      expiryDate: expiryDate,
-                      themeColor: Colors.blue,
-                      cardNumberDecoration: InputDecoration(
-                        labelText: 'Number',
-                        hintText: 'XXXX XXXX XXXX XXXX',
-                        focusedBorder: border,
-                        enabledBorder: border,
-                      ),
-                      expiryDateDecoration: InputDecoration(
-                        focusedBorder: border,
-                        enabledBorder: border,
-                        labelText: 'Expired Date',
-                        hintText: 'XX/XX',
-                      ),
-                      cvvCodeDecoration: InputDecoration(
-                        focusedBorder: border,
-                        enabledBorder: border,
-                        labelText: 'CVV',
-                        hintText: 'XXX',
-                      ),
-                      cardHolderDecoration: InputDecoration(
-                        focusedBorder: border,
-                        enabledBorder: border,
-                        labelText: 'Card Holder',
-                      ),
-                      onCreditCardModelChange: onCreditCardModelChange,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        // color: const Color(0xff1b447b),
-                      ),
-                      child: Container(
-                        margin: const EdgeInsets.all(12),
-                        child:  Text(
-                          AppStrings.addTheCard.tr(),
-                          style: TextStyle(
-                            fontSize: 14,
-                            package: 'flutter_credit_card',
-                          ),
-                        ),
-                      ),
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
+      if (result.data!=null) {
+        apiKey = result.data?['preparePaymobPayment']['data'];
+        setState(() {});
+      }
+  }
+  final _paymobFlutterLibPlugin = PaymobFlutterLib();
 
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>FinalDetail()));
-                        } else {
-                          print('invalid!');
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
+  String _auth = '';
+  int _orderId = 0;
+  String _paymentKey = '';
+
+  String? _error = 'No Error';
+  String? _result = 'Unknown';
+  String? _token = 'Unknown';
+  String? _maskedPan = 'Unknown';
+
+  Future<void> authenticateRequest() async {
+    try {
+      String result = await PaymobFlutterLib.authenticateRequest(apiKey);
+      if (!mounted) return;
+
+      setState(() {
+        _auth = result;
+      });
+    } catch (e) {
+      if (!mounted) return;
+
+      setState(() {
+        _error = '$e';
+      });
+    }
+  }
+
+  Future<void> registerOrder() async {
+    try {
+      int result = await PaymobFlutterLib.registerOrder(
+        Order(
+          authToken: _auth,
+          deliveryNeeded: "false",
+          amountCents: "35000",
+          currency: "PKR",
+          // merchantOrderId: 2194,
+          items: [
+            // Item(
+            //   name: "ASC1515",
+            //   amountCents: "35000",
+            //   description: "Smart Watch",
+            //   quantity: "1",
+            // ),
+            // Item(
+            //     name: "ERT6565",
+            //     amountCents: "1000",
+            //     description: "Power Bank",
+            //     quantity: "1",)
           ],
+          // shippingData: ShippingData(
+          //     apartment: "803",
+          //     email: "claudette09@exa.com",
+          //     floor: "42",
+          //     firstName: "Clifford",
+          //     street: "Ethan Land",
+          //     building: "8028",
+          //     phoneNumber: "+86(8)9135210487",
+          //     postalCode: "01898",
+          //     extraDescription: "8 Ram , 128 Giga",
+          //     city: "Jaskolskiburgh",
+          //     country: "CR",
+          //     lastName: "Nicolas",
+          //     state: "Utah"),
+          // shippingDetails: ShippingDetails(
+          //     notes: "test",
+          //     numberOfPackages: 1,
+          //     weight: 1,
+          //     weightUnit: "Kilogram",
+          //     length: 1,
+          //     width: 1,
+          //     height: 1,
+          //     contents: "product of some sorts"),
+        ),
+      );
+      if (!mounted) return;
+
+      setState(() {
+        _orderId = result;
+      });
+    } catch (e) {
+      if (!mounted) return;
+
+      setState(() {
+        _error = '$e';
+      });
+    }
+  }
+
+  Future<void> requestPaymentKey() async {
+    try {
+      String result = await PaymobFlutterLib.requestPaymentKey(
+        PaymentKeyRequest(
+          authToken: _auth,
+          amountCents: "35000",
+          expiration: 3600,
+          orderId: _orderId.toString(),
+          billingData: BillingData(
+            firstName: "Bilal",
+            lastName: "Ilyas",
+            email: "bilal.ilyas1990@gmail.com",
+            phoneNumber: "+923156702020",
+            apartment: "NA",
+            floor: "NA",
+            street: "NA",
+            building: "NA",
+            postalCode: "NA",
+            city: "Sargodha",
+            state: "Punjab",
+            country: "PK",
+          ),
+          currency: "PKR",
+          integrationId: 12740,
+          lockOrderWhenPaid: "false",
+        ),
+      );
+      if (!mounted) return;
+
+      setState(() {
+        _paymentKey = result;
+      });
+    } catch (e) {
+      if (!mounted) return;
+
+      setState(() {
+        _error = '$e';
+      });
+    }
+  }
+
+  Future<void> startPayActivityNoToken() async {
+    try {
+      PaymentResult? result =
+      await _paymobFlutterLibPlugin.startPayActivityNoToken(Payment(
+        paymentKey: _paymentKey,
+        saveCardDefault: false,
+        showSaveCard: false,
+        themeColor: const Color(0xFF002B36),
+        language: "en",
+        actionbar: true,
+      ));
+      if (!mounted) return;
+
+      print("transID : ${result?.id}");
+      print(result);
+      setState(() {
+        _result = result?.dataMessage;
+        _token = result?.token;
+        _maskedPan = result?.maskedPan;
+      });
+    } on PlatformException catch (err) {
+      // Handle err
+      print("PlatformException 1");
+      print(err);
+      setState(() {
+        _error = '${err.message}';
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _error = '$e';
+      });
+    }
+  }
+
+  Future<void> startPayActivityToken() async {
+    try {
+      String? result =
+      await _paymobFlutterLibPlugin.startPayActivityToken(Payment(
+        paymentKey: _paymentKey,
+        saveCardDefault: false,
+        showSaveCard: true,
+        themeColor: const Color(0xFF002B36),
+        language: "en",
+        actionbar: true,
+        token: _token,
+        maskedPanNumber: _maskedPan,
+        customer: Customer(
+            firstName: "Eman",
+            lastName: "Ahmed",
+            phoneNumber: "+201012345678",
+            email: "example@gmail.com",
+            building: "7",
+            floor: "9",
+            apartment: "91",
+            city: "Alexandria",
+            state: "NA",
+            country: "Egypt",
+            postalCode: "NA"),
+      ));
+      if (!mounted) return;
+
+      setState(() {
+        _result = result;
+      });
+    } catch (e) {
+      print("erorrrrrr 2");
+      print(e);
+      if (!mounted) return;
+      setState(() {
+        _error = '$e';
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              MaterialButton(
+                onPressed: () async {
+                  await authenticateRequest();
+                },
+                child: const Text('Authentication Request'),
+              ),
+              Text('auth: $_auth'),
+              MaterialButton(
+                onPressed: () async {
+                  await registerOrder();
+                },
+                child: const Text('Order Registration API'),
+              ),
+              Text('orderId: $_orderId'),
+              MaterialButton(
+                onPressed: () async {
+                  await requestPaymentKey();
+                },
+                child: const Text('Payment Key Request'),
+              ),
+              Text('paymentKey: $_paymentKey'),
+              const Divider(),
+              MaterialButton(
+                onPressed: () async {
+                  // print(_paymentKey);
+                  await startPayActivityNoToken();
+                },
+                child: const Text('startPayActivityNoToken'),
+              ),
+              MaterialButton(
+                onPressed: () async {
+                  await startPayActivityToken();
+                },
+                child: const Text('startPayActivityToken'),
+              ),
+              Text(
+                'error: $_error',
+                style: const TextStyle(color: Colors.red),
+              ),
+              const Text(
+                "TRANSACTION_SUCCESSFUL : ",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text('result: $_result'),
+              const Text(
+                "TRANSACTION_SUCCESSFUL_CARD_SAVED",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text('token: $_token'),
+              Text('maskedPan: $_maskedPan'),
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  void onCreditCardModelChange(CreditCardModel? creditCardModel) {
-    setState(() {
-      cardNumber = creditCardModel!.cardNumber;
-      expiryDate = creditCardModel.expiryDate;
-      cardHolderName = creditCardModel.cardHolderName;
-      cvvCode = creditCardModel.cvvCode;
-      isCvvFocused = creditCardModel.isCvvFocused;
-    });
   }
 }

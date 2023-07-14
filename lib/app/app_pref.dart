@@ -94,7 +94,7 @@ class TokenCache with ChangeNotifier {
 
   Future<void> loadToken() async {
     final prefs = await SharedPreferences.getInstance();
-    _token =  prefs.getString('token');
+    _token = await  prefs.getString('token');
     notifyListeners();
   }
 

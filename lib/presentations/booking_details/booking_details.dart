@@ -242,7 +242,7 @@ class _booking_detailsState extends State<booking_details> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddPaymentCard()));
+                            builder: (context) => Payment1()));
                   },
                   text: AppStrings.containue.tr(),
                   color: Color(0xff4B4EB0)),

@@ -765,6 +765,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.7"
+p  paymob_flutter_lib:
+    dependency: "direct main"
+    description:
+      name: paymob_flutter_lib
+      sha256: a227d02f365a16c73480312817544728a69952e665acb9e4107ac7138767dbbb
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   petitparser:
     dependency: transitive
     description:

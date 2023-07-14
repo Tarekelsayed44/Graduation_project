@@ -120,4 +120,10 @@ query ParkingSpaces($filter: ParkingSpacesFilter, $paginate: PaginateInput) {
   }
 }
 ''';
+static const floorquery=
+r'''
+query Query($input: parkingFloorMapPerDurationInput) {
+parkingFloorMapPerDuration(input: $input)
+}
+''';
 }

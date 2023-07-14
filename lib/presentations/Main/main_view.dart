@@ -20,7 +20,7 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   List<Widget> pages = [
     HomeScreen(),
-    BookingScreen(),
+    FloorMap(),
     FavouriteScreen(),
     VehicleScreen(),
     Tags(),

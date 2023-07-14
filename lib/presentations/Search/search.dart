@@ -46,20 +46,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   return CircularProgressIndicator();
                 }
                 if(result.hasException){
-                  print(result.exception);
+                  print(result.hasException);
                 }
-                if(result.data==null){
-                  Text('Data not found');
-                }
-                final data = result.data;
+                final List<dynamic> items = result.data?['parkingSpaces']['data'] ['items'] ?? [];
                 // Render your UI based on the retrieved data
                 return ListView.builder(
-                  itemCount: data!['parkingSpaces']['data']['items'].length,
+                  itemCount: items.length,
                   itemBuilder: (context, index) {
-                    final item = data!['parkingSpaces']['data']['items'][index];
+                    final item = items[index];
+                    final itemName = item['name'];
+                    final itemaprice = item['price'];
                     return ListTile(
-                      title: Text(item['name']),
-                      subtitle: Text(item['address']),
+                      title: Text('$itemName'),
+                      subtitle: Text('price' + '  '+ '$itemaprice'),
                     );
                   },
                 );
@@ -75,7 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
     final QueryOptions options = QueryOptions(
       document: gql(AppQueries.searchquery),
       variables: <String, dynamic>{
-        'filter': _filterController.text,
+          "filter": {
+            "keyword": _filterController.text,
+          },
         'paginate': null, // Provide your pagination values if needed
       },
     );
