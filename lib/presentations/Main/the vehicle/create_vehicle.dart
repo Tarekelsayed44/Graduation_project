@@ -22,7 +22,7 @@ class _CreatevehiclePageState extends State<CreatevehiclePage> {
   var letterController = TextEditingController();
   var country;
   var formKey = GlobalKey<FormState>();
-  int digits =0;
+  int digits = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class _CreatevehiclePageState extends State<CreatevehiclePage> {
                       showEnglishName: false,
                       labelColor: Colors.blueAccent,
                     ),
-                   // initialSelection: '+20   ',
+                    // initialSelection: '+20   ',
                     // or
                     initialSelection: 'Eg',
                     onChanged: (CountryCode? code) {
@@ -138,12 +138,11 @@ class _CreatevehiclePageState extends State<CreatevehiclePage> {
                   label: AppStrings.plateNum.tr(),
                   prefix: Icons.directions_car_filled_outlined,
                   type: TextInputType.number,
-                  onSubmit: (result){
+                  onSubmit: (result) {
                     setState(() {
-                      digits= result;
+                      digits = result;
                     });
                   },
-
                 ),
               ),
               SizedBox(
@@ -179,7 +178,8 @@ class _CreatevehiclePageState extends State<CreatevehiclePage> {
                       print(result);
                     }
                     return Padding(
-                      padding: const EdgeInsets.only(left: 10,right: 10,bottom: 30),
+                      padding: const EdgeInsets.only(
+                          left: 10, right: 10, bottom: 30),
                       child: defaultButton(
                         function: () {
                           runMutation!({

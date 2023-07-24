@@ -115,5 +115,10 @@
   "first_time": "بداية الوقت",
   "last_time": "نهاية الوقت",
   "price": "السعر",
-  "ensure_booking": "تأكيدالحجز"
+  "ensure_booking": "تأكيدالحجز",
+  "floor_map" : "اختر مكان وقوف سيارتك",
+  "floor": "الطابق",
+  "block": "القسم",
+  "parking_space": "موقف"
+
 }

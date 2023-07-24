@@ -155,22 +155,28 @@ class _loginScreenState extends State<loginScreen> {
                                 document: gql(AppMutations.emailAndPasswordLogin),
                                 update: (GraphQLDataProxy cache, QueryResult) {
                                   return cache;
-                                },
+                                  },
                                 onCompleted: (dynamic token) async{
                                   await tokenCache.loadToken();
                                   await tokenCache.token;
                                   if(token!=null){
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => MainView()));
+                                 if (token == null){
+                                   print('Email or Password is not True');
+                                 }
+                                 else{
+                                   Navigator.push(
+                                       context,
+                                       MaterialPageRoute(
+                                           builder: (context) => MainView()));
+                                 }
+
                                 }
                                   else{
                                     print("email or password not true");
                                   }
                                 }),
                             builder:
-                                (RunMutation? runMutation, QueryResult? result)  {
+                                (RunMutation? runMutation, QueryResult? result) {
                               if (result!.isLoading) {
                                 return Text(AppStrings.loading.tr());
                               }
@@ -179,12 +185,13 @@ class _loginScreenState extends State<loginScreen> {
                               }
                               if(result.isLoading == false && result.data != null ){
                                 token = result.data!['emailAndPasswordLogin']['data']['token'];
-                                tokenCache.setToken(token);
-                                final t =  tokenCache.token;
-                                print(t);
+                                  tokenCache.setToken(token);
+                                  final t =  tokenCache.token;
+                                  print(t);
+
                               }
                               return defaultButton(
-                                function: ()  {
+                                function: () async {
                                   if (formKey.currentState!.validate() == true) {
                                     runMutation!({
                                       "input": {
@@ -192,7 +199,6 @@ class _loginScreenState extends State<loginScreen> {
                                         'password': passwordController.text,
                                       }
                                     });
-
                                   }
                                 },
                                 text: AppStrings.login.tr().toUpperCase(),

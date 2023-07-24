@@ -112,6 +112,10 @@ class AppStrings {
   static const String lastTime = "last_time";
   static const String price = "price";
   static const String ensurebook = "ensure_booking";
+  static const String floorMap = "floor_map";
+  static const String floor = "floor";
+  static const String block = "block";
+  static const String parkingSpace = "parking_space";
   // error handler
   static const String badRequestError = "bad_request_error";
 }

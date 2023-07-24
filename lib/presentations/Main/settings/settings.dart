@@ -1,5 +1,3 @@
-import 'dart:js_util';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
@@ -159,7 +157,6 @@ class _settingsState extends State<settings>{
               );
             }));
   }
-
 // _changelanguage() {
 //   _appPreferences.changeAppLanguage();
 //   Phoenix.rebirth(context);

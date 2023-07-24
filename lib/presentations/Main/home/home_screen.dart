@@ -1,11 +1,11 @@
 import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../../../app/app_pref.dart';
 import '../../../shared/components/component.dart';
 import '../../Search/search.dart';
 import '../../resources/string_manager.dart';
@@ -35,11 +35,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // String price="";
-  var  lat;
+  var lat;
   var long;
   late CameraPosition _kGooglePlex;
   Completer<GoogleMapController> _controller = Completer();
- // PriceCache priceCache =PriceCache();
+
+  // PriceCache priceCache =PriceCache();
   @override
   void initState() {
     super.initState();
@@ -53,82 +54,81 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Expanded(
-          child: _kGooglePlex == null
-              ? CircularProgressIndicator()
-              : Stack(
-            children: [
-          Query(
-          options: QueryOptions(
-          document: gql(parkingSpacesQuery),
-        ),
-          builder: (QueryResult result, {VoidCallback? refetch, FetchMore? fetchMore}) {
-            if (result.hasException) {
-              return Text('Error: ${result.exception}');
-            }
-
-            if (result.isLoading) {
-              return CircularProgressIndicator();
-            }
-
-            List<ParkingSpace> parkingSpaces = extractParkingSpaces(
-                result.data);
-            _marker = createMarkers(parkingSpaces);
-
-            return GoogleMap(
-              initialCameraPosition: _kGooglePlex,
-              markers: Set<Marker>.of(_marker),
-              mapType: MapType.normal,
-              myLocationEnabled: false,
-              compassEnabled: false,
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              },
-            );
-          } ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.notification_important_sharp,
-                          color: Color(0xff4B4EB0),
-                        ),
+        child: _kGooglePlex == null
+            ? CircularProgressIndicator()
+            : Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  Query(
+                      options: QueryOptions(
+                        document: gql(parkingSpacesQuery),
                       ),
-                      radius: 20,
-                      backgroundColor: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    CircleAvatar(
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MyHomePage(),
+                      builder: (QueryResult result,
+                          {VoidCallback? refetch, FetchMore? fetchMore}) {
+                        if (result.hasException) {
+                          return Text('Error: ${result.exception}');
+                        }
+
+                        if (result.isLoading) {
+                          return CircularProgressIndicator();
+                        }
+
+                        List<ParkingSpace> parkingSpaces =
+                            extractParkingSpaces(result.data);
+                        _marker = createMarkers(parkingSpaces);
+
+                        return GoogleMap(
+                          initialCameraPosition: _kGooglePlex,
+                          markers: Set<Marker>.of(_marker),
+                          mapType: MapType.normal,
+                          myLocationEnabled: false,
+                          compassEnabled: false,
+                          onMapCreated: (GoogleMapController controller) {
+                            _controller.complete(controller);
+                          },
+                        );
+                      }),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.notification_important_sharp,
+                              color: Color(0xff4B4EB0),
                             ),
-                          );
-                        },
-                        icon: Icon(
-                          Icons.search,
-                          color: Color(0xff4B4EB0),
+                          ),
+                          radius: 20,
+                          backgroundColor: Colors.white,
                         ),
-                      ),
-                      radius: 20,
-                      backgroundColor: Colors.white,
+                        SizedBox(
+                          width: 10,
+                        ),
+                        CircleAvatar(
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MyHomePage(),
+                                ),
+                              );
+                            },
+                            icon: Icon(
+                              Icons.search,
+                              color: Color(0xff4B4EB0),
+                            ),
+                          ),
+                          radius: 20,
+                          backgroundColor: Colors.white,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )
-            ],
-            alignment: Alignment.topRight,
-          ),
-        ),
+                  )
+                ],
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.location_disabled_outlined),
@@ -207,9 +207,9 @@ class _HomeScreenState extends State<HomeScreen> {
       final List<dynamic> items = data['parkingSpaces']['data']['items'];
       for (final item in items) {
         final double lat = item['lat'];
-        final double  long = item['long'];
+        final double long = item['long'];
         final String id = item['id'];
-       // final double price =item['price'];
+        // final double price =item['price'];
         parkingSpaces.add(ParkingSpace(lat: lat, long: long, id: id));
         //priceCache.setPrice(price);
       }
@@ -239,8 +239,12 @@ class ParkingSpace {
   final double lat;
   final double long;
   final String id;
+
   //final double price;
-  ParkingSpace({required this.lat, required this.long, required this.id,
-  //  required this.price
+  ParkingSpace({
+    required this.lat,
+    required this.long,
+    required this.id,
+    //  required this.price
   });
 }

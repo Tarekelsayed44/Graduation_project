@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:pick_park/app/Graphql/app_queries.dart';
+import 'package:pick_park/presentations/resources/string_manager.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -25,7 +27,10 @@ class _MyHomePageState extends State<MyHomePage> {
             child: TextField(
               controller: _filterController,
               decoration: InputDecoration(
-                labelText: 'Filter',
+                labelText: AppStrings.parkingSpace.tr(),
+                border:OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xff4B4EB0),)
+                ),
                 suffixIcon: IconButton(
                   icon: Icon(Icons.search),
                   onPressed: () {

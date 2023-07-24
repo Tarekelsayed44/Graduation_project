@@ -117,5 +117,9 @@
   "first_time":"Begin Time",
   "last_time": "End Time",
   "price": "Price",
-  "ensure_booking" : "Ensure Booking"
+  "ensure_booking" : "Ensure Booking",
+  "floor_map" :"Choose your parking place",
+  "floor": "Floor",
+  "block": "Block",
+  "parking_space": "Parking Space"
 }
